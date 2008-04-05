@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Storage;
 using F2D;
 using F2D.Core;
-using F2D.Graphics;
+using F2D.Code.Graphics;
 using F2D.StateManager;
 
 namespace F2D.Management

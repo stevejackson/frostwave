@@ -12,7 +12,7 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Storage;
 using F2D;
 using F2D.Input;
-using F2D.Graphics;
+using F2D.Code.Graphics;
 using F2D.Management;
 
 namespace F2D.StateManager
@@ -23,7 +23,15 @@ namespace F2D.StateManager
         List<GameScreen> screens = new List<GameScreen>();
         List<GameScreen> screensToUpdate = new List<GameScreen>(); 
 
-        public static List<Renderable> Objects = new List<Renderable>();
+        /// <summary>
+        /// List that holds all of the items using world coordinates (such as sprites).
+        /// </summary>
+        public static List<WorldItem> WorldItems = new List<WorldItem>();
+        /// <summary>
+        /// List that holds all of the items using screen coordinates (such as GUI).
+        /// </summary>
+        public static List<ScreenItem> ScreenItems = new List<ScreenItem>();
+
         GraphicsDeviceManager graphicsManager;
 
         InputState input = new InputState();
@@ -61,10 +69,10 @@ namespace F2D.StateManager
             set { traceEnabled = value; }
         }
 
-        static private GraphicsDevice graphicsDevice;
-        static public GraphicsDevice GraphicsDevice
+        static private GraphicsDevice graphicsDev;
+        static public GraphicsDevice graphicsDevice
         {
-            get { return graphicsDevice; }
+            get { return graphicsDev; }
         }
 
         static private SpriteBatch sceneBatch;
@@ -151,7 +159,7 @@ namespace F2D.StateManager
             renderCells = false;
 
             graphicsManager = gfx;
-            graphicsDevice = graphicsManager.GraphicsDevice;
+            graphicsDev = graphicsManager.GraphicsDevice;
             viewport = new Viewport();
             float letterboxing;
 
@@ -333,6 +341,11 @@ namespace F2D.StateManager
                 screen.Draw(gameTime);
             }
 
+            for (int i = 0; i < ScreenItems.Count; i++)
+            {
+                ScreenItems[i].Draw();
+            }
+
             F2D.StateManager.ScreenManager.SceneBatch.End();
 
             /* spatial partitioning automatic rendering begins here */
@@ -342,8 +355,6 @@ namespace F2D.StateManager
                                    SaveStateMode.None,
                                    F2D.StateManager.ScreenManager.ScaleMatrix);
 
-            //always draw permacell
-            Grid.PermaCell.Draw();
             Grid.Cells[Grid.ParentCell.X, Grid.ParentCell.Y].Draw();
             Grid.NeighbourCells.Clear();
 
@@ -411,7 +422,7 @@ namespace F2D.StateManager
                 }
             }
 
-            Rat.Draw(Camera.Position);
+            Rat.Draw();
 
             F2D.StateManager.ScreenManager.SceneBatch.End();
         }

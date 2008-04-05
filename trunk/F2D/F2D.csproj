@@ -61,7 +61,9 @@
     <Compile Include="Code\Core\Physics.cs" />
     <Compile Include="Code\Graphics\PrimitiveBatch.cs" />
     <Compile Include="Code\Graphics\Renderable.cs" />
+    <Compile Include="Code\Graphics\ScreenItem.cs" />
     <Compile Include="Code\Graphics\Sprite.cs" />
+    <Compile Include="Code\Graphics\WorldItem.cs" />
     <Compile Include="Code\Gui\Button.cs" />
     <Compile Include="Code\Gui\Textbox.cs" />
     <Compile Include="Code\Input\Rat.cs" />
@@ -69,7 +71,6 @@
     <Compile Include="Code\Management\Cell.cs" />
     <Compile Include="Code\Management\Grid.cs" />
     <Compile Include="Code\Management\Log.cs" />
-    <Compile Include="Code\Management\Scene.cs" />
     <Compile Include="Code\Math\Vector2Int.cs" />
     <Compile Include="Code\StateManager\GameScreen.cs" />
     <Compile Include="Code\StateManager\InputState.cs" />

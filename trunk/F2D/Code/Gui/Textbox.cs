@@ -8,11 +8,12 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Storage;
 using F2D.Management;
 using F2D.Input;
+using F2D.Code.Graphics;
 using F2D.StateManager;
 
 namespace F2D.Gui
 {
-    public class Textbox : F2D.Graphics.Renderable
+    public class Textbox : F2D.Code.Graphics.ScreenItem
     {
         private Texture2D texture;
 
@@ -88,9 +89,7 @@ namespace F2D.Gui
             text = "";
             this.charLimit = charLimit;            
             this.Layer = 0.1f;
-            CurCell = new F2D.Math.Vector2Int(-1, -1);
-            F2D.Management.Grid.PermaCell.Objects.Add(this);
-           
+            ScreenManager.ScreenItems.Add(this);           
         }
 
         public void LoadContent(ContentManager contentManager, string fontFilename, string textboxFileName)
@@ -106,8 +105,13 @@ namespace F2D.Gui
 
         public void UnloadContent()
         {
-            F2D.Management.Grid.PermaCell.Objects.Remove(this);
             content.Unload();
+
+           
+            if (this.isVisible())
+            {
+                ScreenManager.ScreenItems.Remove(this);
+            }
         }
 
         /// <summary>
@@ -121,7 +125,7 @@ namespace F2D.Gui
                ScreenManager.Rat.Position.Y >= boxPosition.Y &&
                ScreenManager.Rat.Position.Y <= (boxPosition.Y + size.Y))
             {
-                if (ScreenManager.Rat.LState == F2D.Input.Rat.RatState.Released)
+                if (ScreenManager.Rat.LState == F2D.Input.Rat.State.Released)
                     state = "Typing";
 
             }
@@ -132,7 +136,7 @@ namespace F2D.Gui
                ScreenManager.Rat.Position.Y > (boxPosition.Y + size.Y))
             {
 
-                if (ScreenManager.Rat.LState == F2D.Input.Rat.RatState.Released)
+                if (ScreenManager.Rat.LState == F2D.Input.Rat.State.Released)
                     state = "Idle";
 
 
@@ -267,7 +271,7 @@ namespace F2D.Gui
 
         }
 
-        public override void Draw(Vector2 CamPos)
+        public override void Draw()
         {
             ScreenManager.SceneBatch.Draw(texture, boxPosition, null, Color.White, 0f, Vector2.Zero,
                 1f, SpriteEffects.None, this.Layer);

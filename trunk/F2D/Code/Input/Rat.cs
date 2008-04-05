@@ -7,10 +7,11 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Input;
 using F2D.Management;
 using F2D.StateManager;
+using F2D.Code.Graphics;
 
 namespace F2D.Input
 {
-    public class Rat : F2D.Graphics.Renderable
+    public class Rat : ScreenItem
     {
         private Texture2D cursor;
         private Rectangle drawRect;
@@ -25,22 +26,15 @@ namespace F2D.Input
             set { position = value; }
         }
 
-        private bool isVisible;
-        public bool IsVisible
-        {
-            get { return isVisible; }
-            set { isVisible = value; }
-        }
-
-        public enum RatState
+        public enum State
         {
             Idle,
             Down,
             Released
         };
 
-        public RatState RState;
-        public RatState LState;
+        public State RState;
+        public State LState;
 
         MouseState oldState;
 
@@ -51,9 +45,8 @@ namespace F2D.Input
             position = new Vector2(Mouse.GetState().X / ScreenManager.Scale.X, Mouse.GetState().Y / ScreenManager.Scale.Y);
             oldState = Mouse.GetState();
             Layer = 0.0f;
-            this.IsVisible = true;
-            CurCell = new F2D.Math.Vector2Int(-1, -1);
-            F2D.Management.Grid.PermaCell.Objects.Add(this);
+
+            ScreenManager.ScreenItems.Add(this);
         }
 
         public void LoadContent(ContentManager contentManager, string filename)
@@ -64,8 +57,12 @@ namespace F2D.Input
 
         public void UnloadContent()
         {
-            F2D.Management.Grid.PermaCell.Objects.Remove(this);
             content.Unload();
+
+            if (this.isVisible())
+            {
+                ScreenManager.ScreenItems.Remove(this);
+            }
         }
 
         public void Update()
@@ -96,12 +93,12 @@ namespace F2D.Input
                 if (curState.LeftButton == ButtonState.Pressed &&
                     oldState.LeftButton == ButtonState.Pressed)
                 {
-                    LState = RatState.Down;
+                    LState = State.Down;
                 }
                 if (curState.RightButton == ButtonState.Pressed &&
                     oldState.RightButton == ButtonState.Pressed)
                 {
-                    RState = RatState.Down;
+                    RState = State.Down;
                 }
             }
 
@@ -111,24 +108,24 @@ namespace F2D.Input
                 if (curState.LeftButton == ButtonState.Released &&
                     oldState.LeftButton == ButtonState.Pressed)
                 {
-                    LState = RatState.Released;
+                    LState = State.Released;
                 }
                 if (curState.RightButton == ButtonState.Released &&
                     oldState.RightButton == ButtonState.Pressed)
                 {
-                    RState = RatState.Released;
+                    RState = State.Released;
                 }
 
                 if (curState.LeftButton == ButtonState.Released &&
                     oldState.LeftButton == ButtonState.Released)
                 {
-                    LState = RatState.Idle;
+                    LState = State.Idle;
                 }
 
                 if (curState.RightButton == ButtonState.Released &&
                     oldState.RightButton == ButtonState.Released)
                 {
-                    RState = RatState.Idle;
+                    RState = State.Idle;
                 }      
             }
             
@@ -136,9 +133,9 @@ namespace F2D.Input
 
         }
 
-        public override void Draw(Vector2 CamPos)
+        public override void Draw()
         {
-            if (this.IsVisible)
+            if (this.isVisible())
             {
                 ScreenManager.SceneBatch.Draw(cursor, position, null, Color.White, 0f, Vector2.Zero, 1f,
                     SpriteEffects.None, this.Layer);

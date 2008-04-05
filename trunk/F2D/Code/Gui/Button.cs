@@ -8,12 +8,12 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Storage;
 using F2D.Input;
-using F2D.Graphics;
+using F2D.Code.Graphics;
 using F2D.Management;
 using F2D.StateManager;
 namespace F2D.Gui
 {
-    public class Button : Renderable
+    public class Button : ScreenItem
     {
         bool isClicked;
         public bool IsClicked
@@ -44,13 +44,13 @@ namespace F2D.Gui
             set { size = value; }
         }
 
-        public int CurState
+        public State CurState
         {
             get { return curState; }
             set { curState = value; }
         }
 
-        public enum States
+        public enum State
         {
             Idle,
             Hover,
@@ -60,17 +60,16 @@ namespace F2D.Gui
         ContentManager content;
         List<Texture2D> textures;
         string filename;
-        int curState;
+        State curState;
 
         public void Initialize(string filename, Vector2 buttonPosition)
         {
             position = buttonPosition;
             textures = new List<Texture2D>();
-            curState = (int)States.Idle;
+            curState = State.Idle;
             this.filename = filename;
             this.Layer = 0.1f;
-            CurCell = new F2D.Math.Vector2Int(-1, -1);
-            F2D.Management.Grid.PermaCell.Objects.Add(this);
+            ScreenManager.ScreenItems.Add(this);
         }
 
         public void LoadContent(ContentManager contentManager)
@@ -84,8 +83,12 @@ namespace F2D.Gui
 
         public void UnloadContent()
         {
-            F2D.Management.Grid.PermaCell.Objects.Remove(this);
             content.Unload();
+            
+            if (this.isVisible())
+            {
+                ScreenManager.ScreenItems.Remove(this);
+            }
         }
 
         public void Update()
@@ -97,11 +100,11 @@ namespace F2D.Gui
                 ScreenManager.Rat.Position.Y <= (position.Y + size.Y))
             {
                 inBounds = true;
-                curState = (int)States.Hover;
+                curState = State.Hover;
                 isClicked = false;
-                if (ScreenManager.Rat.LState == Rat.RatState.Released)
+                if (ScreenManager.Rat.LState == Rat.State.Released)
                 {
-                    curState = (int)States.Depressed;
+                    curState = State.Depressed;
                     isClicked = true;
                 }
             }
@@ -109,23 +112,23 @@ namespace F2D.Gui
             {
                 isClicked = false;
                 inBounds = false;
-                curState = (int)States.Idle;
+                curState = State.Idle;
             }
         }
 
-        public override void Draw(Vector2 CamPos)
+        public override void Draw()
         {
-            if (curState == (int)States.Idle)
+            if (curState == State.Idle)
             {
                 ScreenManager.SceneBatch.Draw(textures[0], position, null, Color.White, 0f, Vector2.Zero, 1f,
                     SpriteEffects.None, this.Layer); 
             }
-            else if (curState == (int)States.Hover)
+            else if (curState == State.Hover)
             {
                 ScreenManager.SceneBatch.Draw(textures[1], position, null, Color.White, 0f, Vector2.Zero, 1f,
                     SpriteEffects.None, this.Layer);
             }
-            else if (curState == (int)States.Depressed)
+            else if (curState == State.Depressed)
             {
                 ScreenManager.SceneBatch.Draw(textures[2], position, null, Color.White, 0f, Vector2.Zero, 1f,
                     SpriteEffects.None, this.Layer);

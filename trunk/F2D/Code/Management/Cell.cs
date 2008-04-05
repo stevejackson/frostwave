@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Storage;
 using F2D.Core;
-using F2D.Graphics;
+using F2D.Code.Graphics;
 using F2D.Management;
 using F2D;
 using F2D.StateManager;
@@ -48,7 +48,7 @@ namespace F2D.Management
         {
             this.position = pos;
             this.size = size;
-            batch = new SpriteBatch(ScreenManager.GraphicsDevice);
+            batch = new SpriteBatch(ScreenManager.graphicsDevice);
         }
 
         public void LoadContent(ContentManager contentManager, string filename)
@@ -74,7 +74,7 @@ namespace F2D.Management
 
             for (int j = 0; j < Objects.Count; j++)
             {
-                Objects[j].Draw(Camera.Position);
+                Objects[j].Draw();
             }
         }
     }

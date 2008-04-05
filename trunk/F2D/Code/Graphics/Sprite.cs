@@ -12,17 +12,18 @@ using FarseerGames.FarseerPhysics;
 using FarseerGames.FarseerPhysics.Dynamics;
 using FarseerGames.FarseerPhysics.Collisions;
 using F2D.Core;
-using F2D.Graphics;
+using F2D.Code.Graphics;
 using F2D.Management;
 using F2D;
 using F2D.StateManager;
 
-namespace F2D.Graphics
+namespace F2D.Code.Graphics
 {
     /// <summary>
     /// Sprites are represented by a 2D image, are not animated, and contain physics.
     /// </summary>
-    public class Sprite : Renderable
+    public class Sprite : F2D.Code.Graphics.WorldItem
+
     {
         private Vector2 position;
         public Vector2 Position
@@ -80,7 +81,7 @@ namespace F2D.Graphics
             LoadXML(name);
             InitPhysics();
             CurCell = new F2D.Math.Vector2Int();
-            ScreenManager.Objects.Add(this);
+            ScreenManager.WorldItems.Add(this);
             CurCell = F2D.Management.Grid.GetCell(position, this);
 
             Layer = 0.5f;
@@ -95,7 +96,7 @@ namespace F2D.Graphics
             LoadXML(name);
             InitPhysics();
             CurCell = new F2D.Math.Vector2Int();
-            ScreenManager.Objects.Add(this);
+            ScreenManager.WorldItems.Add(this);
             CurCell = F2D.Management.Grid.GetCell(position, this);
 
             Layer = 0.5f;
@@ -191,16 +192,17 @@ namespace F2D.Graphics
         public void UnloadContent()
         {
             F2D.Management.Grid.Cells[this.CurCell.X, this.CurCell.Y].Objects.Remove(this);
-            F2D.StateManager.ScreenManager.Objects.Remove(this);
+            F2D.StateManager.ScreenManager.WorldItems.Remove(this);
             content.Unload();
         }
 
-        public override void Draw(Vector2 camPos)
+        public override void Draw()
         {
             position = physicsBody.Position;
             rotation = physicsBody.Rotation;
 
-            Vector2 posBuffer = position - camPos;
+            Vector2 posBuffer = position - Camera.Position;
+
 
             ScreenManager.SceneBatch.Draw(texture, posBuffer, null,
                 Color.White, rotation, new Vector2(size.X /2, size.Y/2), Vector2.One, 

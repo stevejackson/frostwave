@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Storage;
 using F2D.Core;
-using F2D.Graphics;
+using F2D.Code.Graphics;
 using F2D.Management;
 using F2D.Math;
 using F2D;
@@ -30,15 +30,6 @@ namespace F2D.Management
         static public Cell[,] Cells
         {
             get { return cells; }
-        }
-
-        /// <summary>
-        /// Objects in this cell are always rendered.
-        /// </summary>
-        static private Cell permaCell;
-        static public Cell PermaCell
-        {
-            get { return permaCell; }
         }
 
         static private Vector2Int parentCell;
@@ -112,8 +103,6 @@ namespace F2D.Management
                     cells[x, y].Initialize(new Vector2(x * cellSize, y * cellSize), cellSize);
                 }
             }
-
-            permaCell = new Cell();
         }
 
         static public void LoadContent(ContentManager contentManager, string cellFilename)
@@ -127,7 +116,6 @@ namespace F2D.Management
                     cells[x, y].LoadContent(content, cellFilename);
                 }
             }
-            permaCell.LoadContent(content, cellFilename);
         }
 
         static public void UnloadContent()
@@ -139,13 +127,11 @@ namespace F2D.Management
                     cells[x, y].UnloadContent();
                 }
             }
-
-            permaCell.UnloadContent();
         }
 
-        static public Vector2Int GetCell(Vector2 position, Renderable rendObject)
+        static public Vector2Int GetCell(Vector2 position, WorldItem worldItem)
         {
-            cells[rendObject.CurCell.X, rendObject.CurCell.Y].Objects.Remove(rendObject);
+            cells[worldItem.CurCell.X, worldItem.CurCell.Y].Objects.Remove(worldItem);
 
             for (int x = 0; x <= totalXCells; x++)
             {
@@ -156,7 +142,7 @@ namespace F2D.Management
                         position.Y >= cells[x, y].Position.Y &&
                         position.Y <= (cells[x, y].Position.Y + cells[x, y].Size))
                     {
-                        cells[x, y].Objects.Add(rendObject);
+                        cells[x, y].Objects.Add(worldItem);
 
                         return new Vector2Int(x, y);
                     }
