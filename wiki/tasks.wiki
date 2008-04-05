@@ -1,3 +1,4 @@
-# summary
+#summary Current items that need to be implemented
+#labels Featured
 
   * write a non-physics based sprite, for use for stuff like static background images
