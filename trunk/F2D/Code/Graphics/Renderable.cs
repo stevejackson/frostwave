@@ -13,12 +13,11 @@ using FarseerGames.FarseerPhysics;
 using FarseerGames.FarseerPhysics.Dynamics;
 using FarseerGames.FarseerPhysics.Collisions;
 using F2D.Core;
-using F2D.Code.Graphics;
-using F2D.Management;
+using F2D.Graphics;
 using F2D;
 using F2D.Math;
 
-namespace F2D.Code.Graphics
+namespace F2D.Graphics
 {
     /// <summary>
     /// All visible objects will derive from Renderable.

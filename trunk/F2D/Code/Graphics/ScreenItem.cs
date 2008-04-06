@@ -13,15 +13,13 @@ using FarseerGames.FarseerPhysics;
 using FarseerGames.FarseerPhysics.Dynamics;
 using FarseerGames.FarseerPhysics.Collisions;
 using F2D.Core;
-using F2D.Code.Graphics;
-using F2D.Management;
+using F2D.Graphics;
 using F2D;
-using F2D.StateManager;
 
-namespace F2D.Code.Graphics
+namespace F2D.Graphics
 {
     /// <summary>
-    /// Objects drawn to screen coordinates such as mouse, buttons and other GUI
+    /// Objects drawn to screen coordinates such as mouse, buttons and other GUI.
     /// </summary>
     public abstract class ScreenItem : Renderable
     {
@@ -30,19 +28,19 @@ namespace F2D.Code.Graphics
         /// </summary>
         public void setVisible()
         {
-            if (ScreenManager.ScreenItems.Contains(this))
+            if (Director.ScreenItems.Contains(this))
             {
-                ScreenManager.ScreenItems.Remove(this);
+                Director.ScreenItems.Remove(this);
             }
             else
             {
-                ScreenManager.ScreenItems.Add(this);
+                Director.ScreenItems.Add(this);
             }
         }
 
         public bool isVisible()
         {
-            return ScreenManager.ScreenItems.Contains(this);
+            return Director.ScreenItems.Contains(this);
         }
 
         public abstract override void Draw();
