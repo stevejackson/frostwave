@@ -58,23 +58,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Code\Core\Camera.cs" />
+    <Compile Include="Code\Core\Cell.cs" />
+    <Compile Include="Code\Core\Director.cs" />
+    <Compile Include="Code\Core\GameScreen.cs" />
+    <Compile Include="Code\Core\Grid.cs" />
+    <Compile Include="Code\Input\InputState.cs" />
+    <Compile Include="Code\Core\Log.cs" />
     <Compile Include="Code\Core\Physics.cs" />
+    <Compile Include="Code\Core\Resolution.cs" />
+    <Compile Include="Code\Graphics\Gui\Button.cs" />
+    <Compile Include="Code\Graphics\Gui\ScreenImage.cs" />
     <Compile Include="Code\Graphics\PrimitiveBatch.cs" />
     <Compile Include="Code\Graphics\Renderable.cs" />
     <Compile Include="Code\Graphics\ScreenItem.cs" />
     <Compile Include="Code\Graphics\Sprite.cs" />
+    <Compile Include="Code\Graphics\Gui\Textbox.cs" />
+    <Compile Include="Code\Graphics\WorldImage.cs" />
     <Compile Include="Code\Graphics\WorldItem.cs" />
-    <Compile Include="Code\Gui\Button.cs" />
-    <Compile Include="Code\Gui\Textbox.cs" />
     <Compile Include="Code\Input\Rat.cs" />
-    <Compile Include="Code\Management\Camera.cs" />
-    <Compile Include="Code\Management\Cell.cs" />
-    <Compile Include="Code\Management\Grid.cs" />
-    <Compile Include="Code\Management\Log.cs" />
     <Compile Include="Code\Math\Vector2Int.cs" />
-    <Compile Include="Code\StateManager\GameScreen.cs" />
-    <Compile Include="Code\StateManager\InputState.cs" />
-    <Compile Include="Code\StateManager\ScreenManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

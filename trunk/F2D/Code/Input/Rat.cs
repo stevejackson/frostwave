@@ -5,9 +5,8 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Input;
-using F2D.Management;
-using F2D.StateManager;
-using F2D.Code.Graphics;
+using F2D.Core;
+using F2D.Graphics;
 
 namespace F2D.Input
 {
@@ -42,11 +41,11 @@ namespace F2D.Input
         {           
             size = cursorSize;
             drawRect = new Rectangle(0,0, 1600, 1200);
-            position = new Vector2(Mouse.GetState().X / ScreenManager.Scale.X, Mouse.GetState().Y / ScreenManager.Scale.Y);
+            position = new Vector2(Mouse.GetState().X / Director.Scale.X, Mouse.GetState().Y / Director.Scale.Y);
             oldState = Mouse.GetState();
             Layer = 0.0f;
 
-            ScreenManager.ScreenItems.Add(this);
+            Director.ScreenItems.Add(this);
         }
 
         public void LoadContent(ContentManager contentManager, string filename)
@@ -61,14 +60,14 @@ namespace F2D.Input
 
             if (this.isVisible())
             {
-                ScreenManager.ScreenItems.Remove(this);
+                Director.ScreenItems.Remove(this);
             }
         }
 
         public void Update()
         {
             MouseState curState = Mouse.GetState();
-            position = new Vector2(curState.X / ScreenManager.Scale.X, curState.Y / ScreenManager.Scale.Y);
+            position = new Vector2(curState.X / Director.Scale.X, curState.Y / Director.Scale.Y);
 
             if (position.X > drawRect.Right)
             {
@@ -137,7 +136,7 @@ namespace F2D.Input
         {
             if (this.isVisible())
             {
-                ScreenManager.SceneBatch.Draw(cursor, position, null, Color.White, 0f, Vector2.Zero, 1f,
+                Director.SceneBatch.Draw(cursor, position, null, Color.White, 0f, Vector2.Zero, 1f,
                     SpriteEffects.None, this.Layer);
             }
         }
