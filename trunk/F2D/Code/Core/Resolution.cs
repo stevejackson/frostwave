@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Storage;
 
-namespace F2D.Code.Management
+namespace F2D.Core
 {
 
     /// <summary>

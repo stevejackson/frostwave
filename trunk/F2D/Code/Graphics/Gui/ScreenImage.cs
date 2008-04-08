@@ -84,7 +84,7 @@ namespace F2D.Graphics.Gui
             this.rotation = 0f;
             this.Size = new Vector2Int();
 
-            Director.ScreenItems.Add(this);         
+            this.setVisible();        
 
             Layer = 0.1f;
         }
@@ -134,11 +134,14 @@ namespace F2D.Graphics.Gui
         /// </summary>
         public override void Draw()
         {
-            Vector2 posBuffer = position - Camera.Position;
+            if (this.isVisible())
+            {
+                Vector2 posBuffer = position - Camera.Position;
 
-            Director.SceneBatch.Draw(texture, posBuffer, null,
-                Color.White, rotation, new Vector2(size.X / 2, size.Y / 2), Vector2.One,
-                SpriteEffects.None, Layer);
+                Director.SceneBatch.Draw(texture, posBuffer, null,
+                    Color.White, rotation, new Vector2(size.X / 2, size.Y / 2), Vector2.One,
+                    SpriteEffects.None, Layer);
+            }
         }
 
         #endregion

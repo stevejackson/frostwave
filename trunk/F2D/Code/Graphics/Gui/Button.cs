@@ -69,7 +69,7 @@ namespace F2D.Graphics.Gui
             curState = State.Idle;
             this.filename = filename;
             this.Layer = 0.1f;
-            Director.ScreenItems.Add(this);
+            this.setVisible();
         }
 
         public void LoadContent(ContentManager contentManager)
@@ -93,26 +93,29 @@ namespace F2D.Graphics.Gui
 
         public void Update()
         {
-            //if the mouse is within the button's position
-            if (Director.Rat.Position.X >= position.X &&
-                Director.Rat.Position.X <= (position.X + size.X) &&
-                Director.Rat.Position.Y >= position.Y &&
-                Director.Rat.Position.Y <= (position.Y + size.Y))
+            if (this.isVisible())
             {
-                inBounds = true;
-                curState = State.Hover;
-                isClicked = false;
-                if (Director.Rat.LState == Rat.State.Released)
+                //if the mouse is within the button's position
+                if (Director.Rat.Position.X >= position.X &&
+                    Director.Rat.Position.X <= (position.X + size.X) &&
+                    Director.Rat.Position.Y >= position.Y &&
+                    Director.Rat.Position.Y <= (position.Y + size.Y))
                 {
-                    curState = State.Depressed;
-                    isClicked = true;
+                    inBounds = true;
+                    curState = State.Hover;
+                    isClicked = false;
+                    if (Director.Rat.LState == Rat.State.Released)
+                    {
+                        curState = State.Depressed;
+                        isClicked = true;
+                    }
                 }
-            }
-            else
-            {
-                isClicked = false;
-                inBounds = false;
-                curState = State.Idle;
+                else
+                {
+                    isClicked = false;
+                    inBounds = false;
+                    curState = State.Idle;
+                }
             }
         }
 

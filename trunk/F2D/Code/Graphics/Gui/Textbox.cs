@@ -88,7 +88,7 @@ namespace F2D.Graphics.Gui
             text = "";
             this.charLimit = charLimit;            
             this.Layer = 0.1f;
-            Director.ScreenItems.Add(this);           
+            this.setVisible();         
         }
 
         public void LoadContent(ContentManager contentManager, string fontFilename, string textboxFileName)
@@ -105,8 +105,7 @@ namespace F2D.Graphics.Gui
         public void UnloadContent()
         {
             content.Unload();
-
-           
+                       
             if (this.isVisible())
             {
                 Director.ScreenItems.Remove(this);
@@ -118,177 +117,186 @@ namespace F2D.Graphics.Gui
         /// </summary>
         public void Update()
         {
-            //if the mouse is clicked and released within the textbox
-            if (Director.Rat.Position.X >= boxPosition.X &&
-               Director.Rat.Position.X <= (boxPosition.X + size.X) &&
-               Director.Rat.Position.Y >= boxPosition.Y &&
-               Director.Rat.Position.Y <= (boxPosition.Y + size.Y))
+            if (this.isVisible())
             {
-                if (Director.Rat.LState == F2D.Input.Rat.State.Released)
-                    state = "Typing";
-
-            }
-            //outside of the bounds and clicked
-            else if (Director.Rat.Position.X < boxPosition.X &&
-               Director.Rat.Position.X > (boxPosition.X + size.X) &&
-               Director.Rat.Position.Y < boxPosition.Y &&
-               Director.Rat.Position.Y > (boxPosition.Y + size.Y))
-            {
-
-                if (Director.Rat.LState == F2D.Input.Rat.State.Released)
-                    state = "Idle";
-
-
-                if (state == "Typing")
+                //if the mouse is clicked and released within the textbox
+                if (Director.Rat.Position.X >= boxPosition.X &&
+                   Director.Rat.Position.X <= (boxPosition.X + size.X) &&
+                   Director.Rat.Position.Y >= boxPosition.Y &&
+                   Director.Rat.Position.Y <= (boxPosition.Y + size.Y))
                 {
-                    UpdateInput();
+                    if (Director.Rat.LState == F2D.Input.Rat.State.Released)
+                        state = "Typing";
+
+                }
+                //outside of the bounds and clicked
+                else if (Director.Rat.Position.X < boxPosition.X &&
+                   Director.Rat.Position.X > (boxPosition.X + size.X) &&
+                   Director.Rat.Position.Y < boxPosition.Y &&
+                   Director.Rat.Position.Y > (boxPosition.Y + size.Y))
+                {
+
+                    if (Director.Rat.LState == F2D.Input.Rat.State.Released)
+                        state = "Idle";
+
+
+                    if (state == "Typing")
+                    {
+                        UpdateInput();
+                    }
                 }
             }
         }
 
         public void UpdateInput()
         {
-            KeyboardState curState = Keyboard.GetState();
+            if (this.isVisible())
+            {
+                KeyboardState curState = Keyboard.GetState();
 
-            if (text.Length > 0 && curState.IsKeyDown(Keys.Back) && oldState.IsKeyUp(Keys.Back))
-            {
-               text = text.Substring(0, text.Length - 1);
-            }
-            else if (curState.IsKeyDown(Keys.LeftShift) && text.Length < charLimit ||
-                curState.IsKeyDown(Keys.RightShift) && text.Length < charLimit)
-            {
-                if (curState.IsKeyDown(Keys.A) && oldState.IsKeyUp(Keys.A))
-                    text += "A";
-                if (curState.IsKeyDown(Keys.B) && oldState.IsKeyUp(Keys.B))
-                    text += "B";
-                if (curState.IsKeyDown(Keys.C) && oldState.IsKeyUp(Keys.C))
-                    text += "C";
-                if (curState.IsKeyDown(Keys.D) && oldState.IsKeyUp(Keys.D))
-                    text += "D";
-                if (curState.IsKeyDown(Keys.E) && oldState.IsKeyUp(Keys.E))
-                    text += "E";
-                if (curState.IsKeyDown(Keys.F) && oldState.IsKeyUp(Keys.F))
-                    text += "F";
-                if (curState.IsKeyDown(Keys.G) && oldState.IsKeyUp(Keys.G))
-                    text += "G";
-                if (curState.IsKeyDown(Keys.H) && oldState.IsKeyUp(Keys.H))
-                    text += "H";
-                if (curState.IsKeyDown(Keys.I) && oldState.IsKeyUp(Keys.I))
-                    text += "I";
-                if (curState.IsKeyDown(Keys.J) && oldState.IsKeyUp(Keys.J))
-                    text += "J";
-                if (curState.IsKeyDown(Keys.K) && oldState.IsKeyUp(Keys.K))
-                    text += "K";
-                if (curState.IsKeyDown(Keys.L) && oldState.IsKeyUp(Keys.L))
-                    text += "L";
-                if (curState.IsKeyDown(Keys.M) && oldState.IsKeyUp(Keys.M))
-                    text += "M";
-                if (curState.IsKeyDown(Keys.N) && oldState.IsKeyUp(Keys.N))
-                    text += "N";
-                if (curState.IsKeyDown(Keys.O) && oldState.IsKeyUp(Keys.O))
-                    text += "O";
-                if (curState.IsKeyDown(Keys.P) && oldState.IsKeyUp(Keys.P))
-                    text += "P";
-                if (curState.IsKeyDown(Keys.Q) && oldState.IsKeyUp(Keys.Q))
-                    text += "Q";
-                if (curState.IsKeyDown(Keys.R) && oldState.IsKeyUp(Keys.R))
-                    text += "R";
-                if (curState.IsKeyDown(Keys.S) && oldState.IsKeyUp(Keys.S))
-                    text += "S";
-                if (curState.IsKeyDown(Keys.T) && oldState.IsKeyUp(Keys.T))
-                    text += "T";
-                if (curState.IsKeyDown(Keys.U) && oldState.IsKeyUp(Keys.U))
-                    text += "U";
-                if (curState.IsKeyDown(Keys.V) && oldState.IsKeyUp(Keys.V))
-                    text += "V";
-                if (curState.IsKeyDown(Keys.W) && oldState.IsKeyUp(Keys.W))
-                    text += "W";
-                if (curState.IsKeyDown(Keys.X) && oldState.IsKeyUp(Keys.X))
-                    text += "X";
-                if (curState.IsKeyDown(Keys.Y) && oldState.IsKeyUp(Keys.Y))
-                    text += "Y";
-                if (curState.IsKeyDown(Keys.Z) && oldState.IsKeyUp(Keys.Z))
-                    text += "Z";
-            }
+                if (text.Length > 0 && curState.IsKeyDown(Keys.Back) && oldState.IsKeyUp(Keys.Back))
+                {
+                    text = text.Substring(0, text.Length - 1);
+                }
+                else if (curState.IsKeyDown(Keys.LeftShift) && text.Length < charLimit ||
+                    curState.IsKeyDown(Keys.RightShift) && text.Length < charLimit)
+                {
+                    if (curState.IsKeyDown(Keys.A) && oldState.IsKeyUp(Keys.A))
+                        text += "A";
+                    if (curState.IsKeyDown(Keys.B) && oldState.IsKeyUp(Keys.B))
+                        text += "B";
+                    if (curState.IsKeyDown(Keys.C) && oldState.IsKeyUp(Keys.C))
+                        text += "C";
+                    if (curState.IsKeyDown(Keys.D) && oldState.IsKeyUp(Keys.D))
+                        text += "D";
+                    if (curState.IsKeyDown(Keys.E) && oldState.IsKeyUp(Keys.E))
+                        text += "E";
+                    if (curState.IsKeyDown(Keys.F) && oldState.IsKeyUp(Keys.F))
+                        text += "F";
+                    if (curState.IsKeyDown(Keys.G) && oldState.IsKeyUp(Keys.G))
+                        text += "G";
+                    if (curState.IsKeyDown(Keys.H) && oldState.IsKeyUp(Keys.H))
+                        text += "H";
+                    if (curState.IsKeyDown(Keys.I) && oldState.IsKeyUp(Keys.I))
+                        text += "I";
+                    if (curState.IsKeyDown(Keys.J) && oldState.IsKeyUp(Keys.J))
+                        text += "J";
+                    if (curState.IsKeyDown(Keys.K) && oldState.IsKeyUp(Keys.K))
+                        text += "K";
+                    if (curState.IsKeyDown(Keys.L) && oldState.IsKeyUp(Keys.L))
+                        text += "L";
+                    if (curState.IsKeyDown(Keys.M) && oldState.IsKeyUp(Keys.M))
+                        text += "M";
+                    if (curState.IsKeyDown(Keys.N) && oldState.IsKeyUp(Keys.N))
+                        text += "N";
+                    if (curState.IsKeyDown(Keys.O) && oldState.IsKeyUp(Keys.O))
+                        text += "O";
+                    if (curState.IsKeyDown(Keys.P) && oldState.IsKeyUp(Keys.P))
+                        text += "P";
+                    if (curState.IsKeyDown(Keys.Q) && oldState.IsKeyUp(Keys.Q))
+                        text += "Q";
+                    if (curState.IsKeyDown(Keys.R) && oldState.IsKeyUp(Keys.R))
+                        text += "R";
+                    if (curState.IsKeyDown(Keys.S) && oldState.IsKeyUp(Keys.S))
+                        text += "S";
+                    if (curState.IsKeyDown(Keys.T) && oldState.IsKeyUp(Keys.T))
+                        text += "T";
+                    if (curState.IsKeyDown(Keys.U) && oldState.IsKeyUp(Keys.U))
+                        text += "U";
+                    if (curState.IsKeyDown(Keys.V) && oldState.IsKeyUp(Keys.V))
+                        text += "V";
+                    if (curState.IsKeyDown(Keys.W) && oldState.IsKeyUp(Keys.W))
+                        text += "W";
+                    if (curState.IsKeyDown(Keys.X) && oldState.IsKeyUp(Keys.X))
+                        text += "X";
+                    if (curState.IsKeyDown(Keys.Y) && oldState.IsKeyUp(Keys.Y))
+                        text += "Y";
+                    if (curState.IsKeyDown(Keys.Z) && oldState.IsKeyUp(Keys.Z))
+                        text += "Z";
+                }
 
-            else if(text.Length < charLimit)
-            {
-                if (curState.IsKeyDown(Keys.A) && oldState.IsKeyUp(Keys.A))
-                    text += "a";
-                if (curState.IsKeyDown(Keys.B) && oldState.IsKeyUp(Keys.B))
-                    text += "b";
-                if (curState.IsKeyDown(Keys.C) && oldState.IsKeyUp(Keys.C))
-                    text += "c";
-                if (curState.IsKeyDown(Keys.D) && oldState.IsKeyUp(Keys.D))
-                    text += "d";
-                if (curState.IsKeyDown(Keys.E) && oldState.IsKeyUp(Keys.E))
-                    text += "e";
-                if (curState.IsKeyDown(Keys.F) && oldState.IsKeyUp(Keys.F))
-                    text += "f";
-                if (curState.IsKeyDown(Keys.G) && oldState.IsKeyUp(Keys.G))
-                    text += "g";
-                if (curState.IsKeyDown(Keys.H) && oldState.IsKeyUp(Keys.H))
-                    text += "h";
-                if (curState.IsKeyDown(Keys.I) && oldState.IsKeyUp(Keys.I))
-                    text += "i";
-                if (curState.IsKeyDown(Keys.J) && oldState.IsKeyUp(Keys.J))
-                    text += "j";
-                if (curState.IsKeyDown(Keys.K) && oldState.IsKeyUp(Keys.K))
-                    text += "k";
-                if (curState.IsKeyDown(Keys.L) && oldState.IsKeyUp(Keys.L))
-                    text += "l";
-                if (curState.IsKeyDown(Keys.M) && oldState.IsKeyUp(Keys.M))
-                    text += "m";
-                if (curState.IsKeyDown(Keys.N) && oldState.IsKeyUp(Keys.N))
-                    text += "n";
-                if (curState.IsKeyDown(Keys.O) && oldState.IsKeyUp(Keys.O))
-                    text += "o";
-                if (curState.IsKeyDown(Keys.P) && oldState.IsKeyUp(Keys.P))
-                    text += "p";
-                if (curState.IsKeyDown(Keys.Q) && oldState.IsKeyUp(Keys.Q))
-                    text += "q";
-                if (curState.IsKeyDown(Keys.R) && oldState.IsKeyUp(Keys.R))
-                    text += "r";
-                if (curState.IsKeyDown(Keys.S) && oldState.IsKeyUp(Keys.S))
-                    text += "s";
-                if (curState.IsKeyDown(Keys.T) && oldState.IsKeyUp(Keys.T))
-                    text += "t";
-                if (curState.IsKeyDown(Keys.U) && oldState.IsKeyUp(Keys.U))
-                    text += "u";
-                if (curState.IsKeyDown(Keys.V) && oldState.IsKeyUp(Keys.V))
-                    text += "v";
-                if (curState.IsKeyDown(Keys.W) && oldState.IsKeyUp(Keys.W))
-                    text += "w";
-                if (curState.IsKeyDown(Keys.X) && oldState.IsKeyUp(Keys.X))
-                    text += "x";
-                if (curState.IsKeyDown(Keys.Y) && oldState.IsKeyUp(Keys.Y))
-                    text += "y";
-                if (curState.IsKeyDown(Keys.Z) && oldState.IsKeyUp(Keys.Z))
-                    text += "z";
-            }
+                else if (text.Length < charLimit)
+                {
+                    if (curState.IsKeyDown(Keys.A) && oldState.IsKeyUp(Keys.A))
+                        text += "a";
+                    if (curState.IsKeyDown(Keys.B) && oldState.IsKeyUp(Keys.B))
+                        text += "b";
+                    if (curState.IsKeyDown(Keys.C) && oldState.IsKeyUp(Keys.C))
+                        text += "c";
+                    if (curState.IsKeyDown(Keys.D) && oldState.IsKeyUp(Keys.D))
+                        text += "d";
+                    if (curState.IsKeyDown(Keys.E) && oldState.IsKeyUp(Keys.E))
+                        text += "e";
+                    if (curState.IsKeyDown(Keys.F) && oldState.IsKeyUp(Keys.F))
+                        text += "f";
+                    if (curState.IsKeyDown(Keys.G) && oldState.IsKeyUp(Keys.G))
+                        text += "g";
+                    if (curState.IsKeyDown(Keys.H) && oldState.IsKeyUp(Keys.H))
+                        text += "h";
+                    if (curState.IsKeyDown(Keys.I) && oldState.IsKeyUp(Keys.I))
+                        text += "i";
+                    if (curState.IsKeyDown(Keys.J) && oldState.IsKeyUp(Keys.J))
+                        text += "j";
+                    if (curState.IsKeyDown(Keys.K) && oldState.IsKeyUp(Keys.K))
+                        text += "k";
+                    if (curState.IsKeyDown(Keys.L) && oldState.IsKeyUp(Keys.L))
+                        text += "l";
+                    if (curState.IsKeyDown(Keys.M) && oldState.IsKeyUp(Keys.M))
+                        text += "m";
+                    if (curState.IsKeyDown(Keys.N) && oldState.IsKeyUp(Keys.N))
+                        text += "n";
+                    if (curState.IsKeyDown(Keys.O) && oldState.IsKeyUp(Keys.O))
+                        text += "o";
+                    if (curState.IsKeyDown(Keys.P) && oldState.IsKeyUp(Keys.P))
+                        text += "p";
+                    if (curState.IsKeyDown(Keys.Q) && oldState.IsKeyUp(Keys.Q))
+                        text += "q";
+                    if (curState.IsKeyDown(Keys.R) && oldState.IsKeyUp(Keys.R))
+                        text += "r";
+                    if (curState.IsKeyDown(Keys.S) && oldState.IsKeyUp(Keys.S))
+                        text += "s";
+                    if (curState.IsKeyDown(Keys.T) && oldState.IsKeyUp(Keys.T))
+                        text += "t";
+                    if (curState.IsKeyDown(Keys.U) && oldState.IsKeyUp(Keys.U))
+                        text += "u";
+                    if (curState.IsKeyDown(Keys.V) && oldState.IsKeyUp(Keys.V))
+                        text += "v";
+                    if (curState.IsKeyDown(Keys.W) && oldState.IsKeyUp(Keys.W))
+                        text += "w";
+                    if (curState.IsKeyDown(Keys.X) && oldState.IsKeyUp(Keys.X))
+                        text += "x";
+                    if (curState.IsKeyDown(Keys.Y) && oldState.IsKeyUp(Keys.Y))
+                        text += "y";
+                    if (curState.IsKeyDown(Keys.Z) && oldState.IsKeyUp(Keys.Z))
+                        text += "z";
+                }
                 oldState = curState;
+            }
 
         }
 
         public override void Draw()
         {
-            Director.SceneBatch.Draw(texture, boxPosition, null, Color.White, 0f, Vector2.Zero,
-                1f, SpriteEffects.None, this.Layer);
-            Director.SceneBatch.DrawString(font, text, boxPosition + textPosition, Color.Black);
-
-            GameTime gameTime = F2D.Core.Director.GameTime;
-            double elapsedTime = gameTime.ElapsedGameTime.TotalMilliseconds;
-            timerCount += elapsedTime;
-
-            if (timerCount > 1000 && timerCount < 2000)
+            if (this.isVisible())
             {
-                Director.SceneBatch.DrawString(font, "|", boxPosition + textPosition +
-                    new Vector2(font.MeasureString(text).X, 0f), Color.Black);
-                
-            }
-            if (timerCount > 2000)
-            {
-                timerCount = 0;
+                Director.SceneBatch.Draw(texture, boxPosition, null, Color.White, 0f, Vector2.Zero,
+                    1f, SpriteEffects.None, this.Layer);
+                Director.SceneBatch.DrawString(font, text, boxPosition + textPosition, Color.Black);
+
+                GameTime gameTime = F2D.Core.Director.GameTime;
+                double elapsedTime = gameTime.ElapsedGameTime.TotalMilliseconds;
+                timerCount += elapsedTime;
+
+                if (timerCount > 1000 && timerCount < 2000)
+                {
+                    Director.SceneBatch.DrawString(font, "|", boxPosition + textPosition +
+                        new Vector2(font.MeasureString(text).X, 0f), Color.Black);
+
+                }
+                if (timerCount > 2000)
+                {
+                    timerCount = 0;
+                }
             }
         }
     }
