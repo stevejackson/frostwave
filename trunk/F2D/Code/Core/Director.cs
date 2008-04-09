@@ -40,7 +40,6 @@ namespace F2D.Core
         Texture2D blankTexture;
 
         bool isInitialized;
-        bool traceEnabled;
 
         #region Properties & Fields
 
@@ -57,17 +56,10 @@ namespace F2D.Core
             get { return content; }
         }
 
-
         private SpriteFont font;
         public SpriteFont Font
         {
             get { return font; }
-        }
-
-        public bool TraceEnabled
-        {
-            get { return traceEnabled; }
-            set { traceEnabled = value; }
         }
 
         static private GraphicsDevice graphicsDev;
@@ -152,12 +144,27 @@ namespace F2D.Core
             set { gameTime = value; }
         }
 
+        // screen switching stuff //
+
+        private GameScreen[] screensToLoad;
+        private bool otherScreensFinished;
+        private bool hasLoadingScreen;
+
+        private bool isLoading;
+        public bool IsLoading
+        {
+            get { return isLoading; }
+        }
+
+
         #endregion
 
         public Director(Game game, GraphicsDeviceManager gfx)
             : base(game)
         {
+            otherScreensFinished = false;
             renderCells = false;
+            isLoading = false;
 
             graphicsManager = gfx;
             graphicsDev = graphicsManager.GraphicsDevice;
@@ -198,7 +205,7 @@ namespace F2D.Core
             viewport.Height = (int)resolution.Y;
 
             scaleMatrix = Matrix.CreateScale((float)viewport.Width / 1600, (float)viewport.Height / 1200, 1f);
-            scale = new Vector2((float)viewport.Width / 1600, (float)viewport.Height / 1200);
+            scale = new Vector2((float)resolution.X / 1600, (float)resolution.Y / 1200);
 
             rat = new Rat();
             graphicsManager.ApplyChanges();
@@ -308,19 +315,29 @@ namespace F2D.Core
                 }
             }
 
-            // Print debug trace?
-            if (traceEnabled)
-                TraceScreens();
-        }
+            if (this.IsLoading)
+            {
+                if (this.otherScreensFinished)
+                {
+                    foreach (GameScreen screen in screensToLoad)
+                        if (screen != null)
+                            this.AddScreen(screen);
 
-        void TraceScreens()
-        {
-            List<string> screenNames = new List<string>();
-
-            foreach (GameScreen screen in screens)
-                screenNames.Add(screen.GetType().Name);
-
-            Trace.WriteLine(string.Join(", ", screenNames.ToArray()));
+                    //tell the system not to try & catch up from this extra long frame
+                    this.Game.ResetElapsedTime();
+                    otherScreensFinished = false; //reset for next time
+                    hasLoadingScreen = false;  //reset
+                }
+                    /*
+                else
+                {
+                    foreach (GameScreen screen in screens)
+                    {
+                        this.RemoveScreen(screen);
+                    }
+                }
+                     */
+            }
         }
 
         public override void Draw(GameTime gameTime)
@@ -347,14 +364,7 @@ namespace F2D.Core
                 ScreenItems[i].Draw();
             }
 
-            F2D.Core.Director.SceneBatch.End();
-
             /* spatial partitioning automatic rendering begins here */
-
-            F2D.Core.Director.SceneBatch.Begin(SpriteBlendMode.AlphaBlend,
-                                   SpriteSortMode.BackToFront,
-                                   SaveStateMode.None,
-                                   F2D.Core.Director.ScaleMatrix);
 
             Grid.Cells[Grid.ParentCell.X, Grid.ParentCell.Y].Draw();
             Grid.NeighbourCells.Clear();
@@ -425,6 +435,10 @@ namespace F2D.Core
 
             Rat.Draw();
 
+            //update loading here: make sure the final part of transitions has been shown
+            if (this.IsLoading && this.GetScreens().Length == (hasLoadingScreen?1:0))
+                otherScreensFinished = true;
+
             F2D.Core.Director.SceneBatch.End();
         }
 
@@ -452,6 +466,16 @@ namespace F2D.Core
 
             screens.Remove(screen);
             screensToUpdate.Remove(screen);
+        }
+
+        public void SwitchScreen(bool hasLoadingScreen,params GameScreen[] screensToLoad)
+        {
+            this.isLoading = true;
+            this.screensToLoad = screensToLoad;
+            this.hasLoadingScreen = hasLoadingScreen;
+
+            foreach(GameScreen screen in screens) 
+                screen.ExitScreen();
         }
 
         public GameScreen[] GetScreens()

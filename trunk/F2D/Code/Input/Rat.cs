@@ -37,6 +37,7 @@ namespace F2D.Input
 
         MouseState oldState;
 
+
         public void Initialize(Vector2 cursorSize)
         {           
             size = cursorSize;
@@ -71,7 +72,7 @@ namespace F2D.Input
 
             if (position.X > drawRect.Right)
             {
-                position.X= drawRect.Right;
+                position.X = drawRect.Right;
             }
             if (position.X < drawRect.Left)
             {
