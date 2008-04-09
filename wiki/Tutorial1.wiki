@@ -1,4 +1,4 @@
-#summary Basic Code for Setting Up the Engine
+#summary Basic code for setting up the engine
 
 Game.CS
 
