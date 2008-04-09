@@ -10,6 +10,8 @@ using Microsoft.Xna.Framework.Graphics;
 using F2D.Core;
 using F2D.Graphics;
 using F2D.Math;
+using BHS.GameLogic;
+using BHS;
 using BHS.GameLogic.Menu;
 
 namespace BHS.Core
@@ -20,7 +22,7 @@ namespace BHS.Core
 
         //Director manages the rendering (spatial partitioning) and manages the screens 
         //(transitioning, removing, adding)
-        Director screenManager;
+        Director director;
 
         public Game()
         {
@@ -29,18 +31,17 @@ namespace BHS.Core
 
         protected override void Initialize()
         {
-            screenManager = new Director(this, graphics);
+            director = new Director(this, graphics);
             Grid.Initialize(200, new Vector2(1600, 1200), 1);
 
             Camera.Initialize(new Vector2(0, 0), new Vector2(1600, 1200));
 
-            screenManager.Initialize();
+            director.Initialize();
 
-            Components.Add(screenManager);
+            Components.Add(director);
 
-            screenManager.AddScreen(new Background());
-            screenManager.AddScreen(new MainMenuScreen());
-            screenManager.AddScreen(new TestScreen());
+            director.AddScreen(new Background());
+            dicrector.AddScreen(new MainMenuScreen());
 
             this.IsFixedTimeStep = false;
 
@@ -65,7 +66,7 @@ namespace BHS.Core
         {
             Grid.ParentCell = new Vector2Int(1,1);
 
-            screenManager.Update(gameTime);
+            director.Update(gameTime);
             base.Update(gameTime);
 
         }
