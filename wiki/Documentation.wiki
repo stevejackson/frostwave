@@ -5,50 +5,46 @@
 
 Example usage of basic Frostwave features.
 
-== Various examples ==
+== Core ==
 
-== By namespace/class ==
+=== Camera ===
 
-=== Core ===
+=== Cell ===
 
-==== Camera ====
+=== Director ===
 
-==== Cell ====
+=== GameScreen ===
 
-==== Director ====
+=== Grid ===
 
-==== GameScreen ====
+=== Log ===
 
-==== Grid ====
+== Graphics ==
 
-==== Log ====
+=== Gui ===
 
-=== Graphics ===
+==== Button ====
 
-==== Gui ====
+==== ScreenImage ====
 
-===== Button =====
+==== Textbox ====
 
-===== ScreenImage =====
+=== Renderable ===
 
-===== Textbox ======
+=== ScreenItem ===
 
-==== Renderable ====
+=== Sprite ===
 
-==== ScreenItem ====
+=== WorldImage ===
 
-==== Sprite ====
+=== WorldItem ===
 
-==== WorldImage ====
+== Input ==
 
-==== WorldItem ====
+=== InputState ===
 
-=== Input ===
+=== Rat ===
 
-==== InputState ====
+== Math ==
 
-==== Rat ====
-
-=== Math ===
-
-==== Vector2Int ====
+=== Vector2Int ===
