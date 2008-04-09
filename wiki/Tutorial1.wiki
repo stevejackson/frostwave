@@ -41,7 +41,7 @@ namespace BHS.Core
             Components.Add(director);
 
             director.AddScreen(new Background());
-            dicrector.AddScreen(new MainMenuScreen());
+            director.AddScreen(new MainMenuScreen());
 
             this.IsFixedTimeStep = false;
 
