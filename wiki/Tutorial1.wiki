@@ -76,7 +76,7 @@ namespace BHS.Core
             //Sets up the two viewports. The first one is the column boxing
             //(the two black columns on the sides to compensate for widescreen monitors using 4:3 resolution)
             //The second viewport is the one in which everything is rendered
-            graphics.GraphicsDevice.Viewport = Director.ClearViewport;
+            Director.GraphicsDevice.Viewport = Director.ClearViewport;
             Director.graphicsDevice.Clear(Color.Black);
 
             Director.graphicsDevice.Viewport = Director.SceneViewport;            
