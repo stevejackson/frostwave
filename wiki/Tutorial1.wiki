@@ -10,11 +10,8 @@ using Microsoft.Xna.Framework.Graphics;
 using F2D.Core;
 using F2D.Graphics;
 using F2D.Math;
-using BHS.GameLogic;
-using BHS;
-using BHS.GameLogic.Menu;
 
-namespace BHS.Core
+namespace MyGame
 {
     public class Game : Microsoft.Xna.Framework.Game
     {
@@ -42,9 +39,6 @@ namespace BHS.Core
             director.Initialize();
 
             Components.Add(director);
-
-            director.AddScreen(new Background());
-            director.AddScreen(new MainMenuScreen());
 
             this.IsFixedTimeStep = false;
 
