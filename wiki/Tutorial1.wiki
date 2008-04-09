@@ -32,8 +32,11 @@ namespace BHS.Core
         protected override void Initialize()
         {
             director = new Director(this, graphics);
+            
+            //first we initialize the Grid, which contains the size of the level and the size of the cells contained
             Grid.Initialize(200, new Vector2(1600, 1200), 1);
 
+            //position, viewport size
             Camera.Initialize(new Vector2(0, 0), new Vector2(1600, 1200));
 
             director.Initialize();
@@ -59,16 +62,16 @@ namespace BHS.Core
             Content.Unload();
 
             base.UnloadContent();
-
         }
 
         protected override void Update(GameTime gameTime)
         {
+            //parent cell is the location of the cell on the grid which the spatial partitioning is based off of
+            // in most cases, this will be based off of the camera's location.
             Grid.ParentCell = new Vector2Int(1,1);
 
             director.Update(gameTime);
             base.Update(gameTime);
-
         }
 
         protected override void Draw(GameTime gameTime)
