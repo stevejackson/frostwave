@@ -13,6 +13,23 @@ Example usage of basic Frostwave features.
 
 === Director ===
 
+To load to a new screen, and delete all current screens:
+
+{{{
+Director.SwitchScreen(false, new TestScreen());
+}}}
+
+To load an array of new screens, and delete all current screens:
+
+{{{
+GameScreen[] scr = new GameScreen[2];
+scr[0] = new Background();
+scr[1] = new MainMenuScreen();
+
+//is not loaded from a loading screen, the array of screens
+Director.SwitchScreen(false, scr); 
+}}}
+
 === GameScreen ===
 
 === Grid ===
