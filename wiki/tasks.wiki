@@ -6,3 +6,4 @@
 = Future =
   * Particle engine
   * Animation
+  * Multiplex layers
