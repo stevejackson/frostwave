@@ -18,8 +18,8 @@ namespace BHS.Core
     {
         GraphicsDeviceManager graphics;
 
-        //Director manages the rendering (spatial partitioning)
-        //and manages the screens (transitioning, removing, adding)
+        //Director manages the rendering (spatial partitioning) and manages the screens 
+        //(transitioning, removing, adding)
         Director screenManager;
 
         public Game()
@@ -49,7 +49,8 @@ namespace BHS.Core
 
         protected override void LoadContent()
         {
-
+            //it is recommended to use the LoadContent found in each screen but this one in 
+            //game.cs can still be used
         }
 
         protected override void UnloadContent()
