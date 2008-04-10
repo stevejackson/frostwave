@@ -20,14 +20,12 @@ Camera.Follow(mySprite);
 To move the camera X and Y pixels from it's current position.
 i.e. move the camera right 200 units and down 300 units
 {{{
-Camera.MoveDelta(200,300)
+Camera.MoveDelta(200,300);
 }}}
-
-
-
-
-
-=== Cell ===
+To move the camera to a specific X,Y coordinate 
+{{{
+Camera.MoveTo(400,300);
+}}}
 
 === Director ===
 
@@ -50,9 +48,23 @@ Director.SwitchScreen(false, scr);
 
 === GameScreen ===
 
+
 === Grid ===
 
+Initialize the (static) grid with a cell size, grid size, and the number of neighbouring cells to restrict the spatial partitioning to. 
+{{{
+Grid.Initialize(200, new Vector2(1600, 1200), 1);
+}}}
+Assign the cell which will be the "parent cell". The cells around this cell are the neighbouring cells.
+{{{
+Grid.ParentCell = new Vector2Int(1, 1);
+}}}
+
 === Log ===
+Write out a string of text (such as an error) out to a log.
+{{{
+Log.Write("ERROR: File not found");
+}}}
 
 == Graphics ==
 
