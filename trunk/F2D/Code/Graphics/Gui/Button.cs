@@ -15,40 +15,12 @@ namespace F2D.Graphics.Gui
 {
     public class Button : ScreenItem
     {
-        bool isClicked;
-        public bool IsClicked
-        {
-            get { return isClicked; }
-            set { isClicked = value; }
-        }
+        public bool IsClicked;
+        public Vector2 Position;
+        public bool InBounds;
 
-        Vector2 position;
-        public Vector2 Position
-        {
-            get { return position; }
-            set { position = value; }
-        }
-
-
-        bool inBounds;
-        public bool InBounds
-        {
-            get { return inBounds; }
-            set { inBounds = value; }
-        }
-
-        private Vector2 size;
-        public Vector2 Size
-        {
-            get { return size; }
-            set { size = value; }
-        }
-
-        public State CurState
-        {
-            get { return curState; }
-            set { curState = value; }
-        }
+        public Vector2 Size;
+        public State CurState;
 
         public enum State
         {
@@ -60,13 +32,12 @@ namespace F2D.Graphics.Gui
         ContentManager content;
         List<Texture2D> textures;
         string filename;
-        State curState;
 
         public void Initialize(string filename, Vector2 buttonPosition)
         {
-            position = buttonPosition;
+            Position = buttonPosition;
             textures = new List<Texture2D>();
-            curState = State.Idle;
+            CurState = State.Idle;
             this.filename = filename;
             this.Layer = 0.1f;
             this.setVisible();
@@ -78,7 +49,7 @@ namespace F2D.Graphics.Gui
             textures.Add(content.Load<Texture2D>(filename + "_i"));
             textures.Add(content.Load<Texture2D>(filename + "_h"));
             textures.Add(content.Load<Texture2D>(filename + "_d"));
-            size = new Vector2(textures[0].Width, textures[0].Height);
+            Size = new Vector2(textures[0].Width, textures[0].Height);
         }
 
         public void UnloadContent()
@@ -95,45 +66,45 @@ namespace F2D.Graphics.Gui
         {
             if (this.isVisible())
             {
-                //if the mouse is within the button's position
-                if (Director.Rat.Position.X >= position.X &&
-                    Director.Rat.Position.X <= (position.X + size.X) &&
-                    Director.Rat.Position.Y >= position.Y &&
-                    Director.Rat.Position.Y <= (position.Y + size.Y))
+                //if the mouse is within the button's Position
+                if (Director.Rat.Position.X >= Position.X &&
+                    Director.Rat.Position.X <= (Position.X + Size.X) &&
+                    Director.Rat.Position.Y >= Position.Y &&
+                    Director.Rat.Position.Y <= (Position.Y + Size.Y))
                 {
-                    inBounds = true;
-                    curState = State.Hover;
-                    isClicked = false;
+                    InBounds = true;
+                    CurState = State.Hover;
+                    IsClicked = false;
                     if (Director.Rat.LState == Rat.State.Released)
                     {
-                        curState = State.Depressed;
-                        isClicked = true;
+                        CurState = State.Depressed;
+                        IsClicked = true;
                     }
                 }
                 else
                 {
-                    isClicked = false;
-                    inBounds = false;
-                    curState = State.Idle;
+                    IsClicked = false;
+                    InBounds = false;
+                    CurState = State.Idle;
                 }
             }
         }
 
         public override void Draw()
         {
-            if (curState == State.Idle)
+            if (CurState == State.Idle)
             {
-                Director.SceneBatch.Draw(textures[0], position, null, Color.White, 0f, Vector2.Zero, 1f,
+                Director.SceneBatch.Draw(textures[0], Position, null, Color.White, 0f, Vector2.Zero, 1f,
                     SpriteEffects.None, this.Layer); 
             }
-            else if (curState == State.Hover)
+            else if (CurState == State.Hover)
             {
-                Director.SceneBatch.Draw(textures[1], position, null, Color.White, 0f, Vector2.Zero, 1f,
+                Director.SceneBatch.Draw(textures[1], Position, null, Color.White, 0f, Vector2.Zero, 1f,
                     SpriteEffects.None, this.Layer);
             }
-            else if (curState == State.Depressed)
+            else if (CurState == State.Depressed)
             {
-                Director.SceneBatch.Draw(textures[2], position, null, Color.White, 0f, Vector2.Zero, 1f,
+                Director.SceneBatch.Draw(textures[2], Position, null, Color.White, 0f, Vector2.Zero, 1f,
                     SpriteEffects.None, this.Layer);
             }
         }

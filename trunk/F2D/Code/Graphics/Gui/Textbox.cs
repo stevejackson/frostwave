@@ -15,34 +15,10 @@ namespace F2D.Graphics.Gui
     public class Textbox : F2D.Graphics.ScreenItem
     {
         private Texture2D texture;
-
-        private string state;
-        public string State
-        {
-            get { return state; }
-            set { state = value; }
-        }
-
-        private Vector2 boxPosition;
-        public Vector2 BoxPosition
-        {
-            get { return boxPosition; }
-            set { boxPosition = value; }
-        }
-
-        private Vector2 textPosition;
-        public Vector2 TextPosition
-        {
-            get { return textPosition; }
-            set { textPosition = value; }
-        }
-
-        private Vector2 size;
-        public Vector2 Size
-        {
-            get { return size; }
-            set { size = value; }
-        }
+        public string State;
+        public Vector2 BoxPosition;
+        public Vector2 TextPosition;
+        public Vector2 Size;
 
         private String text;
         public String Text
@@ -51,26 +27,15 @@ namespace F2D.Graphics.Gui
             set 
             { 
                 text = value;
-                if (text.Length > 20)
+                if (text.Length > CharLimit)
                 {
-                    text = text.Substring(0, 20);
+                    text = text.Substring(0, CharLimit);
                 }
             }
         }
 
-        private int charLimit;
-        public int CharLimit
-        {
-            get { return charLimit; }
-            set { charLimit = value; }
-        }
-
-        private Color textColor;
-        public Color CextColor
-        {
-            get { return textColor; }
-            set { textColor = value; }
-        }
+        public int CharLimit;
+        public Color TextColor;
 
         private SpriteFont font;
         private KeyboardState oldState;
@@ -78,15 +43,14 @@ namespace F2D.Graphics.Gui
 
         private ContentManager content;
 
-
         public void Initialize(Vector2 boxPos, Vector2 textPos, Color textColor, int charLimit)
         {
-            boxPosition = boxPos;
-            textPosition = textPos;
-            state = "Idle";
-            this.textColor = textColor;
+            BoxPosition = boxPos;
+            TextPosition = textPos;
+            State = "Idle";
+            this.TextColor = textColor;
             text = "";
-            this.charLimit = charLimit;            
+            this.CharLimit = charLimit;            
             this.Layer = 0.1f;
             this.setVisible();         
         }
@@ -98,7 +62,7 @@ namespace F2D.Graphics.Gui
             texture = content.Load<Texture2D>(textboxFileName);
             font = content.Load<SpriteFont>(fontFilename);
 
-            this.size = new Vector2(texture.Width, texture.Height);
+            this.Size = new Vector2(texture.Width, texture.Height);
 
         }
 
@@ -120,27 +84,27 @@ namespace F2D.Graphics.Gui
             if (this.isVisible())
             {
                 //if the mouse is clicked and released within the textbox
-                if (Director.Rat.Position.X >= boxPosition.X &&
-                   Director.Rat.Position.X <= (boxPosition.X + size.X) &&
-                   Director.Rat.Position.Y >= boxPosition.Y &&
-                   Director.Rat.Position.Y <= (boxPosition.Y + size.Y))
+                if (Director.Rat.Position.X >= BoxPosition.X &&
+                   Director.Rat.Position.X <= (BoxPosition.X + Size.X) &&
+                   Director.Rat.Position.Y >= BoxPosition.Y &&
+                   Director.Rat.Position.Y <= (BoxPosition.Y + Size.Y))
                 {
                     if (Director.Rat.LState == F2D.Input.Rat.State.Released)
-                        state = "Typing";
+                        State = "Typing";
 
                 }
                 //outside of the bounds and clicked
-                else if (Director.Rat.Position.X < boxPosition.X &&
-                   Director.Rat.Position.X > (boxPosition.X + size.X) &&
-                   Director.Rat.Position.Y < boxPosition.Y &&
-                   Director.Rat.Position.Y > (boxPosition.Y + size.Y))
+                else if (Director.Rat.Position.X < BoxPosition.X &&
+                   Director.Rat.Position.X > (BoxPosition.X + Size.X) &&
+                   Director.Rat.Position.Y < BoxPosition.Y &&
+                   Director.Rat.Position.Y > (BoxPosition.Y + Size.Y))
                 {
 
                     if (Director.Rat.LState == F2D.Input.Rat.State.Released)
-                        state = "Idle";
+                        State = "Idle";
 
 
-                    if (state == "Typing")
+                    if (State == "Typing")
                     {
                         UpdateInput();
                     }
@@ -158,8 +122,8 @@ namespace F2D.Graphics.Gui
                 {
                     text = text.Substring(0, text.Length - 1);
                 }
-                else if (curState.IsKeyDown(Keys.LeftShift) && text.Length < charLimit ||
-                    curState.IsKeyDown(Keys.RightShift) && text.Length < charLimit)
+                else if (curState.IsKeyDown(Keys.LeftShift) && text.Length < CharLimit ||
+                    curState.IsKeyDown(Keys.RightShift) && text.Length < CharLimit)
                 {
                     if (curState.IsKeyDown(Keys.A) && oldState.IsKeyUp(Keys.A))
                         text += "A";
@@ -215,7 +179,7 @@ namespace F2D.Graphics.Gui
                         text += "Z";
                 }
 
-                else if (text.Length < charLimit)
+                else if (text.Length < CharLimit)
                 {
                     if (curState.IsKeyDown(Keys.A) && oldState.IsKeyUp(Keys.A))
                         text += "a";
@@ -279,9 +243,9 @@ namespace F2D.Graphics.Gui
         {
             if (this.isVisible())
             {
-                Director.SceneBatch.Draw(texture, boxPosition, null, Color.White, 0f, Vector2.Zero,
+                Director.SceneBatch.Draw(texture, BoxPosition, null, Color.White, 0f, Vector2.Zero,
                     1f, SpriteEffects.None, this.Layer);
-                Director.SceneBatch.DrawString(font, text, boxPosition + textPosition, Color.Black);
+                Director.SceneBatch.DrawString(font, text, BoxPosition + TextPosition, Color.Black);
 
                 GameTime gameTime = F2D.Core.Director.GameTime;
                 double elapsedTime = gameTime.ElapsedGameTime.TotalMilliseconds;
@@ -289,7 +253,7 @@ namespace F2D.Graphics.Gui
 
                 if (timerCount > 1000 && timerCount < 2000)
                 {
-                    Director.SceneBatch.DrawString(font, "|", boxPosition + textPosition +
+                    Director.SceneBatch.DrawString(font, "|", BoxPosition + TextPosition +
                         new Vector2(font.MeasureString(text).X, 0f), Color.Black);
 
                 }

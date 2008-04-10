@@ -30,42 +30,20 @@ namespace F2D.Graphics.Gui
     /// </summary>
     public class ScreenImage : F2D.Graphics.ScreenItem
     {
-
-        private Vector2 position;
-
         /// <summary>
         /// The object location in world coordinates.
         /// </summary>
-        public Vector2 Position
-        {
-            get { return position; }
-            set
-            {
-                position = value;
-            }
-        }
-
-        public float rotation;
+        public Vector2 Position;
 
         /// <summary>
         /// The rotation of the object.
         /// </summary>
-        public float Rotation
-        {
-            set { rotation = value; }
-            get { return rotation; }
-        }
-
-        private Vector2Int size;
+        public float Rotation;
 
         /// <summary>
         /// Size of the image, (width, height)
         /// </summary>
-        public Vector2Int Size
-        {
-            get { return size; }
-            set { size = value; }
-        }
+        public Vector2Int Size;
 
         //Drawing vars
         Texture2D texture;
@@ -80,8 +58,8 @@ namespace F2D.Graphics.Gui
         /// <param name="position">Object's starting position.</param>
         public void Initialize(Vector2 position)
         {
-            this.position = position;
-            this.rotation = 0f;
+            this.Position = position;
+            this.Rotation = 0f;
             this.Size = new Vector2Int();
 
             this.setVisible();        
@@ -96,8 +74,8 @@ namespace F2D.Graphics.Gui
         /// <param name="rotation">Object's starting rotation value in radians.</param>
         public void Initialize(Vector2 position, float rotation)
         {
-            this.position = position;
-            this.rotation = rotation;
+            this.Position = position;
+            this.Rotation = rotation;
             this.Size = new Vector2Int();
 
             Director.ScreenItems.Add(this);         
@@ -136,10 +114,10 @@ namespace F2D.Graphics.Gui
         {
             if (this.isVisible())
             {
-                Vector2 posBuffer = position - Camera.Position;
+                Vector2 posBuffer = Position - Camera.Position;
 
                 Director.SceneBatch.Draw(texture, posBuffer, null,
-                    Color.White, rotation, new Vector2(size.X / 2, size.Y / 2), Vector2.One,
+                    Color.White, Rotation, new Vector2(Size.X / 2, Size.Y / 2), Vector2.One,
                     SpriteEffects.None, Layer);
             }
         }

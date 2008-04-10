@@ -16,26 +16,11 @@ namespace F2D.Core
 {
     public class Cell
     {
-        private Vector2 position;
-
-        public Vector2 Position
-        {
-            get { return position; }
-            set { position = value; }
-        }
-
-        private int size;
-
-        public int Size
-        {
-            get { return size; }
-            set { size = value; }
-        }
+        public Vector2 Position;
+        public int Size;
 
         private float scale;
-
         private ContentManager content;
-
         private Texture2D texture;
 
         public List<Renderable> Objects = new List<Renderable>();
@@ -44,8 +29,8 @@ namespace F2D.Core
 
         public void Initialize(Vector2 pos, int size)
         {
-            this.position = pos;
-            this.size = size;
+            this.Position = pos;
+            this.Size = size;
             batch = new SpriteBatch(Director.graphicsDevice);
         }
 
@@ -53,7 +38,7 @@ namespace F2D.Core
         {
             content = contentManager;
             texture = content.Load<Texture2D>(filename);
-            scale = size / texture.Width;
+            scale = Size / texture.Width;
         }
 
         public void UnloadContent()
@@ -63,7 +48,7 @@ namespace F2D.Core
 
         public void Draw()
         {
-            Vector2 posBuffer = position - Camera.Position;
+            Vector2 posBuffer = Position - Camera.Position;
             if (Director.RenderCells)
             {
                 Director.SceneBatch.Draw(texture, posBuffer, null, Color.White, 0f, Vector2.Zero, scale,

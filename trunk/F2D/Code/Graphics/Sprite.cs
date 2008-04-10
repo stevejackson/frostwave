@@ -47,12 +47,7 @@ namespace F2D.Graphics
             }
         }
 
-        private Vector2Int size;
-        public Vector2Int Size
-        {
-            get { return size ; }
-            set { size = value; }
-        }
+        public Vector2Int Size;
 
 
         //Drawing vars
@@ -131,16 +126,16 @@ namespace F2D.Graphics
                     rotation = Convert.ToSingle(node.ChildNodes.Item(curNode).InnerText);
                     curNode++;
                 }
-                //Xsize
+                //XSize
                 if (curNode < maxNode)
                 {
-                    size = new Vector2Int((int)Convert.ToSingle(node.ChildNodes.Item(curNode).InnerText), 1);
+                    Size = new Vector2Int((int)Convert.ToSingle(node.ChildNodes.Item(curNode).InnerText), 1);
                     curNode++;
                 }
-                //Ysize
+                //YSize
                 if (curNode < maxNode)
                 {
-                    size = new Vector2Int(size.X, (int)Convert.ToSingle(node.ChildNodes.Item(curNode).InnerText));
+                    Size = new Vector2Int(Size.X, (int)Convert.ToSingle(node.ChildNodes.Item(curNode).InnerText));
                     curNode++;
                 }
                 //Static
@@ -161,13 +156,13 @@ namespace F2D.Graphics
         {
             if (shape == "Circle")
             {
-                this.physicsBody = BodyFactory.Instance.CreateCircleBody(size.X, mass);
-                this.physicsGeometry = GeomFactory.Instance.CreateCircleGeom(F2D.Core.Farseer.Physics, physicsBody, (int)size.X, 16);
+                this.physicsBody = BodyFactory.Instance.CreateCircleBody(Size.X, mass);
+                this.physicsGeometry = GeomFactory.Instance.CreateCircleGeom(F2D.Core.Farseer.Physics, physicsBody, (int)Size.X, 16);
             }
             else //gonna be a quad
             {
-                this.physicsBody = BodyFactory.Instance.CreateRectangleBody(size.X, this.size.Y, this.mass);
-                this.physicsGeometry = GeomFactory.Instance.CreateRectangleGeom(F2D.Core.Farseer.Physics, physicsBody, size.X, size.Y);
+                this.physicsBody = BodyFactory.Instance.CreateRectangleBody(Size.X, this.Size.Y, this.mass);
+                this.physicsGeometry = GeomFactory.Instance.CreateRectangleGeom(F2D.Core.Farseer.Physics, physicsBody, Size.X, Size.Y);
             }
 
             physicsBody.IsStatic = isStatic;
@@ -203,7 +198,7 @@ namespace F2D.Graphics
 
 
             Director.SceneBatch.Draw(texture, posBuffer, null,
-                Color.White, rotation, new Vector2(size.X /2, size.Y/2), Vector2.One, 
+                Color.White, rotation, Vector2.Zero, Vector2.One, 
                 SpriteEffects.None, Layer);
         }
 

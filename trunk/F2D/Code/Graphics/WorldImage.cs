@@ -30,44 +30,29 @@ namespace F2D.Graphics
     /// </summary>
     public class WorldImage : F2D.Graphics.WorldItem
     {
-
-        private Vector2 position;
-
         /// <summary>
         /// The object location in world coordinates.
         /// </summary>
         public Vector2 Position
         {
-            get { return position; }
+            get { return Position; }
             set
             {
-                position = value;
+                Position = value;
 
-                CurCell = F2D.Core.Grid.GetCell(position, this);
+                CurCell = F2D.Core.Grid.GetCell(Position, this);
             }
         }
-
-        public float rotation;
 
         /// <summary>
         /// The rotation of the object.
         /// </summary>
-        public float Rotation
-        {
-            set { rotation = value; }
-            get { return rotation; }
-        }
+        public float Rotation;
 
-        private Vector2Int size;
-        
         /// <summary>
         /// Size of the image, (width, height)
         /// </summary>
-        public Vector2Int Size
-        {
-            get { return size; }
-            set { size = value; }
-        }
+        public Vector2Int Size;
 
         //Drawing vars
         Texture2D texture;
@@ -82,8 +67,8 @@ namespace F2D.Graphics
         /// <param name="position">Object's starting position.</param>
         public void Initialize(Vector2 position)
         {
-            this.position = position;
-            this.rotation = 0f;
+            this.Position = position;
+            this.Rotation = 0f;
             this.Size = new Vector2Int();
 
             CurCell = new F2D.Math.Vector2Int();
@@ -100,8 +85,8 @@ namespace F2D.Graphics
         /// <param name="rotation">Object's starting rotation value in radians.</param>
         public void Initialize(Vector2 position, float rotation)
         {
-            this.position = position;
-            this.rotation = rotation;
+            this.Position = position;
+            this.Rotation = rotation;
             this.Size = new Vector2Int();
 
             CurCell = new F2D.Math.Vector2Int();
@@ -137,10 +122,10 @@ namespace F2D.Graphics
         /// </summary>
         public override void Draw()
         {
-            Vector2 posBuffer = position - Camera.Position;
+            Vector2 posBuffer = Position - Camera.Position;
 
             Director.SceneBatch.Draw(texture, posBuffer, null,
-                Color.White, rotation, new Vector2(size.X / 2, size.Y / 2), Vector2.One,
+                Color.White, Rotation, new Vector2(Size.X / 2, Size.Y / 2), Vector2.One,
                 SpriteEffects.None, Layer);
         }
 

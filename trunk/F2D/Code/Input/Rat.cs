@@ -18,12 +18,7 @@ namespace F2D.Input
 
         private ContentManager content;
 
-        private Vector2 position;
-        public Vector2 Position
-        {
-            get { return position; }
-            set { position = value; }
-        }
+        public Vector2 Position;
 
         public enum State
         {
@@ -42,7 +37,7 @@ namespace F2D.Input
         {           
             size = cursorSize;
             drawRect = new Rectangle(0,0, 1600, 1200);
-            position = new Vector2(Mouse.GetState().X / Director.Scale.X, Mouse.GetState().Y / Director.Scale.Y);
+            Position = new Vector2(Mouse.GetState().X / Director.Scale.X, Mouse.GetState().Y / Director.Scale.Y);
             oldState = Mouse.GetState();
             Layer = 0.0f;
 
@@ -68,23 +63,23 @@ namespace F2D.Input
         public void Update()
         {
             MouseState curState = Mouse.GetState();
-            position = new Vector2(curState.X / Director.Scale.X, curState.Y / Director.Scale.Y);
+            Position = new Vector2(curState.X / Director.Scale.X, curState.Y / Director.Scale.Y);
 
-            if (position.X > drawRect.Right)
+            if (Position.X > drawRect.Right)
             {
-                position.X = drawRect.Right;
+                Position.X = drawRect.Right;
             }
-            if (position.X < drawRect.Left)
+            if (Position.X < drawRect.Left)
             {
-                position.X = drawRect.Left;
+                Position.X = drawRect.Left;
             }
-            if (position.Y > drawRect.Bottom)
+            if (Position.Y > drawRect.Bottom)
             {
-                position.Y = drawRect.Bottom;
+                Position.Y = drawRect.Bottom;
             }
-            if (position.Y < drawRect.Top)
+            if (Position.Y < drawRect.Top)
             {
-                position.Y = drawRect.Top;
+                Position.Y = drawRect.Top;
             }
 
             if (curState.LeftButton == ButtonState.Pressed ||
@@ -137,7 +132,7 @@ namespace F2D.Input
         {
             if (this.isVisible())
             {
-                Director.SceneBatch.Draw(cursor, position, null, Color.White, 0f, Vector2.Zero, 1f,
+                Director.SceneBatch.Draw(cursor, Position, null, Color.White, 0f, Vector2.Zero, 1f,
                     SpriteEffects.None, this.Layer);
             }
         }

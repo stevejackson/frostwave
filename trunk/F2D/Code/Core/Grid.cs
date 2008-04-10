@@ -16,27 +16,10 @@ using F2D;
 namespace F2D.Core
 {
     static public class Grid
-    { 
-        
-        static private Rectangle mapRect;
-        static public Rectangle MapRect
-        {
-            get { return mapRect; }
-            set { mapRect = value; }
-        }
-
-        static private Cell[,] cells;
-        static public Cell[,] Cells
-        {
-            get { return cells; }
-        }
-
-        static private Vector2Int parentCell;
-        static public Vector2Int ParentCell
-        {
-            get { return parentCell; }
-            set { parentCell = value; }
-        }	
+    {
+        static public Rectangle MapRect;
+        static public Cell[,] Cells;
+        static public Vector2Int ParentCell;
         
         static private int maxNeighbour;
         static public int MaxNeighbour
@@ -57,49 +40,31 @@ namespace F2D.Core
             get { return totalYCells; }
         }
 
+        static public int CellSize;
+        static public Vector2 CellPos;
 
-        static private int cellSize;
-        static public int CellSize
-        {
-            get { return cellSize; }
-            set { cellSize = value; }            
-        }
-
-        static private Vector2 cellPos;
-        static public Vector2 CellPos
-        {
-            get { return cellPos; }
-            set { cellPos = value; }
-        }
-
-        static private List<Cell> neighbourCells;
-        static public List<Cell> NeighbourCells
-        {
-            get { return neighbourCells; }
-            set { neighbourCells = value; }
-        }
+        static public List<Cell> NeighbourCells;
 
         static private ContentManager content;
 
-
         static public void Initialize(int sizeOfCell, Vector2 sizeOfMap, int neighbours)
         {
-            cellSize = sizeOfCell;
-            mapRect = new Rectangle(0, 0, (int)sizeOfMap.X, (int)sizeOfMap.Y);
+            CellSize = sizeOfCell;
+            MapRect = new Rectangle(0, 0, (int)sizeOfMap.X, (int)sizeOfMap.Y);
             maxNeighbour = neighbours;
 
-            totalXCells = (int)(mapRect.Right / cellSize);
-            totalYCells = (int)(mapRect.Bottom / cellSize);
+            totalXCells = (int)(MapRect.Right / CellSize);
+            totalYCells = (int)(MapRect.Bottom / CellSize);
 
-            cells = new Cell[totalXCells + 1, totalYCells + 1];
-            neighbourCells = new List<Cell>();
+            Cells = new Cell[totalXCells + 1, totalYCells + 1];
+            NeighbourCells = new List<Cell>();
 
             for (int x = 0; x <= totalXCells; x++)
             {
                 for (int y = 0; y <= totalYCells; y++)
                 {
-                    cells[x, y] = new Cell();
-                    cells[x, y].Initialize(new Vector2(x * cellSize, y * cellSize), cellSize);
+                    Cells[x, y] = new Cell();
+                    Cells[x, y].Initialize(new Vector2(x * CellSize, y * CellSize), CellSize);
                 }
             }
         }
@@ -112,7 +77,7 @@ namespace F2D.Core
             {
                 for (int y = 0; y <= totalYCells; y++)
                 {
-                    cells[x, y].LoadContent(content, cellFilename);
+                    Cells[x, y].LoadContent(content, cellFilename);
                 }
             }
         }
@@ -123,25 +88,25 @@ namespace F2D.Core
             {
                 for (int y = 0; y <= totalYCells; y++)
                 {
-                    cells[x, y].UnloadContent();
+                    Cells[x, y].UnloadContent();
                 }
             }
         }
 
         static public Vector2Int GetCell(Vector2 position, WorldItem worldItem)
         {
-            cells[worldItem.CurCell.X, worldItem.CurCell.Y].Objects.Remove(worldItem);
+            Cells[worldItem.CurCell.X, worldItem.CurCell.Y].Objects.Remove(worldItem);
 
             for (int x = 0; x <= totalXCells; x++)
             {
                 for (int y = 0; y <= totalYCells; y++)
                 {
-                    if (position.X >= cells[x, y].Position.X &&
-                        position.X <= (cells[x, y].Position.X + cells[x, y].Size) &&
-                        position.Y >= cells[x, y].Position.Y &&
-                        position.Y <= (cells[x, y].Position.Y + cells[x, y].Size))
+                    if (position.X >= Cells[x, y].Position.X &&
+                        position.X <= (Cells[x, y].Position.X + Cells[x, y].Size) &&
+                        position.Y >= Cells[x, y].Position.Y &&
+                        position.Y <= (Cells[x, y].Position.Y + Cells[x, y].Size))
                     {
-                        cells[x, y].Objects.Add(worldItem);
+                        Cells[x, y].Objects.Add(worldItem);
 
                         return new Vector2Int(x, y);
                     }

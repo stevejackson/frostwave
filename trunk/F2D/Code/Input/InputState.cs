@@ -1,16 +1,12 @@
-#region File Description
 //-----------------------------------------------------------------------------
 // InputState.cs
 //
 // Microsoft XNA Community Game Platform
 // Copyright (C) Microsoft Corporation. All rights reserved.
 //-----------------------------------------------------------------------------
-#endregion
 
-#region Using Statements
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
-#endregion
 
 namespace F2D.Input
 {
@@ -36,7 +32,6 @@ namespace F2D.Input
 
         #region Initialization
 
-
         /// <summary>
         /// Constructs a new input state.
         /// </summary>
@@ -49,91 +44,9 @@ namespace F2D.Input
             LastGamePadStates = new GamePadState[MaxInputs];
         }
 
-
-        #endregion
-
-        #region Properties
-
-
-        /// <summary>
-        /// Checks for a "menu up" input action, from any player,
-        /// on either keyboard or gamepad.
-        /// </summary>
-        public bool MenuUp
-        {
-            get
-            {
-                return IsNewKeyPress(Keys.Up) ||
-                       IsNewButtonPress(Buttons.DPadUp) ||
-                       IsNewButtonPress(Buttons.LeftThumbstickUp);
-            }
-        }
-
-
-        /// <summary>
-        /// Checks for a "menu down" input action, from any player,
-        /// on either keyboard or gamepad.
-        /// </summary>
-        public bool MenuDown
-        {
-            get
-            {
-                return IsNewKeyPress(Keys.Down) ||
-                       IsNewButtonPress(Buttons.DPadDown) ||
-                       IsNewButtonPress(Buttons.LeftThumbstickDown);
-            }
-        }
-
-
-        /// <summary>
-        /// Checks for a "menu select" input action, from any player,
-        /// on either keyboard or gamepad.
-        /// </summary>
-        public bool MenuSelect
-        {
-            get
-            {
-                return IsNewKeyPress(Keys.Space) ||
-                       IsNewKeyPress(Keys.Enter) ||
-                       IsNewButtonPress(Buttons.A) ||
-                       IsNewButtonPress(Buttons.Start);
-            }
-        }
-
-
-        /// <summary>
-        /// Checks for a "menu cancel" input action, from any player,
-        /// on either keyboard or gamepad.
-        /// </summary>
-        public bool MenuCancel
-        {
-            get
-            {
-                return IsNewKeyPress(Keys.Escape) ||
-                       IsNewButtonPress(Buttons.B) ||
-                       IsNewButtonPress(Buttons.Back);
-            }
-        }
-
-
-        /// <summary>
-        /// Checks for a "pause the game" input action, from any player,
-        /// on either keyboard or gamepad.
-        /// </summary>
-        public bool PauseGame
-        {
-            get
-            {
-                return IsNewKeyPress(Keys.Escape) ||
-                       IsNewButtonPress(Buttons.Back) ||
-                       IsNewButtonPress(Buttons.Start);
-            }
-        }
-
         #endregion
 
         #region Methods
-
 
         /// <summary>
         /// Reads the latest state of the keyboard and gamepad.
@@ -150,7 +63,6 @@ namespace F2D.Input
             }
         }
 
-
         /// <summary>
         /// Helper for checking if a key was newly pressed during this update,
         /// by any player.
@@ -166,7 +78,6 @@ namespace F2D.Input
             return false;
         }
 
-
         /// <summary>
         /// Helper for checking if a key was newly pressed during this update,
         /// by the specified player.
@@ -176,57 +87,6 @@ namespace F2D.Input
             return (CurrentKeyboardStates[(int)playerIndex].IsKeyDown(key) &&
                     LastKeyboardStates[(int)playerIndex].IsKeyUp(key));
         }
-
-
-        /// <summary>
-        /// Helper for checking if a button was newly pressed during this update,
-        /// by any player.
-        /// </summary>
-        public bool IsNewButtonPress(Buttons button)
-        {
-            for (int i = 0; i < MaxInputs; i++)
-            {
-                if (IsNewButtonPress(button, (PlayerIndex)i))
-                    return true;
-            }
-
-            return false;
-        }
-
-
-        /// <summary>
-        /// Helper for checking if a button was newly pressed during this update,
-        /// by the specified player.
-        /// </summary>
-        public bool IsNewButtonPress(Buttons button, PlayerIndex playerIndex)
-        {
-            return (CurrentGamePadStates[(int)playerIndex].IsButtonDown(button) &&
-                    LastGamePadStates[(int)playerIndex].IsButtonUp(button));
-        }
-
-
-        /// <summary>
-        /// Checks for a "menu select" input action from the specified player.
-        /// </summary>
-        public bool IsMenuSelect(PlayerIndex playerIndex)
-        {
-            return IsNewKeyPress(Keys.Space, playerIndex) ||
-                   IsNewKeyPress(Keys.Enter, playerIndex) ||
-                   IsNewButtonPress(Buttons.A, playerIndex) ||
-                   IsNewButtonPress(Buttons.Start, playerIndex);
-        }
-
-
-        /// <summary>
-        /// Checks for a "menu cancel" input action from the specified player.
-        /// </summary>
-        public bool IsMenuCancel(PlayerIndex playerIndex)
-        {
-            return IsNewKeyPress(Keys.Escape, playerIndex) ||
-                   IsNewButtonPress(Buttons.B, playerIndex) ||
-                   IsNewButtonPress(Buttons.Back, playerIndex);
-        }
-
 
         #endregion
     }

@@ -20,6 +20,7 @@ namespace F2D.Core
 
     public class Director : DrawableGameComponent
     {
+        #region Properties & Fields
         List<GameScreen> screens = new List<GameScreen>();
         List<GameScreen> screensToUpdate = new List<GameScreen>(); 
 
@@ -35,31 +36,28 @@ namespace F2D.Core
 
         GraphicsDeviceManager graphicsManager;
 
-        InputState input = new InputState();
-
+        public InputState input = new InputState();
         Texture2D blankTexture;
-
         bool isInitialized;
 
-        #region Properties & Fields
+        
+        static public GameTime GameTime;
 
-        static private bool renderCells;
-        static public bool RenderCells
-        {
-            get { return renderCells; }
-            set { renderCells = value; }
-        }
+        static public bool RenderCells;
+        public SpriteFont Font;
+
+        static public Vector2 Resolution;
+        static public Matrix ScaleMatrix;
+        static public Vector2 Scale;
+
+        static public Viewport SceneViewport;
+        static public Viewport ClearViewport;
+        static public bool Fullscreen;
 
         public static ContentManager content;
         static public ContentManager ContentManager
         {
             get { return content; }
-        }
-
-        private SpriteFont font;
-        public SpriteFont Font
-        {
-            get { return font; }
         }
 
         static private GraphicsDevice graphicsDev;
@@ -74,55 +72,6 @@ namespace F2D.Core
             get { return sceneBatch; }
         }
 
-        static private Vector2 resolution;
-        static public Vector2 Resolution
-        {
-            get { return resolution; }
-            set { resolution = value; }
-        }
-
-        static private Matrix scaleMatrix;
-        static public Matrix ScaleMatrix
-        {
-            get { return scaleMatrix; }
-            set { scaleMatrix = value; }
-        }
-
-        static private Matrix cameraMatrix;
-        static public Matrix CameraMatrix
-        {
-            get { return cameraMatrix; }
-            set { cameraMatrix = value; }
-        }
-
-        static private Vector2 scale;
-        static public Vector2 Scale
-        {
-            get { return scale; }
-            set { scale = value; }
-        }
-
-        static private Viewport viewport;
-        static public Viewport SceneViewport
-        {
-            get { return viewport; }
-            set { viewport = value; }
-        }
-
-        static private Viewport clearViewport;
-        static public Viewport ClearViewport
-        {
-            get { return clearViewport; }
-            set { clearViewport = value; }
-        }
-
-        static private bool fullscreen;
-        static public bool Fullscreen
-        {
-            get { return fullscreen; }
-            set { fullscreen = value; }
-        }
-
         static private double framesPerSecond;
         static private double lowestFPS, highestFPS, averageFPS;
         static private int tmpFrames;
@@ -135,13 +84,6 @@ namespace F2D.Core
         static public Rat Rat
         {
             get { return rat; }
-        }
-
-        static private GameTime gameTime;
-        static public GameTime GameTime
-        {
-            get { return gameTime; }
-            set { gameTime = value; }
         }
 
         // screen switching stuff //
@@ -163,49 +105,49 @@ namespace F2D.Core
             : base(game)
         {
             otherScreensFinished = false;
-            renderCells = false;
+            RenderCells = false;
             isLoading = false;
 
             graphicsManager = gfx;
             graphicsDev = graphicsManager.GraphicsDevice;
-            viewport = new Viewport();
+            SceneViewport = new Viewport();
             float letterboxing;
 
             using (StreamReader reader = new StreamReader("settings.ini"))
             {
                 string curLine;
 
-                fullscreen = Convert.ToBoolean(reader.ReadLine());
+                Fullscreen = Convert.ToBoolean(reader.ReadLine());
                 curLine = reader.ReadLine();
-                resolution = new Vector2(Convert.ToSingle(curLine.Substring(0, curLine.IndexOf("x"))),
+                Resolution = new Vector2(Convert.ToSingle(curLine.Substring(0, curLine.IndexOf("x"))),
                     Convert.ToSingle(curLine.Substring(curLine.IndexOf("x") + 1)));
             }
 
-            graphicsManager.IsFullScreen = fullscreen;
-            graphicsManager.PreferredBackBufferWidth = (int)resolution.X;
+            graphicsManager.IsFullScreen = Fullscreen;
+            graphicsManager.PreferredBackBufferWidth = (int)Resolution.X;
             graphicsManager.PreferredBackBufferHeight = (int)Resolution.Y;
 
-            clearViewport.X = clearViewport.Y = 0;
-            clearViewport.Width = (int)resolution.X;
-            clearViewport.Height = (int)resolution.Y;
+            ClearViewport.X = ClearViewport.Y = 0;
+            ClearViewport.Width = (int)Resolution.X;
+            ClearViewport.Height = (int)Resolution.Y;
 
-            if (resolution == new Vector2(1280, 1024))
+            if (Resolution == new Vector2(1280, 1024))
             {
-                letterboxing = (resolution.X - (resolution.Y * 1.25f)) / 2;
+                letterboxing = (Resolution.X - (Resolution.Y * 1.25f)) / 2;
             }
             else
             {
-                letterboxing = (resolution.X - (resolution.Y * 1.33333f)) / 2;
+                letterboxing = (Resolution.X - (Resolution.Y * 1.33333f)) / 2;
             }
 
-            viewport.X = (int)letterboxing;
-            viewport.Y = 0;
+            SceneViewport.X = (int)letterboxing;
+            SceneViewport.Y = 0;
 
-            viewport.Width = (int)resolution.X - ((int)letterboxing * 2);
-            viewport.Height = (int)resolution.Y;
+            SceneViewport.Width = (int)Resolution.X - ((int)letterboxing * 2);
+            SceneViewport.Height = (int)Resolution.Y;
 
-            scaleMatrix = Matrix.CreateScale((float)viewport.Width / 1600, (float)viewport.Height / 1200, 1f);
-            scale = new Vector2((float)resolution.X / 1600, (float)resolution.Y / 1200);
+            ScaleMatrix = Matrix.CreateScale((float)SceneViewport.Width / 1600, (float)SceneViewport.Height / 1200, 1f);
+            Scale = new Vector2((float)Resolution.X / 1600, (float)Resolution.Y / 1200);
 
             rat = new Rat();
             graphicsManager.ApplyChanges();
@@ -224,7 +166,7 @@ namespace F2D.Core
             if (content == null)
                 content = new ContentManager(Game.Services);
 
-            font = content.Load<SpriteFont>(@"Content\Graphics\fonts\jbrush");
+            Font = content.Load<SpriteFont>(@"Content\Graphics\fonts\jbrush");
             blankTexture = content.Load<Texture2D>(@"Content\Graphics\global\blank");
 
             sceneBatch = new SpriteBatch(graphicsDevice);
@@ -252,12 +194,12 @@ namespace F2D.Core
 
         public override void Update(GameTime gT)
         {
-            gameTime = gT;
+            GameTime = gT;
             tmpFrames++;
 
-            framesPerSecond = 1 / gameTime.ElapsedGameTime.TotalSeconds;
+            framesPerSecond = 1 / GameTime.ElapsedGameTime.TotalSeconds;
 
-            averageFPS = tmpFrames / gameTime.TotalGameTime.TotalSeconds;
+            averageFPS = tmpFrames / GameTime.TotalGameTime.TotalSeconds;
 
             // highest fps               
             if (framesPerSecond > highestFPS)
@@ -294,7 +236,7 @@ namespace F2D.Core
                 screensToUpdate.RemoveAt(screensToUpdate.Count - 1);
 
                 // Update the screen.
-                screen.Update(gameTime, otherScreenHasFocus, coveredByOtherScreen);
+                screen.Update(GameTime, otherScreenHasFocus, coveredByOtherScreen);
 
                 if (screen.ScreenState == ScreenState.TransitionOn ||
                     screen.ScreenState == ScreenState.Active)
@@ -328,15 +270,6 @@ namespace F2D.Core
                     otherScreensFinished = false; //reset for next time
                     hasLoadingScreen = false;  //reset
                 }
-                    /*
-                else
-                {
-                    foreach (GameScreen screen in screens)
-                    {
-                        this.RemoveScreen(screen);
-                    }
-                }
-                     */
             }
         }
 
@@ -485,12 +418,12 @@ namespace F2D.Core
 
         public void FadeBackBufferToBlack(int alpha)
         {
-            Viewport viewport = GraphicsDevice.Viewport;
+            Viewport SceneViewport = GraphicsDevice.Viewport;
 
             SceneBatch.Begin();
 
             SceneBatch.Draw(blankTexture,
-                             new Rectangle(0, 0, viewport.Width, viewport.Height),
+                             new Rectangle(0, 0, SceneViewport.Width, SceneViewport.Height),
                              new Color(0, 0, 0, (byte)alpha));
 
             SceneBatch.End();
