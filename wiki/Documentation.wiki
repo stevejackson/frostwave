@@ -98,7 +98,10 @@ And to draw this image, simply
 logo.Draw();
 }}}
 ==== Textbox ====
-
+Initialized by inputting the top left position of the text box, the top left position of the beginning of the text, the colour of the text, and the character limit of the text box.
+{{{
+tboxHighscoreEntry.Initialize(new Vector2(300,200), new Vector2(310, 210), Color.White, 20);
+}}}
 === Renderable ===
 
 === ScreenItem ===
