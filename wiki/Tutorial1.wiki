@@ -61,7 +61,9 @@ namespace MyGame
         protected override void Update(GameTime gameTime)
         {
             //parent cell is the location of the cell on the grid which the spatial partitioning is based off of
-            // in most cases, this will be based off of the camera's location.
+            // in most cases, this will be based on a sprite, such as
+            // Grid.ParentCell = myExampleSprite.CurCell();
+
             Grid.ParentCell = new Vector2Int(1,1);
 
             director.Update(gameTime);
