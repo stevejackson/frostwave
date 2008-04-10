@@ -9,6 +9,24 @@ Example usage of basic Frostwave features.
 
 === Camera ===
 
+Initialize the camera with starting position and starting size
+{{{
+Camera.Initialize(new Vector2(0, 0), new Vector2(1600, 1200));
+}}}
+To have the camera follow a sprite
+{{{
+Camera.Follow(mySprite);
+}}}
+To move the camera X and Y pixels from it's current position.
+i.e. move the camera right 200 units and down 300 units
+{{{
+Camera.MoveDelta(200,300)
+}}}
+
+
+
+
+
 === Cell ===
 
 === Director ===
