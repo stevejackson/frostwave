@@ -72,7 +72,7 @@ Log.Write("ERROR: File not found");
 
 ==== Button ====
 Create 3 images in this fashion:
-Exit_i, Exit_h and Exit_d
+PlayGame_i, PlayGame_h and PlayGame_d
 These are the images correspond to the buttons when they're idle, highlighted and depressed.
 
 Initialize the button with the filename of the images and the starting position
