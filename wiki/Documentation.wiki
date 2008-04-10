@@ -93,10 +93,6 @@ In order to load an image file into the ScreenImage you must:
 {{{
 logo.LoadContent(contentManager, @"Content\Graphics\logo");
 }}}
-And to draw this image, simply
-{{{
-logo.Draw();
-}}}
 ==== Textbox ====
 Initialized by inputting the top left position of the text box, the top left position of the beginning of the text, the colour of the text, and the character limit of the text box.
 {{{
