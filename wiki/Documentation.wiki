@@ -71,9 +71,32 @@ Log.Write("ERROR: File not found");
 === Gui ===
 
 ==== Button ====
+Create 3 images in this fashion:
+Exit_i, Exit_h and Exit_d
+These are the images correspond to the buttons when they're idle, highlighted and depressed.
+
+Initialize the button with the filename of the images and the starting position
+{{{
+btnPlayGame.Initialize(@"Content\Graphics\PlayGame", new Vector2(300, 300));
+}}}
 
 ==== ScreenImage ====
+ScreenImage is an image that will be displayed in screen coordinates.
+This will generally  be a GUI element, such as a logo or other image in the GUI.
 
+Parameters are position (screen coordinates) and rotation in radians.
+{{{
+logo.Initialize(new Vector2(400,200), 0f);
+}}}
+
+In order to load an image file into the ScreenImage you must:
+{{{
+logo.LoadContent(contentManager, @"Content\Graphics\logo");
+}}}
+And to draw this image, simply
+{{{
+logo.Draw();
+}}}
 ==== Textbox ====
 
 === Renderable ===
