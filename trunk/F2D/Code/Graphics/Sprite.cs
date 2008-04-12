@@ -196,7 +196,6 @@ namespace F2D.Graphics
 
             Vector2 posBuffer = position - Camera.Position;
 
-
             Director.SceneBatch.Draw(texture, posBuffer, null,
                 Color.White, rotation, Vector2.Zero, Vector2.One, 
                 SpriteEffects.None, Layer);

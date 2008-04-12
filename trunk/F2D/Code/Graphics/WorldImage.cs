@@ -33,14 +33,16 @@ namespace F2D.Graphics
         /// <summary>
         /// The object location in world coordinates.
         /// </summary>
+        /// 
+        private Vector2 position;
         public Vector2 Position
         {
-            get { return Position; }
+            get { return position; }
             set
             {
-                Position = value;
+                position = value;
 
-                CurCell = F2D.Core.Grid.GetCell(Position, this);
+                CurCell = F2D.Core.Grid.GetCell(position, this);
             }
         }
 
@@ -67,7 +69,7 @@ namespace F2D.Graphics
         /// <param name="position">Object's starting position.</param>
         public void Initialize(Vector2 position)
         {
-            this.Position = position;
+            this.position = position;
             this.Rotation = 0f;
             this.Size = new Vector2Int();
 
