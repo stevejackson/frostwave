@@ -48,6 +48,7 @@ namespace F2D.Graphics
         }
 
         public Vector2Int Size;
+        public Vector2 Origin;
 
 
         //Drawing vars
@@ -76,7 +77,7 @@ namespace F2D.Graphics
             CurCell = new F2D.Math.Vector2Int();
             Director.WorldItems.Add(this);
             CurCell = F2D.Core.Grid.GetCell(position, this);
-
+            Origin = Vector2.Zero;
             Layer = 0.5f;
         }
 
@@ -91,7 +92,7 @@ namespace F2D.Graphics
             CurCell = new F2D.Math.Vector2Int();
             Director.WorldItems.Add(this);
             CurCell = F2D.Core.Grid.GetCell(position, this);
-
+            Origin = Vector2.Zero;
             Layer = 0.5f;
         }
 
@@ -180,6 +181,7 @@ namespace F2D.Graphics
         {
             content = contentManager;
             texture = content.Load<Texture2D>(filename);
+            this.Size = new Vector2Int(texture.Width, texture.Height);
         }
 
         public void UnloadContent()
@@ -197,7 +199,7 @@ namespace F2D.Graphics
             Vector2 posBuffer = position - Camera.Position;
 
             Director.SceneBatch.Draw(texture, posBuffer, null,
-                Color.White, rotation, Vector2.Zero, Vector2.One, 
+                Color.White, rotation, Origin, Vector2.One, 
                 SpriteEffects.None, Layer);
         }
 

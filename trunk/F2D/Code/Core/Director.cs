@@ -269,6 +269,7 @@ namespace F2D.Core
                     this.Game.ResetElapsedTime();
                     otherScreensFinished = false; //reset for next time
                     hasLoadingScreen = false;  //reset
+                    //this.isLoading = false;
                 }
             }
         }
@@ -407,8 +408,10 @@ namespace F2D.Core
             this.screensToLoad = screensToLoad;
             this.hasLoadingScreen = hasLoadingScreen;
 
-            foreach(GameScreen screen in screens) 
+            foreach (GameScreen screen in screens)
+            {
                 screen.ExitScreen();
+            }
         }
 
         public GameScreen[] GetScreens()
