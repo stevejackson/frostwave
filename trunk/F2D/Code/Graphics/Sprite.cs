@@ -72,27 +72,26 @@ namespace F2D.Graphics
         
             this.position = position;
             this.rotation = rotation;
+            Origin = Vector2.Zero;
             LoadXML(name);
-            InitPhysics();
             CurCell = new F2D.Math.Vector2Int();
             Director.WorldItems.Add(this);
             CurCell = F2D.Core.Grid.GetCell(position, this);
-            Origin = Vector2.Zero;
+            
             Layer = 0.5f;
         }
 
         public void Initialize(string name, Vector2 position)
         {
             this.name = name;
-        
+            Origin = Vector2.Zero;
             this.position = position;
             this.rotation = 0f;
             LoadXML(name);
-            InitPhysics();
             CurCell = new F2D.Math.Vector2Int();
             Director.WorldItems.Add(this);
             CurCell = F2D.Core.Grid.GetCell(position, this);
-            Origin = Vector2.Zero;
+            
             Layer = 0.5f;
         }
 
@@ -127,18 +126,6 @@ namespace F2D.Graphics
                     rotation = Convert.ToSingle(node.ChildNodes.Item(curNode).InnerText);
                     curNode++;
                 }
-                //XSize
-                if (curNode < maxNode)
-                {
-                    Size = new Vector2Int((int)Convert.ToSingle(node.ChildNodes.Item(curNode).InnerText), 1);
-                    curNode++;
-                }
-                //YSize
-                if (curNode < maxNode)
-                {
-                    Size = new Vector2Int(Size.X, (int)Convert.ToSingle(node.ChildNodes.Item(curNode).InnerText));
-                    curNode++;
-                }
                 //Static
                 if (curNode < maxNode)
                 {
@@ -170,11 +157,12 @@ namespace F2D.Graphics
             physicsBody.Position = position;
             physicsBody.Rotation = rotation;
 
-            this.physicsGeometry.RestitutionCoefficient = (2f / mass);
-            this.physicsGeometry.FrictionCoefficient = 0.2f;
+            this.physicsGeometry.RestitutionCoefficient = (4f / mass);
+            this.physicsGeometry.FrictionCoefficient = 0f;
+            this.physicsBody.LinearDragCoefficient = 0f;
+            this.physicsBody.RotationalDragCoefficient = 0f;
 
             F2D.Core.Farseer.Physics.Add(physicsBody);
-
         }
 
         public void LoadContent(ContentManager contentManager, string filename)
@@ -182,6 +170,7 @@ namespace F2D.Graphics
             content = contentManager;
             texture = content.Load<Texture2D>(filename);
             this.Size = new Vector2Int(texture.Width, texture.Height);
+            InitPhysics();
         }
 
         public void UnloadContent()
@@ -192,10 +181,10 @@ namespace F2D.Graphics
         }
 
         public override void Draw()
-        {
+        {           
             position = physicsBody.Position;
             rotation = physicsBody.Rotation;
-
+            
             Vector2 posBuffer = position - Camera.Position;
 
             Director.SceneBatch.Draw(texture, posBuffer, null,
