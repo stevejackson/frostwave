@@ -1,6 +1,9 @@
 using System;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using F2D.Input;
+using F2D.Core;
+using F2D;
 
 namespace F2D.Core
 {
@@ -14,6 +17,8 @@ namespace F2D.Core
 
     public abstract class GameScreen
     {
+        public Microsoft.Xna.Framework.Content.ContentManager content;
+
         public bool IsPopup
         {
             get { return isPopup; }
@@ -84,10 +89,14 @@ namespace F2D.Core
             internal set { director = value; }
         }
 
+        public virtual void LoadContent() {
+            if (content == null)
+                content = new ContentManager(Director.Game.Services);
+        }
 
-        public virtual void LoadContent() { }
-
-        public virtual void UnloadContent() { }
+        public virtual void UnloadContent() {
+            this.content.Unload();
+        }
 
         public virtual void Update(GameTime gameTime, bool otherScreenHasFocus,
                                                       bool coveredByOtherScreen)

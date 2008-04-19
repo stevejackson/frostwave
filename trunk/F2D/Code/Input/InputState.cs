@@ -20,13 +20,8 @@ namespace F2D.Input
     {
         #region Fields
 
-        public const int MaxInputs = 4;
-
-        public readonly KeyboardState[] CurrentKeyboardStates;
-        public readonly GamePadState[] CurrentGamePadStates;
-
-        public readonly KeyboardState[] LastKeyboardStates;
-        public readonly GamePadState[] LastGamePadStates;
+        public KeyboardState CurrentKeyboardState;
+        public KeyboardState LastKeyboardState;
 
         #endregion
 
@@ -37,11 +32,8 @@ namespace F2D.Input
         /// </summary>
         public InputState()
         {
-            CurrentKeyboardStates = new KeyboardState[MaxInputs];
-            CurrentGamePadStates = new GamePadState[MaxInputs];
-
-            LastKeyboardStates = new KeyboardState[MaxInputs];
-            LastGamePadStates = new GamePadState[MaxInputs];
+            CurrentKeyboardState = new KeyboardState();
+            LastKeyboardState = new KeyboardState();
         }
 
         #endregion
@@ -53,14 +45,8 @@ namespace F2D.Input
         /// </summary>
         public void Update()
         {
-            for (int i = 0; i < MaxInputs; i++)
-            {
-                LastKeyboardStates[i] = CurrentKeyboardStates[i];
-                LastGamePadStates[i] = CurrentGamePadStates[i];
-
-                CurrentKeyboardStates[i] = Keyboard.GetState((PlayerIndex)i);
-                CurrentGamePadStates[i] = GamePad.GetState((PlayerIndex)i);
-            }
+            LastKeyboardState = CurrentKeyboardState;
+            CurrentKeyboardState = Keyboard.GetState();
         }
 
         /// <summary>
@@ -69,23 +55,8 @@ namespace F2D.Input
         /// </summary>
         public bool IsNewKeyPress(Keys key)
         {
-            for (int i = 0; i < MaxInputs; i++)
-            {
-                if (IsNewKeyPress(key, (PlayerIndex)i))
-                    return true;
-            }
-
-            return false;
-        }
-
-        /// <summary>
-        /// Helper for checking if a key was newly pressed during this update,
-        /// by the specified player.
-        /// </summary>
-        public bool IsNewKeyPress(Keys key, PlayerIndex playerIndex)
-        {
-            return (CurrentKeyboardStates[(int)playerIndex].IsKeyDown(key) &&
-                    LastKeyboardStates[(int)playerIndex].IsKeyUp(key));
+            return (CurrentKeyboardState.IsKeyDown(key) &&
+                    LastKeyboardState.IsKeyUp(key));
         }
 
         #endregion

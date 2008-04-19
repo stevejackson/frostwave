@@ -95,6 +95,22 @@ namespace F2D.Graphics
             Layer = 0.5f;
         }
 
+        public void Initialize(Vector2 position, string shape, float mass)
+        {
+            this.name = "";
+            Origin = Vector2.Zero;
+            this.position = position;
+            this.rotation = 0f;
+            this.mass = mass;
+            this.shape = shape;
+            this.isStatic = false;
+            CurCell = new F2D.Math.Vector2Int();
+            Director.WorldItems.Add(this);
+            CurCell = F2D.Core.Grid.GetCell(position, this);
+            
+            Layer = 0.5f;
+        }
+
         private void LoadXML(string name)
         {
             int curNode = 0;
@@ -157,7 +173,7 @@ namespace F2D.Graphics
             physicsBody.Position = position;
             physicsBody.Rotation = rotation;
 
-            this.physicsGeometry.RestitutionCoefficient = (4f / mass);
+            this.physicsGeometry.RestitutionCoefficient = 0f;// (4f / mass);
             this.physicsGeometry.FrictionCoefficient = 0f;
             this.physicsBody.LinearDragCoefficient = 0f;
             this.physicsBody.RotationalDragCoefficient = 0f;
