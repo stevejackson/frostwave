@@ -402,7 +402,7 @@ namespace F2D.Core
             screensToUpdate.Remove(screen);
         }
 
-        public void SwitchScreen(bool hasLoadingScreen,params GameScreen[] screensToLoad)
+        public void SwitchScreen(bool hasLoadingScreen, params GameScreen[] screensToLoad)
         {
             this.isLoading = true;
             this.screensToLoad = screensToLoad;
