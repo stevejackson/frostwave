@@ -38,6 +38,7 @@ namespace F2D.Core
         static public void Follow(Sprite targetSprite)
         {
             MoveTo(targetSprite.Position - (Size / 2));
+            Grid.ParentCell = Grid.GetCell(targetSprite.Position, targetSprite);
         }
 
         static public void MoveTo(Vector2 destination)

@@ -47,12 +47,14 @@ namespace F2D.Graphics
             }
         }
 
-        public Vector2Int Size;
+        public Vector2Int Size;  
         public Vector2 Origin;
+
+        public Vector2 Scale;
 
 
         //Drawing vars
-        Texture2D texture;
+        public Texture2D texture;
         string name;
 
         //physics
@@ -77,7 +79,7 @@ namespace F2D.Graphics
             CurCell = new F2D.Math.Vector2Int();
             Director.WorldItems.Add(this);
             CurCell = F2D.Core.Grid.GetCell(position, this);
-            
+            Scale = Vector2.One;
             Layer = 0.5f;
         }
 
@@ -91,7 +93,7 @@ namespace F2D.Graphics
             CurCell = new F2D.Math.Vector2Int();
             Director.WorldItems.Add(this);
             CurCell = F2D.Core.Grid.GetCell(position, this);
-            
+            Scale = Vector2.One;
             Layer = 0.5f;
         }
 
@@ -107,7 +109,7 @@ namespace F2D.Graphics
             CurCell = new F2D.Math.Vector2Int();
             Director.WorldItems.Add(this);
             CurCell = F2D.Core.Grid.GetCell(position, this);
-            
+            Scale = Vector2.One;
             Layer = 0.5f;
         }
 
@@ -185,7 +187,10 @@ namespace F2D.Graphics
         {
             content = contentManager;
             texture = content.Load<Texture2D>(filename);
-            this.Size = new Vector2Int(texture.Width, texture.Height);
+            if (this.Size == null)
+            {
+                this.Size = new Vector2Int(texture.Width, texture.Height);
+            }
             InitPhysics();
         }
 
@@ -204,7 +209,7 @@ namespace F2D.Graphics
             Vector2 posBuffer = position - Camera.Position;
 
             Director.SceneBatch.Draw(texture, posBuffer, null,
-                Color.White, rotation, Origin, Vector2.One, 
+                Color.White, rotation, Origin, Scale, 
                 SpriteEffects.None, Layer);
         }
 
