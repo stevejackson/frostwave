@@ -59,7 +59,7 @@ namespace F2D.Graphics
 
         //physics
         public Body physicsBody;
-        bool isStatic;
+        public bool isStatic;
         string shape;
         float mass;
 
@@ -158,7 +158,7 @@ namespace F2D.Graphics
             }
         }
 
-        private void InitPhysics()
+        public void InitPhysics()
         {
             if (shape == "Circle")
             {
@@ -183,6 +183,7 @@ namespace F2D.Graphics
             F2D.Core.Farseer.Physics.Add(physicsBody);
         }
 
+
         public void LoadContent(ContentManager contentManager, string filename)
         {
             content = contentManager;
@@ -191,7 +192,6 @@ namespace F2D.Graphics
             {
                 this.Size = new Vector2Int(texture.Width, texture.Height);
             }
-            InitPhysics();
         }
 
         public void UnloadContent()
