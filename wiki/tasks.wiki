@@ -1,9 +1,0 @@
-#summary Current items that need to be implemented
-#labels Featured
-
-= 0.2 =
-
-= Future =
-  * Particle engine
-  * Animation
-  * Multiplex layers
