@@ -60,6 +60,12 @@
       <Visible>False</Visible>
     </NestedContentProject>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FarseerPhysics\FarseerPhysics.csproj">
+      <Project>{48E7E660-6728-40F9-91AB-AFCD9477EF5F}</Project>
+      <Name>FarseerPhysics</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\v2.0\Microsoft.Xna.GameStudio.Common.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\v2.0\Microsoft.Xna.GameStudio.NestedContent.targets" />
