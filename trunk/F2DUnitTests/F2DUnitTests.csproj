@@ -36,9 +36,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AssemblyUtilities.cs" />
-    <Compile Include="Class1.cs" />
-    <Compile Include="Vector2IntTests.cs" />
+    <Compile Include="Code\AssemblyUtilities.cs" />
+    <Compile Include="Code\Class1.cs" />
+    <Compile Include="Code\Vector2IntTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
