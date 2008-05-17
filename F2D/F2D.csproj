@@ -54,6 +54,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Code\Frostwave.cs" />
     <Compile Include="Code\Math\Vector2Int.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

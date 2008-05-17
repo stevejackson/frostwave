@@ -14,20 +14,19 @@ using Microsoft.Xna.Framework.Storage;
 
 namespace TestingGrounds
 {
-
+    /// <summary>
+    /// Base class for unit tests requiring an XNA window.
+    /// </summary>
     public class Game1 : Microsoft.Xna.Framework.Game
     {
-        GraphicsDeviceManager graphics;
-        SpriteBatch spriteBatch;
-
+        protected GraphicsDeviceManager GraphicsManager;
         protected ContentManager content;
 
         public Game1()
         {
-            graphics = new GraphicsDeviceManager(this);
+            GraphicsManager = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
         }
-
 
         protected override void Initialize()
         {
@@ -37,8 +36,7 @@ namespace TestingGrounds
 
         protected override void LoadContent()
         {
-            spriteBatch = new SpriteBatch(GraphicsDevice);
-            //here
+
         }
 
         protected override void UnloadContent()
@@ -55,7 +53,7 @@ namespace TestingGrounds
 
         protected override void Draw(GameTime gameTime)
         {
-            graphics.GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsManager.GraphicsDevice.Clear(Color.CornflowerBlue);
 
             //here
 
