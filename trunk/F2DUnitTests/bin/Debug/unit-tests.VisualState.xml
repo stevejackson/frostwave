@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<VisualState xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ShowCheckBoxes="false">
+  <TopNode>[0-1000]G:\Development\Game\f2d\F2DUnitTests\bin\Debug\unit-tests.nunit</TopNode>
+  <SelectedNode>[0-1017]F2DUnitTests</SelectedNode>
+  <ExcludeCategories>false</ExcludeCategories>
+  <Nodes>
+    <Node UniqueName="[0-1000]G:\Development\Game\f2d\F2DUnitTests\bin\Debug\unit-tests.nunit" Expanded="true">
+      <Nodes>
+        <Node UniqueName="[0-1016]G:\Development\Game\f2d\F2DUnitTests\bin\Debug\F2DUnitTests.dll" Expanded="true">
+          <Nodes>
+            <Node UniqueName="[0-1017]F2DUnitTests" Expanded="true">
+              <Nodes>
+                <Node UniqueName="[0-1014]F2DUnitTests.IntTests" Expanded="true">
+                  <Nodes>
+                    <Node UniqueName="[0-1015]F2DUnitTests.IntTests.EmptyTest" />
+                  </Nodes>
+                </Node>
+                <Node UniqueName="[0-1001]F2DUnitTests.Vector2IntTests" Expanded="true">
+                  <Nodes>
+                    <Node UniqueName="[0-1008]F2DUnitTests.Vector2IntTests.TestAdditionOperator" />
+                    <Node UniqueName="[0-1006]F2DUnitTests.Vector2IntTests.TestEqualityOperator" />
+                    <Node UniqueName="[0-1011]F2DUnitTests.Vector2IntTests.TestEqualsDifferentTypes" />
+                    <Node UniqueName="[0-1012]F2DUnitTests.Vector2IntTests.TestEqualsNullComparison" />
+                    <Node UniqueName="[0-1013]F2DUnitTests.Vector2IntTests.TestEqualsTrueComparison" />
+                    <Node UniqueName="[0-1007]F2DUnitTests.Vector2IntTests.TestInequalityOperator" />
+                    <Node UniqueName="[0-1002]F2DUnitTests.Vector2IntTests.TestInstantiation" />
+                    <Node UniqueName="[0-1005]F2DUnitTests.Vector2IntTests.TestOneMethod" />
+                    <Node UniqueName="[0-1004]F2DUnitTests.Vector2IntTests.TestPositionConstructor" />
+                    <Node UniqueName="[0-1003]F2DUnitTests.Vector2IntTests.TestPositionProperty" />
+                    <Node UniqueName="[0-1009]F2DUnitTests.Vector2IntTests.TestSubtractionOperator" />
+                    <Node UniqueName="[0-1010]F2DUnitTests.Vector2IntTests.TestToString" />
+                  </Nodes>
+                </Node>
+              </Nodes>
+            </Node>
+          </Nodes>
+        </Node>
+      </Nodes>
+    </Node>
+  </Nodes>
+</VisualState>
