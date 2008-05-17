@@ -1,3 +1,5 @@
+#summary Things we need to take a look at and resolve in the near future.
+
   * ContentManager
   * Making sprites inside everything
   * Exception handling
