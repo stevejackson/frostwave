@@ -1,0 +1,4 @@
+  * ContentManager
+  * Making sprites inside everything
+  * Exception handling
+  * How do we test physics & rendering functionality
