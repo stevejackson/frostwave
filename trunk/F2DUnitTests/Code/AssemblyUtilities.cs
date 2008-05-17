@@ -32,8 +32,6 @@ namespace F2DUnitTests
             AppDomain domain = AppDomain.CurrentDomain;
             FieldInfo domainManagerField = domain.GetType().GetField("_domainManager", BindingFlags.Instance | BindingFlags.NonPublic);
             domainManagerField.SetValue(domain, manager);
-
-            Console.WriteLine("got here");
         }
     }
 
