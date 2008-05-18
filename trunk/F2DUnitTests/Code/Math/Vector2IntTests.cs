@@ -11,7 +11,7 @@ namespace F2DUnitTests.Math
     /// UnitTests for the Vector2Int class.
     /// </summary>
     [TestFixture]
-    public class Vector2IntTests : TestingGrounds.Game1
+    public class Vector2IntTests
     {
         [TestFixtureSetUp]
         public void Setup()
