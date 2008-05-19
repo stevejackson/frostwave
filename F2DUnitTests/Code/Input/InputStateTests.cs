@@ -1,4 +1,10 @@
+/* Frostwave 2D
+ * (c) Snowfall Media 2008
+ * Steven Jackson, Vedran Budimcic
+ */
+
 using NUnit.Framework;
+using F2D.Input;
 
 namespace F2DUnitTests.Input
 {

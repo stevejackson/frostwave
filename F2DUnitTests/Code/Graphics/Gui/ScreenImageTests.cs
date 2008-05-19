@@ -4,6 +4,10 @@
  */
 
 using NUnit.Framework;
+using Microsoft.Xna.Framework;
+using F2D.Math;
+using F2D.Graphics.Gui;
+
 
 namespace F2DUnitTests.Graphics.Gui
 {
@@ -61,7 +65,7 @@ namespace F2DUnitTests.Graphics.Gui
         public void TestPositiveSizeProperty()
         {
             ScreenImage testImage = new ScreenImage();
-            testImage.LoadContent(content, "Testfile");
+            testImage.LoadContent();
             testImage.Size = new Vector2Int(100, 200);
 
             Assert.AreEqual(new Vector2Int(100, 200), testImage.Size);
@@ -74,7 +78,7 @@ namespace F2DUnitTests.Graphics.Gui
         public void TestZeroSizeProperty()
         {
             ScreenImage testImage = new ScreenImage();
-            testImage.LoadContent(content, "Testfile");
+            testImage.LoadContent();
             testImage.Size = new Vector2Int(0, 0);
 
             Assert.AreEqual(new Vector2Int(1, 1), testImage.Size);
@@ -87,7 +91,7 @@ namespace F2DUnitTests.Graphics.Gui
         public void TestNegativeSizeProperty()
         {
             ScreenImage testImage = new ScreenImage();
-            testImage.LoadContent(content, "Testfile");
+            testImage.LoadContent();
             testImage.Size = new Vector2Int(-400, -200);
 
             Assert.AreEqual(new Vector2Int(1, 1), testImage.Size);
