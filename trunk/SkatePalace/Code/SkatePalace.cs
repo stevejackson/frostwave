@@ -13,6 +13,7 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Storage;
 using F2D;
 using F2D.Math;
+using F2D.Input;
 
 namespace SkatePalace
 {
@@ -23,6 +24,7 @@ namespace SkatePalace
     {
         protected GraphicsDeviceManager GraphicsManager;
         protected ContentManager content;
+        protected InputState input;
 
         public SkatePalaceGame()
         {
@@ -41,9 +43,11 @@ namespace SkatePalace
 
             //Can we change properties a 2nd time?
             Frostwave.Resolution = new Vector2Int(1280, 800);
-            Frostwave.Fullscreen = true;
+            Frostwave.Fullscreen = false;
 
             Frostwave.CreateDisplay();
+
+            input = new InputState();
 
             base.Initialize();
         }
@@ -60,7 +64,10 @@ namespace SkatePalace
 
         protected override void Update(GameTime gameTime)
         {
-            //here
+            input.Update();
+
+            if (input.IsNewKeyPress(Keys.Escape))
+                Exit();
 
             base.Update(gameTime);
         }

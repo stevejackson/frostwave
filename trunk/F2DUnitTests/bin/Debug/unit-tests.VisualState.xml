@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <VisualState xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ShowCheckBoxes="false">
   <TopNode>[0-1000]G:\Development\Game\f2d\F2DUnitTests\bin\Debug\unit-tests.nunit</TopNode>
-  <SelectedNode>[0-1027]G:\Development\Game\f2d\F2DUnitTests\bin\Debug\F2DUnitTests.dll</SelectedNode>
+  <SelectedNode>[0-1007]F2DUnitTests.Math.Vector2IntTests.TestInequalityOperator</SelectedNode>
   <ExcludeCategories>false</ExcludeCategories>
   <Nodes>
     <Node UniqueName="[0-1000]G:\Development\Game\f2d\F2DUnitTests\bin\Debug\unit-tests.nunit" Expanded="true">
       <Nodes>
-        <Node UniqueName="[0-1027]G:\Development\Game\f2d\F2DUnitTests\bin\Debug\F2DUnitTests.dll" Expanded="true">
+        <Node UniqueName="[0-1029]G:\Development\Game\f2d\F2DUnitTests\bin\Debug\F2DUnitTests.dll" Expanded="true">
           <Nodes>
-            <Node UniqueName="[0-1028]F2DUnitTests" Expanded="true">
+            <Node UniqueName="[0-1030]F2DUnitTests" Expanded="true">
               <Nodes>
                 <Node UniqueName="[0-1014]F2DUnitTests.FrostwaveTests" Expanded="true">
                   <Nodes>
@@ -26,8 +26,13 @@
                     <Node UniqueName="[0-1023]F2DUnitTests.FrostwaveTests.TestViewportValues_1680x1050" />
                   </Nodes>
                 </Node>
-                <Node UniqueName="[0-1029]F2DUnitTests.Math">
+                <Node UniqueName="[0-1031]F2DUnitTests.Math" Expanded="true">
                   <Nodes>
+                    <Node UniqueName="[0-1027]F2DUnitTests.Math.KeyboardStateTests" Expanded="true">
+                      <Nodes>
+                        <Node UniqueName="[0-1028]F2DUnitTests.Math.KeyboardStateTests.TestInstantiation" />
+                      </Nodes>
+                    </Node>
                     <Node UniqueName="[0-1001]F2DUnitTests.Math.Vector2IntTests" Expanded="true">
                       <Nodes>
                         <Node UniqueName="[0-1008]F2DUnitTests.Math.Vector2IntTests.TestAdditionOperator" />
