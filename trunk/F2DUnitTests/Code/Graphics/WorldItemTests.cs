@@ -4,6 +4,8 @@
  */
 
 using NUnit.Framework;
+using Microsoft.Xna.Framework;
+using F2D.Graphics;
 
 
 namespace F2DUnitTests.Graphics
