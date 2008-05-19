@@ -1,13 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-using NUnit.Framework;
-using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework;
-using F2D;
-using F2D.Math;
-using F2D.Graphics.Gui;
+/* Frostwave 2D
+ * (c) Snowfall Media 2008
+ * Steven Jackson, Vedran Budimcic
+ */
 
+using NUnit.Framework;
 
 namespace F2DUnitTests.Graphics.Gui
 {
@@ -32,7 +28,7 @@ namespace F2DUnitTests.Graphics.Gui
 
         /// <summary>
         /// Ensure that the setVisible method is working. 
-        /// This does not detect if the ScreenItem is being drawn.        /// 
+        /// This does not detect if the ScreenItem is being drawn.
         /// </summary>
         [Test]
         public void TestSetVisibleMethod()
