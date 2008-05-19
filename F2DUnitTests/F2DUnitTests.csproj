@@ -38,6 +38,7 @@
   <ItemGroup>
     <Compile Include="Code\AssemblyUtilities.cs" />
     <Compile Include="Code\FrostwaveTests.cs" />
+    <Compile Include="Code\Input\InputStateTests.cs" />
     <Compile Include="Code\Math\Vector2IntTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
