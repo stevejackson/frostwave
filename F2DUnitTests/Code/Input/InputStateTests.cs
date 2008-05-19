@@ -1,7 +1,4 @@
 using NUnit.Framework;
-using Microsoft.Xna.Framework.Content;
-using F2D.Math;
-using F2D.Input;
 
 namespace F2DUnitTests.Input
 {
