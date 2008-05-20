@@ -84,10 +84,8 @@ namespace F2D.Math
 
         /// <summary>
         /// Necessary to bypass compiler warning due to equality operator.
-        /// 
         /// Do not use.
         /// </summary>
-        /// <returns></returns>
         public override int GetHashCode()
         {
             return base.GetHashCode();

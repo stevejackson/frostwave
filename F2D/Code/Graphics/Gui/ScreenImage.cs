@@ -15,7 +15,6 @@ namespace F2D.Graphics.Gui
     public class ScreenImage : F2D.Graphics.Gui.ScreenItem
     {        
         private Vector2 position;
-
         public Vector2 Position
         {
             get { return position; }
@@ -23,7 +22,6 @@ namespace F2D.Graphics.Gui
         }	
         
         private float rotation;
-
         public float Rotation
         {
             get { return rotation; }
@@ -31,7 +29,6 @@ namespace F2D.Graphics.Gui
         }
                 
         private Vector2Int size;
-
         public Vector2Int Size
         {
             get { return size; }
