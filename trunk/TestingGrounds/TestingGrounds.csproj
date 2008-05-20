@@ -68,6 +68,12 @@
       <Visible>False</Visible>
     </NestedContentProject>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\F2D\F2D.csproj">
+      <Project>{6B5974A3-F965-4038-84B3-AFF7F8387D28}</Project>
+      <Name>F2D</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\v2.0\Microsoft.Xna.GameStudio.Common.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\v2.0\Microsoft.Xna.GameStudio.NestedContent.targets" />

@@ -1,83 +1,102 @@
 <?xml version="1.0" encoding="utf-8"?>
 <VisualState xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ShowCheckBoxes="false">
-  <TopNode>[0-1000]C:\Documents and Settings\Vedran\My Documents\Visual Studio 2005\Projects\GameDev\Frostwave 2D\F2DUnitTests\bin\Debug\unit-tests.nunit</TopNode>
-  <SelectedNode>[0-1000]C:\Documents and Settings\Vedran\My Documents\Visual Studio 2005\Projects\GameDev\Frostwave 2D\F2DUnitTests\bin\Debug\unit-tests.nunit</SelectedNode>
+  <TopNode>[0-1000]G:\Development\Game\f2d\F2DUnitTests\bin\Debug\unit-tests.nunit</TopNode>
+  <SelectedNode>[0-1052]G:\Development\Game\f2d\F2DUnitTests\bin\Debug\F2DUnitTests.dll</SelectedNode>
   <ExcludeCategories>false</ExcludeCategories>
   <Nodes>
-    <Node UniqueName="[0-1000]C:\Documents and Settings\Vedran\My Documents\Visual Studio 2005\Projects\GameDev\Frostwave 2D\F2DUnitTests\bin\Debug\unit-tests.nunit" Expanded="true">
+    <Node UniqueName="[0-1000]G:\Development\Game\f2d\F2DUnitTests\bin\Debug\unit-tests.nunit" Expanded="true">
       <Nodes>
-        <Node UniqueName="[0-1040]C:\Documents and Settings\Vedran\My Documents\Visual Studio 2005\Projects\GameDev\Frostwave 2D\F2DUnitTests\bin\Debug\F2DUnitTests.dll" Expanded="true">
+        <Node UniqueName="[0-1052]G:\Development\Game\f2d\F2DUnitTests\bin\Debug\F2DUnitTests.dll" Expanded="true">
           <Nodes>
-            <Node UniqueName="[0-1041]F2DUnitTests" Expanded="true">
+            <Node UniqueName="[0-1053]F2DUnitTests" Expanded="true">
               <Nodes>
-                <Node UniqueName="[0-1005]F2DUnitTests.FrostwaveTests" Expanded="true">
+                <Node UniqueName="[0-1017]F2DUnitTests.FrostwaveTests">
                   <Nodes>
-                    <Node UniqueName="[0-1007]F2DUnitTests.FrostwaveTests.TestGraphicsManager" />
-                    <Node UniqueName="[0-1006]F2DUnitTests.FrostwaveTests.TestInstantiation" />
+                    <Node UniqueName="[0-1027]F2DUnitTests.FrostwaveTests.TestBaseResolutionProperty" />
+                    <Node UniqueName="[0-1021]F2DUnitTests.FrostwaveTests.TestColumnboxingValue_1024x768" />
+                    <Node UniqueName="[0-1022]F2DUnitTests.FrostwaveTests.TestColumnboxingValue_1280x1024" />
+                    <Node UniqueName="[0-1023]F2DUnitTests.FrostwaveTests.TestColumnboxingValue_1680x1050" />
+                    <Node UniqueName="[0-1019]F2DUnitTests.FrostwaveTests.TestFullScreenProperty" />
+                    <Node UniqueName="[0-1018]F2DUnitTests.FrostwaveTests.TestGraphicsManager" />
+                    <Node UniqueName="[0-1020]F2DUnitTests.FrostwaveTests.TestResolutionProperty" />
+                    <Node UniqueName="[0-1029]F2DUnitTests.FrostwaveTests.TestScaleMatrixValue_1024x768" />
+                    <Node UniqueName="[0-1028]F2DUnitTests.FrostwaveTests.TestScaleValue_1024x768" />
+                    <Node UniqueName="[0-1024]F2DUnitTests.FrostwaveTests.TestViewportValues_1024x768" />
+                    <Node UniqueName="[0-1025]F2DUnitTests.FrostwaveTests.TestViewportValues_1280x1024" />
+                    <Node UniqueName="[0-1026]F2DUnitTests.FrostwaveTests.TestViewportValues_1680x1050" />
                   </Nodes>
                 </Node>
-                <Node UniqueName="[0-1042]F2DUnitTests.Graphics" Expanded="true">
+                <Node UniqueName="[0-1055]F2DUnitTests.Graphics" Expanded="true">
                   <Nodes>
-                    <Node UniqueName="[0-1044]F2DUnitTests.Graphics.Gui" Expanded="true">
+                    <Node UniqueName="[0-1056]F2DUnitTests.Graphics.Gui">
                       <Nodes>
-                        <Node UniqueName="[0-1030]F2DUnitTests.Graphics.Gui.ScreenImageTests" Expanded="true">
+                        <Node UniqueName="[0-1010]F2DUnitTests.Graphics.Gui.ScreenImageTests" Expanded="true">
                           <Nodes>
-                            <Node UniqueName="[0-1033]F2DUnitTests.Graphics.Gui.ScreenImageTests.TestInitializeMethod" />
-                            <Node UniqueName="[0-1036]F2DUnitTests.Graphics.Gui.ScreenImageTests.TestNegativeSizeProperty" />
-                            <Node UniqueName="[0-1031]F2DUnitTests.Graphics.Gui.ScreenImageTests.TestPositionProperty" />
-                            <Node UniqueName="[0-1034]F2DUnitTests.Graphics.Gui.ScreenImageTests.TestPositiveSizeProperty" />
-                            <Node UniqueName="[0-1032]F2DUnitTests.Graphics.Gui.ScreenImageTests.TestRotationProperty" />
-                            <Node UniqueName="[0-1035]F2DUnitTests.Graphics.Gui.ScreenImageTests.TestZeroSizeProperty" />
+                            <Node UniqueName="[0-1013]F2DUnitTests.Graphics.Gui.ScreenImageTests.TestInitializeMethod" />
+                            <Node UniqueName="[0-1016]F2DUnitTests.Graphics.Gui.ScreenImageTests.TestNegativeSizeProperty" />
+                            <Node UniqueName="[0-1011]F2DUnitTests.Graphics.Gui.ScreenImageTests.TestPositionProperty" />
+                            <Node UniqueName="[0-1014]F2DUnitTests.Graphics.Gui.ScreenImageTests.TestPositiveSizeProperty" />
+                            <Node UniqueName="[0-1012]F2DUnitTests.Graphics.Gui.ScreenImageTests.TestRotationProperty" />
+                            <Node UniqueName="[0-1015]F2DUnitTests.Graphics.Gui.ScreenImageTests.TestZeroSizeProperty" />
                           </Nodes>
                         </Node>
-                        <Node UniqueName="[0-1037]F2DUnitTests.Graphics.Gui.ScreenItemTests" Expanded="true">
+                        <Node UniqueName="[0-1047]F2DUnitTests.Graphics.Gui.ScreenItemTests" Expanded="true">
                           <Nodes>
-                            <Node UniqueName="[0-1038]F2DUnitTests.Graphics.Gui.ScreenItemTests.TestIsVisibleProperty" />
-                            <Node UniqueName="[0-1039]F2DUnitTests.Graphics.Gui.ScreenItemTests.TestSetVisibleMethod" />
+                            <Node UniqueName="[0-1048]F2DUnitTests.Graphics.Gui.ScreenItemTests.TestIsVisibleProperty" />
+                            <Node UniqueName="[0-1049]F2DUnitTests.Graphics.Gui.ScreenItemTests.TestSetVisibleMethod" />
                           </Nodes>
                         </Node>
                       </Nodes>
                     </Node>
-                    <Node UniqueName="[0-1001]F2DUnitTests.Graphics.RenderableTests" Expanded="true">
+                    <Node UniqueName="[0-1043]F2DUnitTests.Graphics.RenderableTests">
                       <Nodes>
-                        <Node UniqueName="[0-1004]F2DUnitTests.Graphics.RenderableTests.TestLayerAppropriateValue" />
-                        <Node UniqueName="[0-1003]F2DUnitTests.Graphics.RenderableTests.TestLayerLowerBound" />
-                        <Node UniqueName="[0-1002]F2DUnitTests.Graphics.RenderableTests.TestLayerUpperBound" />
+                        <Node UniqueName="[0-1046]F2DUnitTests.Graphics.RenderableTests.TestLayerAppropriateValue" />
+                        <Node UniqueName="[0-1045]F2DUnitTests.Graphics.RenderableTests.TestLayerLowerBound" />
+                        <Node UniqueName="[0-1044]F2DUnitTests.Graphics.RenderableTests.TestLayerUpperBound" />
                       </Nodes>
                     </Node>
-                    <Node UniqueName="[0-1021]F2DUnitTests.Graphics.WorldImageTests" Expanded="true">
+                    <Node UniqueName="[0-1003]F2DUnitTests.Graphics.WorldImageTests">
                       <Nodes>
-                        <Node UniqueName="[0-1024]F2DUnitTests.Graphics.WorldImageTests.TestInitializeMethod" />
-                        <Node UniqueName="[0-1027]F2DUnitTests.Graphics.WorldImageTests.TestNegativeSizeProperty" />
-                        <Node UniqueName="[0-1022]F2DUnitTests.Graphics.WorldImageTests.TestPositionProperty" />
-                        <Node UniqueName="[0-1025]F2DUnitTests.Graphics.WorldImageTests.TestPositiveSizeProperty" />
-                        <Node UniqueName="[0-1023]F2DUnitTests.Graphics.WorldImageTests.TestRotationProperty" />
-                        <Node UniqueName="[0-1026]F2DUnitTests.Graphics.WorldImageTests.TestZeroSizeProperty" />
+                        <Node UniqueName="[0-1006]F2DUnitTests.Graphics.WorldImageTests.TestInitializeMethod" />
+                        <Node UniqueName="[0-1009]F2DUnitTests.Graphics.WorldImageTests.TestNegativeSizeProperty" />
+                        <Node UniqueName="[0-1004]F2DUnitTests.Graphics.WorldImageTests.TestPositionProperty" />
+                        <Node UniqueName="[0-1007]F2DUnitTests.Graphics.WorldImageTests.TestPositiveSizeProperty" />
+                        <Node UniqueName="[0-1005]F2DUnitTests.Graphics.WorldImageTests.TestRotationProperty" />
+                        <Node UniqueName="[0-1008]F2DUnitTests.Graphics.WorldImageTests.TestZeroSizeProperty" />
                       </Nodes>
                     </Node>
-                    <Node UniqueName="[0-1028]F2DUnitTests.Graphics.WorldItemTests">
+                    <Node UniqueName="[0-1050]F2DUnitTests.Graphics.WorldItemTests">
                       <Nodes>
-                        <Node UniqueName="[0-1029]F2DUnitTests.Graphics.WorldItemTests.TestCurCellIsNull" />
+                        <Node UniqueName="[0-1051]F2DUnitTests.Graphics.WorldItemTests.TestCurCellIsNull" />
                       </Nodes>
                     </Node>
                   </Nodes>
                 </Node>
-                <Node UniqueName="[0-1043]F2DUnitTests.Math" Expanded="true">
+                <Node UniqueName="[0-1054]F2DUnitTests.Input" Expanded="true">
                   <Nodes>
-                    <Node UniqueName="[0-1008]F2DUnitTests.Math.Vector2IntTests" Expanded="true">
+                    <Node UniqueName="[0-1001]F2DUnitTests.Input.InputStateTests" Expanded="true">
                       <Nodes>
-                        <Node UniqueName="[0-1015]F2DUnitTests.Math.Vector2IntTests.TestAdditionOperator" />
-                        <Node UniqueName="[0-1013]F2DUnitTests.Math.Vector2IntTests.TestEqualityOperator" />
-                        <Node UniqueName="[0-1018]F2DUnitTests.Math.Vector2IntTests.TestEqualsDifferentTypes" />
-                        <Node UniqueName="[0-1019]F2DUnitTests.Math.Vector2IntTests.TestEqualsNullComparison" />
-                        <Node UniqueName="[0-1020]F2DUnitTests.Math.Vector2IntTests.TestEqualsTrueComparison" />
-                        <Node UniqueName="[0-1014]F2DUnitTests.Math.Vector2IntTests.TestInequalityOperator" />
-                        <Node UniqueName="[0-1009]F2DUnitTests.Math.Vector2IntTests.TestInstantiation" />
-                        <Node UniqueName="[0-1012]F2DUnitTests.Math.Vector2IntTests.TestOneMethod" />
-                        <Node UniqueName="[0-1011]F2DUnitTests.Math.Vector2IntTests.TestPositionConstructor" />
-                        <Node UniqueName="[0-1010]F2DUnitTests.Math.Vector2IntTests.TestPositionProperty" />
-                        <Node UniqueName="[0-1016]F2DUnitTests.Math.Vector2IntTests.TestSubtractionOperator" />
-                        <Node UniqueName="[0-1017]F2DUnitTests.Math.Vector2IntTests.TestToString" />
+                        <Node UniqueName="[0-1002]F2DUnitTests.Input.InputStateTests.TestInstantiation" />
+                      </Nodes>
+                    </Node>
+                  </Nodes>
+                </Node>
+                <Node UniqueName="[0-1057]F2DUnitTests.Math" Expanded="true">
+                  <Nodes>
+                    <Node UniqueName="[0-1030]F2DUnitTests.Math.Vector2IntTests" Expanded="true">
+                      <Nodes>
+                        <Node UniqueName="[0-1037]F2DUnitTests.Math.Vector2IntTests.TestAdditionOperator" />
+                        <Node UniqueName="[0-1035]F2DUnitTests.Math.Vector2IntTests.TestEqualityOperator" />
+                        <Node UniqueName="[0-1040]F2DUnitTests.Math.Vector2IntTests.TestEqualsDifferentTypes" />
+                        <Node UniqueName="[0-1041]F2DUnitTests.Math.Vector2IntTests.TestEqualsNullComparison" />
+                        <Node UniqueName="[0-1042]F2DUnitTests.Math.Vector2IntTests.TestEqualsTrueComparison" />
+                        <Node UniqueName="[0-1036]F2DUnitTests.Math.Vector2IntTests.TestInequalityOperator" />
+                        <Node UniqueName="[0-1031]F2DUnitTests.Math.Vector2IntTests.TestInstantiation" />
+                        <Node UniqueName="[0-1034]F2DUnitTests.Math.Vector2IntTests.TestOneMethod" />
+                        <Node UniqueName="[0-1033]F2DUnitTests.Math.Vector2IntTests.TestPositionConstructor" />
+                        <Node UniqueName="[0-1032]F2DUnitTests.Math.Vector2IntTests.TestPositionProperty" />
+                        <Node UniqueName="[0-1038]F2DUnitTests.Math.Vector2IntTests.TestSubtractionOperator" />
+                        <Node UniqueName="[0-1039]F2DUnitTests.Math.Vector2IntTests.TestToString" />
                       </Nodes>
                     </Node>
                   </Nodes>

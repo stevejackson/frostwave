@@ -62,7 +62,6 @@ namespace F2D
         static public int ColumnBoxSize
         {
             get { return columnBoxSize; }
-            set { columnBoxSize = value; }
         }
 
         static private Vector2Int baseResolution;
@@ -177,9 +176,9 @@ namespace F2D
         {
             // 1280x1024 is a special case, but should still have no columnboxing
             if (Resolution == new Vector2Int(1280, 1024))
-                ColumnBoxSize = (int)((Resolution.X - (Resolution.Y * 1.25f)) / 2);
+                columnBoxSize = (int)((Resolution.X - (Resolution.Y * 1.25f)) / 2);
             else
-                ColumnBoxSize = (int)((Resolution.X - (Resolution.Y * 1.33333333f)) / 2);
+                columnBoxSize = (int)((Resolution.X - (Resolution.Y * 1.33333333f)) / 2);
 
             clearViewport.X = 0;
             clearViewport.Y = 0;
