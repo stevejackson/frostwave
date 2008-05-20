@@ -11,11 +11,12 @@ namespace F2D.Graphics
     /// Objects drawn to world coordinates such as sprites and images.
     /// </summary>
     public abstract class WorldItem : Renderable
-    {
+    {       
+        private Vector2Int curCell;
+
         /// <summary>
         /// Represents the current cell on the grid (Scene Graph) where this object is at.
         /// </summary>
-        private Vector2Int curCell;
         public Vector2Int CurCell
         {
             get { return curCell; }
