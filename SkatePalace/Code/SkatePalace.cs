@@ -14,6 +14,7 @@ using Microsoft.Xna.Framework.Storage;
 using F2D;
 using F2D.Math;
 using F2D.Input;
+using F2D.Core;
 
 namespace SkatePalace
 {
@@ -34,6 +35,11 @@ namespace SkatePalace
 
         protected override void Initialize()
         {
+            Camera.Initialize();
+            Camera.Size = new Vector2Int(800, 600);
+            Camera.Position = new Vector2(50, 75);
+
+            Rectangle expected = new Rectangle(50, 75, 800, 600);
             Frostwave.Initialize(GraphicsManager);
 
             Frostwave.Fullscreen = false;

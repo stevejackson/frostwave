@@ -164,9 +164,8 @@ namespace F2DUnitTests.Math
         public void TestEqualsNullComparison()
         {
             Vector2Int a = new Vector2Int(5, 0);
-            Vector2Int b = null;
 
-            Assert.IsFalse(a.Equals(b));
+            Assert.IsFalse(a.Equals(null));
         }
 
         /// <summary>
@@ -179,6 +178,43 @@ namespace F2DUnitTests.Math
             Vector2Int b = new Vector2Int(5, 2);
 
             Assert.IsTrue(a.Equals(b));
+        }
+
+        /// <summary>
+        /// Ensure the Equals method follows the C# guidelines.
+        /// </summary>
+        [Test]
+        public void TestEqualsSelfComparison()
+        {
+            Vector2Int a = new Vector2Int(5, 5);
+            Assert.IsTrue(a.Equals(a));
+        }
+
+        /// <summary>
+        /// Ensure the Equals method follows the C# guidelines.
+        /// </summary>
+        [Test]
+        public void TestEqualsInverseComparison()
+        {
+            Vector2Int a = new Vector2Int(5, 2);
+            Vector2Int b = new Vector2Int(2, 1);
+
+            Assert.IsTrue(a.Equals(b) == b.Equals(a));
+        }
+
+        /// <summary>
+        /// Ensure the Equals method follows the C# guidelines.
+        /// </summary>
+        [Test]
+        public void TestEqualsTransitiveComparison()
+        {
+            Vector2Int a = new Vector2Int(5, 5);
+            Vector2Int b = new Vector2Int(5, 5);
+            Vector2Int c = new Vector2Int(5, 5);
+
+            Assert.IsTrue(a.Equals(b));
+            Assert.IsTrue(b.Equals(c));
+            Assert.IsTrue(a.Equals(c));
         }
 
     }

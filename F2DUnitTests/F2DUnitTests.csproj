@@ -37,6 +37,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Code\AssemblyUtilities.cs" />
+    <Compile Include="Code\Core\CameraTests.cs" />
     <Compile Include="Code\FrostwaveTests.cs" />
     <Compile Include="Code\Graphics\Gui\ScreenImageTests.cs" />
     <Compile Include="Code\Graphics\Gui\ScreenItemTests.cs" />

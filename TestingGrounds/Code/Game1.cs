@@ -3,14 +3,11 @@
  * Steven Jackson, Vedran Budimcic
  */
 
-using System;
-using System.Collections.Generic;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Storage;
+using F2D.Input;
 
 namespace TestingGrounds
 {
@@ -21,11 +18,13 @@ namespace TestingGrounds
     {
         protected GraphicsDeviceManager GraphicsManager;
         protected ContentManager content;
+        private InputState inputState;
 
         public Game1()
         {
             GraphicsManager = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            inputState = new InputState();
         }
 
         protected override void Initialize()
@@ -46,7 +45,9 @@ namespace TestingGrounds
 
         protected override void Update(GameTime gameTime)
         {
-            //here
+            inputState.Update();
+            if (inputState.IsNewKeyPress(Keys.Escape))
+                Exit();
 
             base.Update(gameTime);
         }

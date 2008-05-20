@@ -54,12 +54,18 @@ namespace F2D.Math
 
         public static bool operator ==(Vector2Int a, Vector2Int b)
         {
+            if (System.Object.ReferenceEquals(a, b))
+                return true;
+
+            if (((object)a == null) || ((object)b == null))
+                return false;
+
             return a.X == b.X && a.Y == b.Y;
         }
 
         public static bool operator !=(Vector2Int a, Vector2Int b)
         {
-            return a.X != b.X || a.Y != b.Y;
+            return !(a == b);
         }
 
         public override string ToString()
