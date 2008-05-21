@@ -13,7 +13,7 @@ using F2D;
 namespace F2DUnitTests.Core
 {
     /// <summary>
-    /// Unit Tests for the KeyboardState class.
+    /// Unit Tests for the Camera class.
     /// </summary>
     [TestFixture]
     public class CameraTests : TestingGrounds.Game1
