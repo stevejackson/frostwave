@@ -55,6 +55,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Code\Core\Camera.cs" />
+    <Compile Include="Code\Core\Cell.cs" />
     <Compile Include="Code\Frostwave.cs" />
     <Compile Include="Code\Graphics\Gui\ScreenImage.cs" />
     <Compile Include="Code\Graphics\Gui\ScreenItem.cs" />
