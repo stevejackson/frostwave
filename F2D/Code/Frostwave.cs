@@ -13,13 +13,6 @@ namespace F2D
     /// Window management: interacts with the GraphicsDeviceManager to automatically
     /// deal with aspect ratios, etc.
     /// </summary>
-    /// <example>
-    /// Frostwave.Initialize(graphics_device_manager);
-    /// Frostwave.Resolution = new Vector2Int(1024, 768);
-    /// Frostwave.Fullscreen = true;
-    /// Frostwave.CreateDisplay();
-    /// Frostwave.Draw();
-    /// </example>
     static public class Frostwave
     {
 

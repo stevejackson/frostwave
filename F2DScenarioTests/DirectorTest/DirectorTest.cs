@@ -16,18 +16,18 @@ using F2D.Math;
 using F2D.Input;
 using F2D.Core;
 
-namespace SkatePalace
+namespace DirectorTest
 {
     /// <summary>
-    /// A scratch project for ugly code testing out F2D functionality.
+    /// A scenario test for Director.
     /// </summary>
-    public class SkatePalaceGame : Microsoft.Xna.Framework.Game
+    public class DirectorTestGame : Microsoft.Xna.Framework.Game
     {
         protected GraphicsDeviceManager GraphicsManager;
         protected ContentManager content;
         protected InputState input;
 
-        public SkatePalaceGame()
+        public DirectorTestGame()
         {
             GraphicsManager = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
@@ -36,31 +36,16 @@ namespace SkatePalace
         protected override void Initialize()
         {
             Frostwave.Initialize(GraphicsManager);
-
+            Frostwave.Resolution = new Vector2Int(800, 600);
             Frostwave.Fullscreen = false;
-            Frostwave.Resolution = new Vector2Int(640, 480);
-
             Frostwave.CreateDisplay();
-
-            //Can we change properties a 2nd time?
-            Frostwave.Resolution = new Vector2Int(1280, 800);
-            Frostwave.Fullscreen = false;
-
-            Frostwave.CreateDisplay();
-
-            input = new InputState();
-
-            Camera.Initialize();
-            Camera.Size = new Vector2Int(800, 600);
-            Camera.Position = new Vector2(50, 75);
-            Camera.MapSize = new Vector2Int(2000, 2000);
 
             Director.Initialize(this);
-            Screen s = new Screen();
 
-            Director.AddScreen("red riding hood", s);
+            SplashScreen splash = new SplashScreen();
 
-            //Assert.AreEqual(s, Director.Screens["Screen"]);
+            Director.AddScreen("splash", splash);
+
             base.Initialize();
         }
 
@@ -76,23 +61,6 @@ namespace SkatePalace
 
         protected override void Update(GameTime gameTime)
         {
-            input.Update();
-
-            if (input.IsNewKeyPress(Keys.Escape))
-                Exit();
-
-            if (input.IsNewKeyPress(Keys.Right))
-                Camera.MoveDelta(new Vector2(0.01f, 0));
-
-            if (input.IsNewKeyPress(Keys.Left))
-                Camera.MoveDelta(new Vector2(-0.01f, 0));
-            
-            if (input.IsNewKeyPress(Keys.Up))
-                Camera.MoveDelta(new Vector2(0f, -0.01f));
-
-            if (input.IsNewKeyPress(Keys.Down))
-                Camera.MoveDelta(new Vector2(0f, 0.01f));
-
             base.Update(gameTime);
         }
 

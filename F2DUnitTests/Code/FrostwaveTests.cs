@@ -35,7 +35,7 @@ namespace F2DUnitTests
         [TestFixtureTearDown]
         public void Destroy()
         {
-            
+
         }
 
         /// <summary>
@@ -95,7 +95,6 @@ namespace F2DUnitTests
         [Test]
         public void TestColumnboxingValue_1280x1024()
         {
-            Console.WriteLine(Frostwave.Resolution);
             Frostwave.Initialize(GraphicsManager);
             Frostwave.Resolution = new Vector2Int(1280, 1024);
             Assert.AreEqual(0, Frostwave.ColumnBoxSize);

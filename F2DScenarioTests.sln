@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual C# Express 2005
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DirectorTest", "F2DScenarioTests\DirectorTest\DirectorTest.csproj", "{22C26163-0D80-41E6-8434-688A3912ABCD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorldImageTest", "F2DScenarioTests\WorldImageTest\WorldImageTest.csproj", "{E04FB4C5-571E-4EA1-BB14-B5676E6C5587}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{22C26163-0D80-41E6-8434-688A3912ABCD}.Debug|x86.ActiveCfg = Debug|x86
+		{22C26163-0D80-41E6-8434-688A3912ABCD}.Debug|x86.Build.0 = Debug|x86
+		{22C26163-0D80-41E6-8434-688A3912ABCD}.Release|x86.ActiveCfg = Release|x86
+		{22C26163-0D80-41E6-8434-688A3912ABCD}.Release|x86.Build.0 = Release|x86
+		{B646A827-41A7-45CE-9226-DC475CA2C1FB}.Debug|x86.ActiveCfg = Debug|x86
+		{B646A827-41A7-45CE-9226-DC475CA2C1FB}.Release|x86.ActiveCfg = Release|x86
+		{E04FB4C5-571E-4EA1-BB14-B5676E6C5587}.Debug|x86.ActiveCfg = Debug|x86
+		{E04FB4C5-571E-4EA1-BB14-B5676E6C5587}.Debug|x86.Build.0 = Debug|x86
+		{E04FB4C5-571E-4EA1-BB14-B5676E6C5587}.Release|x86.ActiveCfg = Release|x86
+		{E04FB4C5-571E-4EA1-BB14-B5676E6C5587}.Release|x86.Build.0 = Release|x86
+		{6077C189-6590-4F3E-8FD5-78E69522087F}.Debug|x86.ActiveCfg = Debug|x86
+		{6077C189-6590-4F3E-8FD5-78E69522087F}.Release|x86.ActiveCfg = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
