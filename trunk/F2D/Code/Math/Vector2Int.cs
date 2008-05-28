@@ -3,6 +3,7 @@
  * Steven Jackson, Vedran Budimcic
  */
 
+using Microsoft.Xna.Framework;
 namespace F2D.Math
 {
     /// <summary>
@@ -70,7 +71,7 @@ namespace F2D.Math
 
         public override string ToString()
         {
-            return "(" + X + ", " + Y + ")";
+            return "{X:"+ X + " Y:" + Y + "}";
         }
 
         /// <summary>
@@ -95,6 +96,14 @@ namespace F2D.Math
         public override int GetHashCode()
         {
             return base.GetHashCode();
+        }
+
+        /// <summary>
+        /// Returns a Vector2 consisting of this object's coordinates.
+        /// </summary>
+        public Vector2 ToVector2()
+        {
+            return new Vector2((float)x, (float)y);
         }
     }
 }
