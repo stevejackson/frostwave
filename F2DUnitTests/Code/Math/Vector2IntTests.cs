@@ -4,6 +4,7 @@ using System.Text;
 using NUnit.Framework;
 using Microsoft.Xna.Framework.Content;
 using F2D.Math;
+using Microsoft.Xna.Framework;
 
 namespace F2DUnitTests.Math
 {
@@ -138,7 +139,7 @@ namespace F2DUnitTests.Math
         public void TestToString()
         {
             Vector2Int a = new Vector2Int(50, 24);
-            string expected = "(50, 24)";
+            string expected = "{X:50 Y:24}";
 
             Assert.AreEqual(expected, a.ToString());
         }
@@ -217,5 +218,17 @@ namespace F2DUnitTests.Math
             Assert.IsTrue(a.Equals(c));
         }
 
+        /// <summary>
+        /// Ensure the Vector2 conversion works properly.
+        /// </summary>
+        [Test]
+        public void TestVector2Conversion()
+        {
+            Vector2Int a = new Vector2Int(10, 7);
+            Vector2 expected = new Vector2(10, 7);
+            Console.WriteLine(expected);
+
+            Assert.AreEqual(expected, a.ToVector2());
+        }
     }
 }
