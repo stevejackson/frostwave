@@ -3,6 +3,7 @@
  * Steven Jackson, Vedran Budimcic
  */
 
+using Microsoft.Xna.Framework.Graphics;
 namespace F2D.Graphics.Gui
 {
     /// <summary>
@@ -20,6 +21,6 @@ namespace F2D.Graphics.Gui
             isVisible = !isVisible;
         }
 
-        public abstract override void Draw();
+        public abstract override void Draw(SpriteBatch batch);
     }
 }

@@ -6,6 +6,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using F2D.Math;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace F2D.Graphics.Gui
 {
@@ -63,8 +64,8 @@ namespace F2D.Graphics.Gui
         {
            
         }
-       
-        public override void Draw()
+
+        public override void Draw(SpriteBatch batch)
         {
             
         }

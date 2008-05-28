@@ -24,7 +24,13 @@ namespace WorldImageTest
         protected GraphicsDeviceManager GraphicsManager;
         protected ContentManager content;
 
-        private WorldImage wimg;
+        private WorldImage wImgRegular;
+        private WorldImage wImgRotated;
+        private WorldImage smiley;
+        private WorldImage smileyScaled;
+        private WorldImage testOrigin;
+
+        private SpriteBatch batch;
 
         public WorldImageTestGame()
         {
@@ -35,24 +41,48 @@ namespace WorldImageTest
         protected override void Initialize()
         {
             Frostwave.Initialize(GraphicsManager);
+            Frostwave.BaseResolution = new Vector2Int(1600, 1200);
             Frostwave.Resolution = new Vector2Int(800, 600);
             Frostwave.Fullscreen = false;
             Frostwave.CreateDisplay();
 
-            wimg = new WorldImage();
+            wImgRegular = new WorldImage(new Vector2(150, 150));
+
+            wImgRotated = new WorldImage(new Vector2(1400, 200));
+            wImgRotated.Rotation = (float)Math.PI / 4;
+
+            smiley = new WorldImage(new Vector2(200, 300));
+            smiley.Layer = 0.9f;
+
+            smileyScaled = new WorldImage(new Vector2(1400, 1000));
+            smileyScaled.Scale = new Vector2(2.0f, 2.0f);
+
+            testOrigin = new WorldImage(new Vector2(0, 900));
+
+            batch = new SpriteBatch(GraphicsDevice);
 
             base.Initialize();
         }
 
         protected override void LoadContent()
         {
-            wimg.Initialize(new Vector2());
-            wimg.LoadContent();
+            wImgRegular.LoadContent(Content, @"test");
+            wImgRotated.LoadContent(Content, @"test");
+            smiley.LoadContent(Content, @"smiley");
+            smileyScaled.LoadContent(Content, @"smiley");
+            testOrigin.LoadContent(Content, @"test");
+            testOrigin.Origin = new Vector2Int(0, 0);
         }
 
         protected override void UnloadContent()
         {
-            wimg.UnloadContent();
+            wImgRegular.UnloadContent();
+            wImgRotated.UnloadContent();
+            smiley.UnloadContent();
+            smileyScaled.UnloadContent();
+            testOrigin.UnloadContent();
+
+            Content.Unload();
         }
 
         protected override void Update(GameTime gameTime)
@@ -64,8 +94,15 @@ namespace WorldImageTest
         {
             Frostwave.Draw();
 
-            //here
-            wimg.Draw();
+            batch.Begin(SpriteBlendMode.AlphaBlend, SpriteSortMode.BackToFront, SaveStateMode.None, Frostwave.ScaleMatrix);
+
+            wImgRegular.Draw(batch);
+            wImgRotated.Draw(batch);
+            smiley.Draw(batch);
+            smileyScaled.Draw(batch);
+            testOrigin.Draw(batch);
+
+            batch.End();
 
             base.Draw(gameTime);
         }

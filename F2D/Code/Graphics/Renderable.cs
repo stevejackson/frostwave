@@ -3,6 +3,7 @@
  * Steven Jackson, Vedran Budimcic
  */
 
+using Microsoft.Xna.Framework.Graphics;
 namespace F2D.Graphics
 {
     /// <summary>
@@ -42,6 +43,6 @@ namespace F2D.Graphics
         /// <summary>
         /// All renderables must implement Draw.
         /// </summary>
-        public abstract void Draw();
+        public abstract void Draw(SpriteBatch batch);
     }
 }
