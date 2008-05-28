@@ -1,0 +1,4 @@
+* Top left is test.png, with a smiley.png hidden halfway underneath it on the bottom side.
+* Top right is test.png rotated 45 degrees.
+* Bottom left is another test.png in the corner (different origin point)
+* Bottom right is a smiley.png scaled 2x

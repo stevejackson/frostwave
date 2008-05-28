@@ -22,8 +22,7 @@ namespace F2DUnitTests.Graphics
         [Test]
         public void TestCurCellIsNull()
         {
-            WorldImage testImage = new WorldImage();
-            testImage.Initialize(new Vector2(200, 300));
+            WorldImage testImage = new WorldImage(new Vector2(200, 300));
 
             Assert.IsNull(testImage.CurCell);
         }

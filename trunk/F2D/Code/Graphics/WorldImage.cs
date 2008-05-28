@@ -6,6 +6,8 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using F2D.Math;
+using Microsoft.Xna.Framework.Graphics;
+using F2D.Core;
 
 namespace F2D.Graphics
 {
@@ -32,35 +34,49 @@ namespace F2D.Graphics
             set { rotation = value; }
         }
         
-        
         private Vector2Int size;
         public Vector2Int Size
         {
             get { return size; }
-            set 
-            {
-                if (value.X <= 0)
-                    size.X = 1;
-                else
-                    size.X = value.X;
-
-                if (value.Y <= 0)
-                    size.Y = 1;
-                else
-                    size.Y = value.Y;    
-            }
         }
-        
-        public void Initialize(Vector2 position)
+
+        private Vector2 scale;
+        public Vector2 Scale
+        {
+            get { return scale; }
+            set { scale = value; }
+        }
+
+        private Vector2Int origin;
+        public Vector2Int Origin
+        {
+            get { return origin; }
+            set { origin = value; }
+        }
+
+        private Texture2D image;
+
+        public WorldImage()
+        {
+            position = new Vector2();
+            rotation = 0f;
+            scale = Vector2.One;
+            Layer = 0.5f;
+            origin = new Vector2Int();
+        }
+
+        public WorldImage(Vector2 position) : this()
         {
             this.position = position;
-            this.Rotation = 0f;
-            Layer = 0.5f;
         }
 
-        public void LoadContent()
+        public void LoadContent(ContentManager content, string filename)
         {
-            this.size = new Vector2Int();
+            size = new Vector2Int();
+            image = content.Load<Texture2D>(filename);
+            size.X = image.Width;
+            size.Y = image.Height;
+            origin = new Vector2Int(size.X / 2, size.Y / 2);
         }
 
         public void UnloadContent()
@@ -68,9 +84,12 @@ namespace F2D.Graphics
 
         }
 
-        public override void Draw()
+        public override void Draw(SpriteBatch batch)
         {
-           
+            batch.Draw(
+                image, position - Camera.Position, null, 
+                Color.White, rotation, Origin.ToVector2(),
+                scale, SpriteEffects.None, Layer);
         }
     }
 }

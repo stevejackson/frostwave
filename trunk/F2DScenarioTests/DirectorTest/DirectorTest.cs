@@ -15,6 +15,7 @@ using F2D;
 using F2D.Math;
 using F2D.Input;
 using F2D.Core;
+using System.Diagnostics;
 
 namespace DirectorTest
 {
