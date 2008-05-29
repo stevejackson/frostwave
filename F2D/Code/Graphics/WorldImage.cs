@@ -16,14 +16,12 @@ namespace F2D.Graphics
     /// </summary>
     public class WorldImage : F2D.Graphics.WorldItem
     {
-       
-        private Vector2 position;               
-        public Vector2 Position
+        public new Vector2 Position
         {
-            get { return position; }
+            get { return base.Position; }
             set
             {
-                position = value;
+                base.Position = value;
             }
         }
                 
@@ -58,7 +56,7 @@ namespace F2D.Graphics
 
         public WorldImage()
         {
-            position = new Vector2();
+            Position = new Vector2();
             rotation = 0f;
             scale = Vector2.One;
             Layer = 0.5f;
@@ -67,7 +65,7 @@ namespace F2D.Graphics
 
         public WorldImage(Vector2 position) : this()
         {
-            this.position = position;
+            this.Position = position;
         }
 
         public void LoadContent(ContentManager content, string filename)
@@ -87,7 +85,7 @@ namespace F2D.Graphics
         public override void Draw(SpriteBatch batch)
         {
             batch.Draw(
-                image, position - Camera.Position, null, 
+                image, Position - Camera.Position, null, 
                 Color.White, rotation, Origin.ToVector2(),
                 scale, SpriteEffects.None, Layer);
         }

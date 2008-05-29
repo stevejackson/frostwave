@@ -5,6 +5,8 @@
 
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Graphics;
 using F2D;
 using F2D.Graphics;
 
@@ -15,6 +17,8 @@ namespace F2D.Core
     /// </summary>
     public class Cell
     {
+        private Texture2D texture;
+
         private List<WorldItem> worldItems;
         public List<WorldItem> WorldItems
         {
@@ -59,5 +63,27 @@ namespace F2D.Core
 
             cellRect.Width = cellRect.Height = size;
         }
+         
+        public void LoadContent(ContentManager content, string cellFilename)
+        {
+            content.Load<Texture2D>(cellFilename);
+        }
+
+        public void Draw(SpriteBatch batch)
+        {
+            if (SceneGraph.RenderCells)
+            {
+                batch.Draw(
+                texture, Position - Camera.Position, null,
+                Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.9f);
+
+            }
+            for (int i = 0; i < worldItems.Count; i++)
+            {                
+                worldItems[i].Draw(batch);
+            }
+        }
+
+
     }
 }

@@ -5,6 +5,7 @@
 
 using F2D.Math;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework;
 
 namespace F2D.Graphics
 {
@@ -22,6 +23,14 @@ namespace F2D.Graphics
         {
             get { return curCell; }
             set { curCell = value; }
+        }
+
+        private Vector2 position;
+
+        public Vector2 Position
+        {
+            get { return position; }
+            set { position = value; }
         }
 
         public abstract override void Draw(SpriteBatch batch);
