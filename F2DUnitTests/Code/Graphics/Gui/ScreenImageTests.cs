@@ -5,8 +5,10 @@
 
 using NUnit.Framework;
 using Microsoft.Xna.Framework;
-using F2D.Math;
 using F2D.Graphics.Gui;
+using F2D.Math;
+using Microsoft.Xna.Framework.Content;
+using System;
 
 
 namespace F2DUnitTests.Graphics.Gui
@@ -17,6 +19,17 @@ namespace F2DUnitTests.Graphics.Gui
     [TestFixture]
     public class ScreenImageTests : TestingGrounds.Game1
     {
+        private ContentManager LocalContent;
+
+        [TestFixtureSetUp]
+        public void Setup()
+        {
+            AssemblyUtilities.SetEntryAssembly();
+            Uri codeBaseUri = new Uri(System.Reflection.Assembly.GetEntryAssembly().CodeBase);
+            LocalContent = new ContentManager(Services, System.IO.Directory.GetParent(codeBaseUri.AbsolutePath).FullName);
+            Run();
+        }
+
         /// <summary>
         /// Ensure the position manipulation works.
         /// </summary>
@@ -47,8 +60,7 @@ namespace F2DUnitTests.Graphics.Gui
         [Test]
         public void TestInitializeMethod()
         {
-            ScreenImage testImage = new ScreenImage();
-            testImage.Initialize(new Vector2(300, -500));
+            ScreenImage testImage = new ScreenImage(new Vector2(300, -500));
 
             Assert.AreEqual(new Vector2(300, -500), testImage.Position);
             Assert.AreEqual(0.3f, testImage.Layer);
@@ -65,7 +77,7 @@ namespace F2DUnitTests.Graphics.Gui
         public void TestPositiveSizeProperty()
         {
             ScreenImage testImage = new ScreenImage();
-            testImage.LoadContent();
+            testImage.LoadContent(LocalContent, @"Content\test");
             testImage.Size = new Vector2Int(100, 200);
 
             Assert.AreEqual(new Vector2Int(100, 200), testImage.Size);
@@ -78,7 +90,7 @@ namespace F2DUnitTests.Graphics.Gui
         public void TestZeroSizeProperty()
         {
             ScreenImage testImage = new ScreenImage();
-            testImage.LoadContent();
+            testImage.LoadContent(LocalContent, @"Content\test");
             testImage.Size = new Vector2Int(0, 0);
 
             Assert.AreEqual(new Vector2Int(1, 1), testImage.Size);
@@ -91,10 +103,34 @@ namespace F2DUnitTests.Graphics.Gui
         public void TestNegativeSizeProperty()
         {
             ScreenImage testImage = new ScreenImage();
-            testImage.LoadContent();
+            testImage.LoadContent(LocalContent, @"Content\test");
             testImage.Size = new Vector2Int(-400, -200);
 
             Assert.AreEqual(new Vector2Int(1, 1), testImage.Size);
+        }
+
+        /// <summary>
+        /// Ensure the Scale property works correctly.
+        /// </summary>
+        [Test]
+        public void TestScaleProperty()
+        {
+            ScreenImage testImage = new ScreenImage();
+            testImage.Scale = new Vector2(0.2f, 2.5f);
+
+            Assert.AreEqual(new Vector2(0.2f, 2.5f), testImage.Scale);
+        }
+
+        /// <summary>
+        /// Ensure the origin defaults to the middle of an image.
+        /// </summary>
+        [Test]
+        public void TestOriginDefaultPosition()
+        {
+            ScreenImage testImage = new ScreenImage();
+            testImage.LoadContent(LocalContent, @"Content\\test");
+
+            Assert.AreEqual(new Vector2Int(150, 150), testImage.Origin);
         }
 
         #endregion
