@@ -15,16 +15,16 @@ namespace F2DUnitTests.Graphics.Gui
     public class ScreenItemTests : TestingGrounds.Game1
     {
         /// <summary>
-        /// Ensure that the isVisible property works. This only tests the boolean itself, 
-        /// and does not detect if the ScreenItem is being drawn.
+        /// Ensure that the isVisible property works and is true on default.
+        /// This only tests the boolean itself, and does not detect if the ScreenItem is being drawn.
         /// </summary>
         [Test]
         public void TestIsVisibleProperty()
         {
             ScreenImage testImage = new ScreenImage();
             
-            //make sure the bool is false by default
-            Assert.IsFalse(testImage.isVisible);
+            //make sure the bool is true by default
+            Assert.IsTrue(testImage.isVisible);
         }
 
         /// <summary>
@@ -37,7 +37,7 @@ namespace F2DUnitTests.Graphics.Gui
             ScreenImage testImage = new ScreenImage();
             testImage.setVisible();
 
-            Assert.IsTrue(testImage.isVisible);
+            Assert.IsFalse(testImage.isVisible);
         }
     }
 }
