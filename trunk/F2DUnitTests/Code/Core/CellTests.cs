@@ -17,17 +17,19 @@ namespace F2DUnitTests.Core
     [TestFixture]
     public class CellTests : TestingGrounds.Game1
     {
+       
         /// <summary>
         /// Ensure the WorldItems property is working.
         /// </summary>
         [Test]
         public void TestWorldItemsProperty()
         {
-            Cell testCell = new Cell(new Vector2(-300, 200), 50);
+            WorldImage testImage = new WorldImage();
+            Cell testCell = new Cell(new Vector2(300, 200), 50);
 
-            testCell.WorldItems.Add(new WorldImage());
+            testCell.WorldItems.Add(testImage);
 
-            Assert.IsNotNull(testCell.WorldItems);
+            Assert.That(testCell.WorldItems.Contains(testImage));
         }
 
         /// <summary>

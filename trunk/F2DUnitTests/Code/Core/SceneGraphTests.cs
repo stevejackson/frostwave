@@ -62,9 +62,11 @@ namespace F2DUnitTests.Core
             Assert.IsNotNull(SceneGraph.ScreenItems);
             Assert.IsNotNull(SceneGraph.ToBeUpdated);
 
-            Assert.IsNotNull(SceneGraph.DrawnCells);
+            Assert.IsNotNull(SceneGraph.NeighbourCells);
 
             Assert.AreEqual(new Vector2(5, 3), SceneGraph.TotalCells.ToVector2());
+            Assert.AreEqual(new Vector2(900, 600), SceneGraph.Cells[3, 2].Position);
+            Assert.AreEqual(3, SceneGraph.MaxNeighbours);
         }
 
         /// <summary>

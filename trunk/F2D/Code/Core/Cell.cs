@@ -56,17 +56,13 @@ namespace F2D.Core
 
         public Cell(Vector2 position, int size)
         {
-            worldItems = new List<WorldItem>();
-
-            cellRect.X = (int)position.X;
-            cellRect.Y = (int)position.Y;
-
-            cellRect.Width = cellRect.Height = size;
+            worldItems = new List<WorldItem>();            
+            cellRect = new Rectangle((int)position.X, (int)position.Y, size, size);
         }
          
-        public void LoadContent(ContentManager content, string cellFilename)
+        public void LoadContent(ContentManager content, string filename)
         {
-            content.Load<Texture2D>(cellFilename);
+            texture = content.Load<Texture2D>(filename);
         }
 
         public void Draw(SpriteBatch batch)

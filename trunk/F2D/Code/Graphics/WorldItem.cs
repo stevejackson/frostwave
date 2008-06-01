@@ -6,6 +6,7 @@
 using F2D.Math;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
+using F2D.Core;
 
 namespace F2D.Graphics
 {
@@ -26,11 +27,18 @@ namespace F2D.Graphics
         }
 
         private Vector2 position;
-
-        public Vector2 Position
+        public  Vector2 Position
         {
             get { return position; }
-            set { position = value; }
+            set 
+            { 
+                position = value;
+
+                if (SceneGraph.MasterlistWorldItems.Contains(this))
+                {
+                    SceneGraph.ToBeUpdated.Add(this);
+                }
+            }
         }
 
         public abstract override void Draw(SpriteBatch batch);
