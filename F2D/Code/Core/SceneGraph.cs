@@ -69,11 +69,11 @@ namespace F2D.Core
             get { return cells; }
         }
 
-        static private List<Cell> drawnCells;
+        static private List<Cell> neighbourCells;
 
-        static public List<Cell> DrawnCells
+        static public List<Cell> NeighbourCells
         {
-            get { return drawnCells; }
+            get { return neighbourCells; }
         }
 
         static private List<Renderable> masterlist;
@@ -136,14 +136,15 @@ namespace F2D.Core
         {            
             sceneSize = mapSize;
             cellSize = cSize;
+            maxNeighbours = neighbours;
 
-            renderCells = false;
+            renderCells = false;            
             parentCell = new Vector2Int();
             masterlist = new List<Renderable>();
             masterlistWorldItems = new List<WorldItem>();
             screenItems = new List<ScreenItem>();
             toBeUpdated = new List<WorldItem>();
-            drawnCells = new List<Cell>();
+            neighbourCells = new List<Cell>();
 
             totalCells = new Vector2Int((int)System.Math.Ceiling((float)sceneSize.X / (float)cellSize), 
                                         (int)System.Math.Ceiling((float)sceneSize.Y / (float)cellSize));
@@ -168,6 +169,11 @@ namespace F2D.Core
                     cells[x, y].LoadContent(content, cellFilename);
                 }
             }
+        }
+
+        static public void UnloadContent()
+        {
+
         }
 
         /// <summary>
@@ -195,18 +201,26 @@ namespace F2D.Core
         /// <param name="batch"></param>
         static public void Draw(SpriteBatch batch)
         {
-            cells[parentCell.X, parentCell.Y].Draw(batch);          
+            for (int j = 0; j < screenItems.Count; j++)
+            {
+                screenItems[j].Draw(batch);
+            }
+
+            //make sure the parent cell is actually on screen
+            if(new Vector2Int(parentCell.X, parentCell.Y) != new Vector2Int(-1,-1))
+                cells[parentCell.X, parentCell.Y].Draw(batch);
+
 
             //check if the neighbouring cells are within the bounds of the camera
             //and if so, draw them
-            for (int i = 0; i < drawnCells.Count; i++)
+            for (int i = 0; i < neighbourCells.Count; i++)
             {
-                if (drawnCells[i].Position.X + drawnCells[i].Size > Camera.Position.X &&
-                    drawnCells[i].Position.X < Camera.Position.X + Camera.Size.X &&
-                    drawnCells[i].Position.Y + drawnCells[i].Size > Camera.Position.Y &&
-                    drawnCells[i].Position.Y < Camera.Position.Y + Camera.Size.Y)
+                if (neighbourCells[i].Position.X + neighbourCells[i].Size > Camera.Position.X &&
+                    neighbourCells[i].Position.X < Camera.Position.X + Camera.Size.X &&
+                    neighbourCells[i].Position.Y + neighbourCells[i].Size > Camera.Position.Y &&
+                    neighbourCells[i].Position.Y < Camera.Position.Y + Camera.Size.Y)
                 {
-                    drawnCells[i].Draw(batch);
+                    neighbourCells[i].Draw(batch);
                 }
             }
         }
@@ -216,46 +230,77 @@ namespace F2D.Core
         /// </summary>
         static public void Update()
         {            
-            drawnCells.Clear();
+            neighbourCells.Clear();
 
             for (int i = 0; i < toBeUpdated.Count; i++)
             {
-                GetCell(toBeUpdated[i].Position);
-            }
+                //if the object was off screen last frame, check if it is now on screen
+                if (toBeUpdated[i].CurCell == new Vector2Int(-1, -1))
+                {
+                    //if it is now on screen
+                    if (GetCell(toBeUpdated[i].Position) != new Vector2Int(-1, -1))
+                    {
+                        toBeUpdated[i].CurCell = GetCell(toBeUpdated[i].Position);
+                    }
+                }
+                else
+                {
 
-            for (int layer = 1; layer < maxNeighbours + 1; layer++)
+                    //if the object is in a cell already, remove it from that cell's list
+                    if (toBeUpdated[i].CurCell != null &&
+                        cells[toBeUpdated[i].CurCell.X, toBeUpdated[i].CurCell.Y].WorldItems.Contains(toBeUpdated[i]))
+                    {
+                        cells[toBeUpdated[i].CurCell.X, toBeUpdated[i].CurCell.Y].WorldItems.Remove(toBeUpdated[i]);
+                    }
+
+                    //find out which cell it's in now
+                    toBeUpdated[i].CurCell = GetCell(toBeUpdated[i].Position);
+
+                    //if the object on the screen this frame
+                    if (toBeUpdated[i].CurCell != new Vector2Int(-1, -1))
+                    {
+                        //add it to that cell
+                        cells[toBeUpdated[i].CurCell.X, toBeUpdated[i].CurCell.Y].WorldItems.Add(toBeUpdated[i]);
+                    }
+                }
+            }     
+
+            toBeUpdated.Clear();
+            
+            for (int layer = 1; layer <= maxNeighbours; layer++)
             {
-                //x , y = center cell location  (parent cell)  
+                //x = center cell location, the coord of the parent cell
+                //y = center cell location
                 int x = parentCell.X, y = parentCell.Y;
+               
 
-                //start at the top left cell, draw to top right cell
+                //Start at the top left, draw to top right corner
                 for (int distance = -layer; distance < layer; distance++)
                 {
-                    //top bound / right bound / left bound
+                    //Top bound / right bound / left bound
                     if (y - layer >= 0 && x + distance <= totalCells.X && x + distance >= 0)
                     {
-                        drawnCells.Add(cells[x + distance, y - layer]);
+                         neighbourCells.Add(cells[x + distance, y - layer]);
                     }
                 }
 
-                //start at top right cell, go to bottom right cell
+                //Start at top right, go to bottom right
                 for (int distance = -layer; distance < layer; distance++)
                 {
-                    //right bound / bottom bound / top bound
+                    //Right bound / bottom bound / top bound
                     if (x + layer <= totalCells.X && y + distance <= totalCells.Y && y + distance >= 0)
                     {
-                        drawnCells.Add(cells[x + layer, y + distance]);
+                        neighbourCells.Add(cells[x + layer, y + distance]);
                     }
                 }
 
-                //Start at bottom right cell, go to bottom left cell
+                //Start at bottom right, go to bottom left
                 for (int distance = layer; distance > -layer; distance--)
                 {
                     //Right bound / bottom bound / left bound
                     if (x + distance <= totalCells.X && y + layer <= totalCells.Y && x + distance >= 0)
                     {
-                        //Grid.Cells[(int)x + distance, (int)y + layer].Draw();
-                        drawnCells.Add(cells[(int)x + distance, (int)y + layer]);
+                        neighbourCells.Add(cells[x + distance, y + layer]);
                     }
                 }
 
@@ -265,14 +310,13 @@ namespace F2D.Core
                     //Left bound, top bound, bottom bound
                     if (x - layer >= 0 && y + distance >= 0 && y + distance <= totalCells.Y)
                     {
-                        //Grid.Cells[(int)x - layer, (int)y + distance].Draw();
-                        drawnCells.Add(cells[(int)x - layer, (int)y + distance]);
+                       neighbourCells.Add(cells[x - layer, y + distance]);
                     }
                 }
             }
         }
         
-        static private Vector2Int GetCell(Vector2 position)
+        static public Vector2Int GetCell(Vector2 position)
         {
             for (int x = 0; x <= totalCells.X; x++)
                 {
@@ -289,7 +333,7 @@ namespace F2D.Core
                     }
                 }
 
-                return new Vector2Int(0, 0);
+                return new Vector2Int(-1, -1);
         }
 
     }

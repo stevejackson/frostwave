@@ -5,9 +5,10 @@
 
 using NUnit.Framework;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
+using F2D.Core;
 using F2D.Graphics;
 using F2D.Math;
-using Microsoft.Xna.Framework.Content;
 using System;
 
 namespace F2DUnitTests.Graphics
@@ -38,7 +39,8 @@ namespace F2DUnitTests.Graphics
             WorldImage testImage = new WorldImage();
             testImage.Position = new Vector2(25, -18);
 
-            Assert.AreEqual(new Vector2(25, -18), testImage.Position);          
+            Assert.AreEqual(new Vector2(25, -18), testImage.Position);
+            Assert.That(SceneGraph.ToBeUpdated.Contains(testImage));
         }
 
         /// <summary>

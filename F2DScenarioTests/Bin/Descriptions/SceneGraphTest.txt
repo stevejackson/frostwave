@@ -1,0 +1,15 @@
+* the graphic for each cell (if rendered), test.png
+* One world image is loaded for each cell, test2.png
+* One screen image is loaded, the smiley.png to the right
+* one smiley is loaded as a world image, 
+	the SceneGraph's parentcell will always be assigned to this object's curCell, 
+	assuming it's on the screen.
+
+* Controls:
+	WASD = move the neighbourcells
+	Arrow keys = move the world object smiley
+	Enter = resize and re-initialize the grid, to a slightly smaller size
+	            this is only to simulate a screen change which comes along with a grid size change.
+	Space = (this key is really touchy, so just tap it) toggles the rendering of cells
+	
+	

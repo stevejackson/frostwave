@@ -16,15 +16,6 @@ namespace F2D.Graphics
     /// </summary>
     public class WorldImage : F2D.Graphics.WorldItem
     {
-        public new Vector2 Position
-        {
-            get { return base.Position; }
-            set
-            {
-                base.Position = value;
-            }
-        }
-                
         private float rotation;
         public float Rotation
         {
@@ -56,7 +47,6 @@ namespace F2D.Graphics
 
         public WorldImage()
         {
-            Position = new Vector2();
             rotation = 0f;
             scale = Vector2.One;
             Layer = 0.5f;
