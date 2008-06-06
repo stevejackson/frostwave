@@ -39,7 +39,6 @@
     <Compile Include="Code\AssemblyUtilities.cs" />
     <Compile Include="Code\Core\CameraTests.cs" />
     <Compile Include="Code\Core\CellTests.cs" />
-    <Compile Include="Code\Core\DirectorTests.cs" />
     <Compile Include="Code\Core\SceneGraphTests.cs" />
     <Compile Include="Code\Core\ScreenTests.cs" />
     <Compile Include="Code\FrostwaveTests.cs" />

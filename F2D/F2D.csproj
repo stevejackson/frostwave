@@ -56,7 +56,6 @@
   <ItemGroup>
     <Compile Include="Code\Core\Camera.cs" />
     <Compile Include="Code\Core\Cell.cs" />
-    <Compile Include="Code\Core\Director.cs" />
     <Compile Include="Code\Core\SceneGraph.cs" />
     <Compile Include="Code\Core\Screen.cs" />
     <Compile Include="Code\Frostwave.cs" />
@@ -65,7 +64,7 @@
     <Compile Include="Code\Graphics\Renderable.cs" />
     <Compile Include="Code\Graphics\WorldImage.cs" />
     <Compile Include="Code\Graphics\WorldItem.cs" />
-    <Compile Include="Code\Input\KeyboardState.cs" />
+    <Compile Include="Code\Input\InputState.cs" />
     <Compile Include="Code\Math\Vector2Int.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

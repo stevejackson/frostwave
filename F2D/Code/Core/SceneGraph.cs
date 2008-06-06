@@ -315,25 +315,25 @@ namespace F2D.Core
                 }
             }
         }
-        
+
         static public Vector2Int GetCell(Vector2 position)
         {
             for (int x = 0; x <= totalCells.X; x++)
+            {
+                for (int y = 0; y <= totalCells.Y; y++)
                 {
-                    for (int y = 0; y <= totalCells.Y; y++)
+                    if (position.X >= Cells[x, y].Position.X &&
+                        position.X <= (Cells[x, y].Position.X + Cells[x, y].Size) &&
+                        position.Y >= Cells[x, y].Position.Y &&
+                        position.Y <= (Cells[x, y].Position.Y + Cells[x, y].Size))
                     {
-                        if (position.X >= Cells[x, y].Position.X &&
-                            position.X <= (Cells[x, y].Position.X + Cells[x, y].Size) &&
-                            position.Y >= Cells[x, y].Position.Y &&
-                            position.Y <= (Cells[x, y].Position.Y + Cells[x, y].Size))
-                        {
-                            return new Vector2Int(x, y);
-                        }
-
+                        return new Vector2Int(x, y);
                     }
-                }
 
-                return new Vector2Int(-1, -1);
+                }
+            }
+
+            return new Vector2Int(-1, -1);
         }
 
     }
