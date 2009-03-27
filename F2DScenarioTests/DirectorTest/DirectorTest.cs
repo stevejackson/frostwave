@@ -2,7 +2,7 @@
  * (c) Snowfall Media 2008
  * Steven Jackson, Vedran Budimcic
  */
-
+/*
 using System;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
@@ -75,3 +75,4 @@ namespace DirectorTest
         }
     }
 }
+*/
