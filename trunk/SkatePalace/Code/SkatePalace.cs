@@ -54,12 +54,12 @@ namespace SkatePalace
             Camera.Size = new Vector2Int(800, 600);
             Camera.Position = new Vector2(50, 75);
             Camera.MapSize = new Vector2Int(2000, 2000);
-
+            /*
             Director.Initialize(this);
             Screen s = new Screen();
 
             Director.AddScreen("red riding hood", s);
-
+            */
             //Assert.AreEqual(s, Director.Screens["Screen"]);
             base.Initialize();
         }

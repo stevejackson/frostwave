@@ -9,10 +9,12 @@ namespace DirectorTest
         /// </summary>
         static void Main(string[] args)
         {
+            /*
             using (DirectorTestGame game = new DirectorTestGame())
             {
                 game.Run();
             }
+             */
         }
     }
 }

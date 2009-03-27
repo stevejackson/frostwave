@@ -40,7 +40,6 @@ namespace F2DUnitTests.Graphics
             testImage.Position = new Vector2(25, -18);
 
             Assert.AreEqual(new Vector2(25, -18), testImage.Position);
-            Assert.That(SceneGraph.ToBeUpdated.Contains(testImage));
         }
 
         /// <summary>
