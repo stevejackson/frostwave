@@ -24,7 +24,7 @@ namespace F2DUnitTests.Graphics.Gui
             ScreenImage testImage = new ScreenImage();
             
             //make sure the bool is true by default
-            Assert.IsTrue(testImage.isVisible);
+            Assert.IsTrue(testImage.IsVisible);
         }
 
         /// <summary>
@@ -35,9 +35,9 @@ namespace F2DUnitTests.Graphics.Gui
         public void TestSetVisibleMethod()
         {
             ScreenImage testImage = new ScreenImage();
-            testImage.setVisible();
+            testImage.SetVisible();
 
-            Assert.IsFalse(testImage.isVisible);
+            Assert.IsFalse(testImage.IsVisible);
         }
     }
 }

@@ -69,7 +69,7 @@ namespace F2D.Graphics.Gui
         {
             this.Position = new Vector2();
             this.Rotation = 0f;
-            this.setVisible();
+            isVisible = true;
             Layer = 0.3f;
             origin = new Vector2Int();
             scale = Vector2.One;
@@ -79,7 +79,7 @@ namespace F2D.Graphics.Gui
         {
             this.Position = position;
             this.Rotation = 0f;
-            this.setVisible();
+            isVisible = true;
             Layer = 0.3f;
             scale = Vector2.One;
         }

@@ -1,15 +1,15 @@
 ﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
   <PropertyGroup>
-    <ProjectGuid>b646a827-41a7-45ce-9226-dc475ca2c1fb</ProjectGuid>
+    <ProjectGuid>f28f0d43-e7c9-4135-808d-fdf352359aa2</ProjectGuid>
     <ProjectTypeGuids>{96E2B04D-8817-42c6-938A-82C39BA4D311};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <XnaFrameworkVersion>v3.0</XnaFrameworkVersion>
     <PlatformTarget>x86</PlatformTarget>
     <OutputPath>bin\$(Platform)\$(Configuration)</OutputPath>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <XnaPlatform>Windows</XnaPlatform>
@@ -40,6 +40,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
     <Compile Include="test.png">
       <Name>test</Name>
       <Importer>TextureImporter</Importer>
