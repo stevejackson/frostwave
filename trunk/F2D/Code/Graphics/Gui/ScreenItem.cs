@@ -11,12 +11,16 @@ namespace F2D.Graphics.Gui
     /// </summary>
     public abstract class ScreenItem : Renderable
     {
-        public bool isVisible;
+        protected bool isVisible;
+        public bool IsVisible
+        {
+            get { return isVisible; }
+        }
 
         /// <summary>
         /// Alternates the current state of visibility
         /// </summary>
-        public void setVisible()
+        public void SetVisible()
         {
             isVisible = !isVisible;
         }

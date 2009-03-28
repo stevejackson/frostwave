@@ -46,6 +46,9 @@ namespace WorldImageTest
             Frostwave.Fullscreen = false;
             Frostwave.CreateDisplay();
 
+            SceneGraph.Initialize(new Vector2Int(1600, 1200), 300, 1);
+            SceneGraph.RenderCells = false;
+
             wImgRegular = new WorldImage(new Vector2(150, 150));
 
             wImgRotated = new WorldImage(new Vector2(1400, 200));

@@ -2,7 +2,7 @@
  * (c) Snowfall Media 2008
  * Steven Jackson, Vedran Budimcic
  */
-/*
+
 using System;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
@@ -43,9 +43,8 @@ namespace DirectorTest
 
             Director.Initialize(this);
 
-            SplashScreen splash = new SplashScreen();
-
-            Director.AddScreen("splash", splash);
+            ScreenOne splash = new ScreenOne();
+            Director.AddScreen("scr1", splash);
 
             base.Initialize();
         }
@@ -63,16 +62,18 @@ namespace DirectorTest
         protected override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
+
+            Director.Update(gameTime);
+
         }
 
         protected override void Draw(GameTime gameTime)
         {
             Frostwave.Draw();
 
-            //here
+            Director.Draw();
 
             base.Draw(gameTime);
         }
     }
 }
-*/
