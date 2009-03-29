@@ -1,0 +1,5 @@
+ * On the initial screen there is a smiley.png icon that can be moved with the arrow keys.
+ * When space is pressed, a second screen is loaded on top of the first screen, with a test.png.
+ * When space is pressed again, the second screen is destroyed.
+
+ * You should only be able to control the smiley.png when focus is on that screen.
