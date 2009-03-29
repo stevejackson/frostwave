@@ -98,13 +98,13 @@ namespace F2D.Core
             if (position.X < 0)
                 position.X = 0;
 
-            if (position.X > mapSize.X)
+            if (position.X + size.X > mapSize.X)
                 position.X = mapSize.X - size.X;
             
             if (position.Y < 0)
                 position.Y = 0;
 
-            if (position.Y > mapSize.Y)
+            if (position.Y + size.Y > mapSize.Y)
                 position.Y = mapSize.Y - size.Y;
 
             //manually update the camera rect since position changed

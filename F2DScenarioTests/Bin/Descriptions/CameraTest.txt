@@ -1,0 +1,6 @@
+ * The SceneGraph cells are rendered with test.png.
+ * There is a smiley.png located at each corner of the map, and one in the center.
+ * The map is 3000 wide and 2000 tall. 
+ * The camera is controlled w/ WASD.
+
+ - The camera should be bounded at the map edges.

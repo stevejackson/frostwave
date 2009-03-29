@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorldImageTest", "F2DScenar
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RatTest", "F2DScenarioTests\RatTest\RatTest.csproj", "{CA2A5395-C047-4A3C-AA81-B346BBB6DEFA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CameraTest", "F2DScenarioTests\CameraTest\CameraTest.csproj", "{7B09E543-C87E-41EA-8F48-AAA0EBDEE9B2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -47,6 +49,12 @@ Global
 		{CA2A5395-C047-4A3C-AA81-B346BBB6DEFA}.Release|x86.Build.0 = Release|x86
 		{1F8B7106-429B-40BD-8EF4-87EAAA55F41A}.Debug|x86.ActiveCfg = Debug|x86
 		{1F8B7106-429B-40BD-8EF4-87EAAA55F41A}.Release|x86.ActiveCfg = Release|x86
+		{7B09E543-C87E-41EA-8F48-AAA0EBDEE9B2}.Debug|x86.ActiveCfg = Debug|x86
+		{7B09E543-C87E-41EA-8F48-AAA0EBDEE9B2}.Debug|x86.Build.0 = Debug|x86
+		{7B09E543-C87E-41EA-8F48-AAA0EBDEE9B2}.Release|x86.ActiveCfg = Release|x86
+		{7B09E543-C87E-41EA-8F48-AAA0EBDEE9B2}.Release|x86.Build.0 = Release|x86
+		{711630D3-F1E0-47F0-871D-39434F90E710}.Debug|x86.ActiveCfg = Debug|x86
+		{711630D3-F1E0-47F0-871D-39434F90E710}.Release|x86.ActiveCfg = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
