@@ -1,0 +1,3 @@
+ * Near the top left is a large smiley.png, partially covered on top by a smaller smiley.png.
+ * In the upper middle there is an invisible smiley.png that should not be displayed.
+ * In the bottom left there is a rotated smiley.png.

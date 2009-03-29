@@ -1,0 +1,3 @@
+ * test.png is the cursor.
+ * The cursor's boundaries should be limited by the screen coordinates, 800x600, and displayed in the window title.
+ * The left & right button states are displayed in the title screen.

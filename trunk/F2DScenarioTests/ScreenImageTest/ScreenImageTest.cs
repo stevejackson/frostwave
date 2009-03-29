@@ -22,7 +22,6 @@ namespace ScreenImageTest
     public class ScreenImageTestGame : Microsoft.Xna.Framework.Game
     {
         protected GraphicsDeviceManager GraphicsManager;
-        protected ContentManager content;
 
         private ScreenImage sImg;
         private ScreenImage sImgInvisible;
