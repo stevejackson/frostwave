@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<sprite file="sheet.png">
+	<animation name="WalkUp">
+		<frame image="0,1,2,3" origin="4,5" collision="6,7,8,9" />
+		<frame image="10,11,12,13" origin="14,15" collision="16,17,18,19" />
+	</animation>
+	<animation name="WalkDown">
+		<frame image="20,21,22,23" origin="24,25" collision="26,27,28,29" />
+		<frame image="30,31,32,33" origin="34,35" collision="36,37,38,39" />
+	</animation>
+</sprite>
