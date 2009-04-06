@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<sprite file="Etna">
+	<animation name="Stand">
+		<frame image="0,0,32,56" origin="0,0" collision="0,0,0,0" />
+	</animation>
+	<animation name="WalkLeft">
+		<frame image="0,56,32,56" origin="0,0" collision="0,0,0,0" />
+		<frame image="32,56,32,56" origin="0,0" collision="0,0,0,0" />
+		<frame image="64,56,32,56" origin="0,0" collision="0,0,0,0" />
+		<frame image="96,56,32,56" origin="0,0" collision="0,0,0,0" />
+		<frame image="128,56,32,56" origin="0,0" collision="0,0,0,0" />
+		<frame image="160,56,32,56" origin="0,0" collision="0,0,0,0" />
+	</animation>
+	<animation name="Backflip">
+		<frame image="0,1056,32,56" origin="0,0" collision="0,0,0,0" />
+		<frame image="32,1056,32,56" origin="0,0" collision="0,0,0,0" />
+		<frame image="64,1056,32,56" origin="0,0" collision="0,0,0,0" />
+		<frame image="96,1056,32,56" origin="0,0" collision="0,0,0,0" />
+		<frame image="128,1056,40,56" origin="0,0" collision="0,0,0,0" />
+		<frame image="168,1056,32,56" origin="0,0" collision="0,0,0,0" />
+	</animation>
+</sprite>

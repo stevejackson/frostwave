@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<sprite file="knd1">
+	<animation name="WalkDown">
+		<frame image="64,0,32,32" origin="0,24" collision="0,0,0,0" />
+		<frame image="96,0,32,32" origin="0,24" collision="0,0,0,0" />
+	</animation>
+	<animation name="WalkLeft">
+		<frame image="128,0,32,32" origin="0,24" collision="0,0,0,0" />
+		<frame image="160,0,32,32" origin="0,24" collision="0,0,0,0" />
+	</animation>	
+	<animation name="WalkRight">
+		<frame image="192,0,32,32" origin="0,24" collision="0,0,0,0" />
+		<frame image="224,0,32,32" origin="0,24" collision="0,0,0,0" />
+	</animation>
+	<animation name="WalkUp">
+		<frame image="0,0,32,32" origin="0,24" collision="0,0,0,0" />
+		<frame image="32,0,32,32" origin="0,24" collision="0,0,0,0" />
+	</animation>
+</sprite>

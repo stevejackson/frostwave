@@ -1,0 +1,5 @@
+* knd1.xml can be moved up, down, left, right with WASd with animations for each direction.
+ 
+* Etna.xml can be moved left and right with flipped animations with A & D.  She can backflip in position by holding W.
+
+* Etna.xml is double her normal size.

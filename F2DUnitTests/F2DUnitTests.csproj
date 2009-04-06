@@ -67,6 +67,7 @@
     <Compile Include="Code\Graphics\Gui\ScreenImageTests.cs" />
     <Compile Include="Code\Graphics\Gui\ScreenItemTests.cs" />
     <Compile Include="Code\Graphics\RenderableTests.cs" />
+    <Compile Include="Code\Graphics\SpriteTests.cs" />
     <Compile Include="Code\Graphics\WorldImageTests.cs" />
     <Compile Include="Code\Graphics\WorldItemTests.cs" />
     <Compile Include="Code\Input\InputStateTests.cs" />

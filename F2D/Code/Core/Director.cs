@@ -1,5 +1,5 @@
 /* Frostwave 2D
- * (c) Snowfall Media 2008
+ * (c) Snowfall Media 2009
  * Steven Jackson, Vedran Budimcic
  */
 
