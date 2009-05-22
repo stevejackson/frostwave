@@ -6,6 +6,7 @@
 using Microsoft.Xna.Framework;
 using F2D.Math;
 using Microsoft.Xna.Framework.Graphics;
+using F2D.Core;
 
 namespace F2D
 {
@@ -105,15 +106,41 @@ namespace F2D
             get { return scale; }
         }
 
-        static private Matrix scaleMatrix;
-
         /// <summary>
         /// Another representation of the scale between Resolution & BaseResolution,
         /// in a Matrix format, for use by SpriteBatch rendering.
         /// </summary>
         static public Matrix ScaleMatrix
         {
-            get { return scaleMatrix; }
+            get
+            {
+                //return Matrix.CreateScale(
+                //(float)Resolution.X / (float)BaseResolution.X,
+                //(float)Resolution.Y / (float)BaseResolution.Y,
+                //1f);
+
+                    ////Matrix.CreateTranslation(Camera.Position.X, Camera.Position.Y, 0) * 
+                    //Matrix.CreateTranslation(new Vector3(-Camera.Position.X, -Camera.Position.Y, 0f)) *
+                    //Matrix.CreateTranslation(SceneViewport.Width / 2 / Camera.Zoom, SceneViewport.Height / 2 / Camera.Zoom, 0) *
+                    ////Matrix.CreateTranslation(new Vector3(-Camera.Position, 0f)) *
+                    //Matrix.CreateScale(Camera.Zoom, Camera.Zoom, Camera.Zoom);
+                Vector3 matrixRotOrigin = new Vector3(Camera.Position.X + SceneViewport.Width / 2, Camera.Position.Y + SceneViewport.Height / 2, 0);
+                Vector3 matrixScreenPos = new Vector3(SceneViewport.Width / 2, SceneViewport.Height / 2, 0);
+
+                return Matrix.CreateTranslation(-matrixRotOrigin) *
+                    Matrix.CreateScale(Camera.Zoom, Camera.Zoom, 1f) *
+                    Matrix.CreateRotationZ(0) *
+                    Matrix.CreateTranslation(matrixScreenPos);
+
+
+
+    //                    Vector3 matrixRotOrigin = new Vector3(Position + Offset, 0);
+    //Vector3 matrixScreenPos = new Vector3(ScreenPosition, 0.0f); 
+        //                return Matrix.CreateTranslation(-matrixRotOrigin) *
+        //Matrix.CreateScale(ActiveCamera.Zoom.X, ActiveCamera.Zoom.Y, 1.0f) *
+        //Matrix.CreateRotationZ(ActiveCamera.Rotation) *
+        //Matrix.CreateTranslation(matrixScreenPos);
+            }
         }
 
         #endregion
@@ -165,7 +192,7 @@ namespace F2D
         /// Calculates the proper columnbox size for the current resolution, and applies it
         /// to the viewports.
         /// </summary>
-        private static void Recalculate()
+        public static void Recalculate()
         {
             // 1280x1024 is a special case, but should still have no columnboxing
             if (Resolution == new Vector2Int(1280, 1024))
@@ -185,11 +212,6 @@ namespace F2D
 
             scale = new Vector2((float)Resolution.X / (float)BaseResolution.X, 
                                 (float)Resolution.Y / (float)BaseResolution.Y);
-
-            scaleMatrix = Matrix.CreateScale(
-                (float)Resolution.X / (float)BaseResolution.X,
-                (float)Resolution.Y / (float)BaseResolution.Y,
-                1f);
         }
     }
 

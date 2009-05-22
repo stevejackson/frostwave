@@ -64,6 +64,14 @@ namespace F2D.Graphics
 
         public Vector2 Scale;
 
+        public Vector2Int CurrentFrameSize
+        {
+            get { return new Vector2Int(
+                (int)(Animations[currentAnimation].CurrentFrame.Image.Width * Scale.X),
+                (int)(Animations[currentAnimation].CurrentFrame.Image.Height * Scale.Y));
+            }
+        }
+
         #endregion
 
         public Sprite(string filename)
@@ -107,6 +115,7 @@ namespace F2D.Graphics
             {
                 SpriteAnimation anim = new SpriteAnimation();
                 anim.Name = animNode.Attributes[0].Value;
+                anim.Speed = Convert.ToInt32(animNode.Attributes[1].Value);
 
                 // Loop through frames in this animation
                 foreach (XmlNode frameNode in animNode.ChildNodes)
@@ -115,8 +124,14 @@ namespace F2D.Graphics
                     
                     // Retrieve the values and split them into arrays of their values
                     string[] imageVal = frameNode.Attributes.GetNamedItem("image").Value.Split(new char[]{','});
-                    string[] collisionVal = frameNode.Attributes.GetNamedItem("collision").Value.Split(new char[]{','});
                     string[] hotspot = frameNode.Attributes.GetNamedItem("origin").Value.Split(new char[]{','});
+                    string[] colRect = frameNode.Attributes.GetNamedItem("collision").Value.Split(new char[] { ',' });
+
+                    frame.Collision = new Rectangle(
+                        Convert.ToInt32(colRect[0]),
+                        Convert.ToInt32(colRect[1]),
+                        Convert.ToInt32(colRect[2]),
+                        Convert.ToInt32(colRect[3]));
 
                     frame.Image = new Rectangle(
                         Convert.ToInt32(imageVal[0]),
@@ -124,15 +139,34 @@ namespace F2D.Graphics
                         Convert.ToInt32(imageVal[2]),
                         Convert.ToInt32(imageVal[3]));
 
-                    frame.Collision = new Rectangle(
-                        Convert.ToInt32(collisionVal[0]),
-                        Convert.ToInt32(collisionVal[1]),
-                        Convert.ToInt32(collisionVal[2]),
-                        Convert.ToInt32(collisionVal[3]));
-
                     frame.Origin = new Vector2Int(
                         Convert.ToInt32(hotspot[0]),
                         Convert.ToInt32(hotspot[1]));
+
+                    //foreach (XmlNode colNode in frameNode.ChildNodes)
+                    //{
+                    //    string type = frameNode.Attributes.GetNamedItem("type").Value.ToString();
+
+                    //    if (type.ToLower() == "rect")
+                    //        frame.ObjectType = CollisionObjectType.Rect;
+                    //    else
+                    //        frame.ObjectType = CollisionObjectType.Circle;
+
+                    //    string[] position = colNode.Attributes.GetNamedItem("position").Value.Split(new char[] { ',' });
+                        
+                    //    frame.Position = new Vector2((float)Convert.ToDouble(position[0]), (float)Convert.ToDouble(position[1]));
+
+                    //    if (frame.ObjectType == CollisionObjectType.Rect)
+                    //    {
+                    //        string[] size = colNode.Attributes.GetNamedItem("size").Value.Split(new char[] { ',' });
+                    //        frame.Size = new Vector2Int(Convert.ToInt32(size[0]), Convert.ToInt32(size[1]));
+                    //    }
+                    //    else // Circle
+                    //    {
+                    //        string radius = colNode.Attributes.GetNamedItem("size").Value.ToString();
+                    //        frame.Radius = Convert.ToInt32(radius);
+                    //    }
+                    //}
 
                     // Add the frame to this animation.
                     anim.Frames.Add(frame);

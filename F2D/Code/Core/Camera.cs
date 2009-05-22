@@ -22,7 +22,7 @@ namespace F2D.Core
         static private Vector2 position;
         static public Vector2 Position
         {
-            get { return position; }
+            get { return new Vector2((float)System.Math.Floor(position.X), (float)System.Math.Floor(position.Y)); }
             set 
             { 
                 position = value;
@@ -54,6 +54,13 @@ namespace F2D.Core
             }
         }
 
+        static private float zoom;
+        static public float Zoom
+        {
+            get { return zoom; }
+            set { zoom = value; }
+        }
+
         static public void Initialize()
         {
             position = new Vector2();
@@ -73,6 +80,8 @@ namespace F2D.Core
             catch
             {
             }
+
+            Zoom = 1f;
 
             UpdateRect();
         }
@@ -114,6 +123,21 @@ namespace F2D.Core
         static public void MoveTo(Vector2 destination)
         {
             MoveDelta(destination - position);
+        }
+
+        static public Vector2 GetRenderPosition(Vector2 worldPosition)
+        {
+            return (worldPosition * Zoom) - position;
+        }
+
+        static public float GetSpriteScale(float spriteScale)
+        {
+            return Zoom * spriteScale;
+        }
+
+        static public Vector2 GetSpriteScale(Vector2 spriteScale)
+        {
+            return Zoom * spriteScale;
         }
     }
 }

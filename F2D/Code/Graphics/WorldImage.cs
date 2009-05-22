@@ -75,9 +75,15 @@ namespace F2D.Graphics
         public override void Draw(SpriteBatch batch)
         {
             batch.Draw(
-                image, Position - Camera.Position, null, 
-                Color.White, rotation, Origin.ToVector2(),
-                scale, SpriteEffects.None, Layer);
+                image, 
+                Position, 
+                null, 
+                Color.White, 
+                rotation, 
+                Origin.ToVector2(),
+                scale, 
+                SpriteEffects.None, 
+                Layer);
         }
     }
 }

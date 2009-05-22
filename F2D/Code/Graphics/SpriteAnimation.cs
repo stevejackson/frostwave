@@ -43,6 +43,7 @@ namespace F2D.Graphics
             get { return Frames[CurrentFrameNumber]; }
         }
 
+        public int Speed;
 
         #endregion
 
@@ -51,6 +52,7 @@ namespace F2D.Graphics
             name = "";
             CurrentFrameNumber = 0;
             Frames = new List<Frame>();
+            Speed = -1;
         }
 
     }

@@ -55,7 +55,7 @@ namespace F2D.Input
         {
             position = new Vector2();
             image = new ScreenImage();
-            image.Layer = 0.0f;
+            image.Layer = 0.1f;
 
             try
             {
@@ -86,7 +86,7 @@ namespace F2D.Input
                 curState.X,
                 curState.Y);
 
-            image.Position = position;
+            image.Position = Position;
         }
 
         static public void Draw(SpriteBatch batch)
