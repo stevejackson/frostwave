@@ -32,12 +32,31 @@ namespace F2D.Graphics
         private string textureFilename;
         private Texture2D texture;
 
+        private bool playOnce;
+        public bool PlayOnce
+        {
+            get { return playOnce; }
+            set
+            {
+                playOnce = value;
+            }
+        }
+
+        private int currentAnimationPlayCount;
+        public int CurrentAnimationPlayCount
+        {
+            get { return currentAnimationPlayCount; }
+        }
+
         private string currentAnimation;
         public string CurrentAnimation
         {
             get { return currentAnimation; }
             set
             {
+                playOnce = false;
+                currentAnimationPlayCount = 0;
+
                 if (Animations.ContainsKey(value) && currentAnimation != value)
                 {
                     Animations[value].CurrentFrameNumber = 0;
@@ -185,6 +204,7 @@ namespace F2D.Graphics
 
         public void Update(GameTime gameTime)
         {
+
             if (currentAnimation == "")
             {
                 Dictionary<string, SpriteAnimation>.KeyCollection.Enumerator dicEnum = 
@@ -198,14 +218,20 @@ namespace F2D.Graphics
             {
                 timer += (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-                if (timer > framesPerSecond)
+                if (!(playOnce && currentAnimationPlayCount > 0))
                 {
-                    timer = 0f;
-                    
-                    int curFrame = Animations[currentAnimation].CurrentFrameNumber;
+                    if (timer > framesPerSecond)
+                    {
+                        timer = 0f;
 
-                    Animations[currentAnimation].CurrentFrameNumber = 
-                        (curFrame + 1) % Animations[currentAnimation].Frames.Count;
+                        int curFrame = Animations[currentAnimation].CurrentFrameNumber;
+
+                        Animations[currentAnimation].CurrentFrameNumber =
+                            (curFrame + 1) % Animations[currentAnimation].Frames.Count;
+
+                        if (Animations[currentAnimation].CurrentFrameNumber == Animations[CurrentAnimation].Frames.Count - 1)
+                            currentAnimationPlayCount++;
+                    }
                 }
             }
         }
