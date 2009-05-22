@@ -70,7 +70,7 @@ namespace F2D.Core
             if (SceneGraph.RenderCells)
             {
                 batch.Draw(
-                texture, Position - Camera.Position, null,
+                texture, Camera.GetRenderPosition(Position), null,
                 Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.9f);
 
             }

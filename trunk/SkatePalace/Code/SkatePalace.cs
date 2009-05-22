@@ -51,7 +51,7 @@ namespace SkatePalace
             input = new InputState();
 
             Camera.Initialize();
-            Camera.Size = new Vector2Int(800, 600);
+            //Camera.Size = new Vector2Int(800, 600);
             Camera.Position = new Vector2(50, 75);
             Camera.MapSize = new Vector2Int(2000, 2000);
             /*

@@ -78,10 +78,6 @@ namespace F2D.Graphics.Gui
         public ScreenImage(Vector2 position) : this()
         {
             this.Position = position;
-            this.Rotation = 0f;
-            isVisible = true;
-            Layer = 0.3f;
-            scale = Vector2.One;
         }
 
         public void LoadContent(ContentManager content, string filename)
@@ -103,7 +99,7 @@ namespace F2D.Graphics.Gui
             if (isVisible)
             {
                 batch.Draw(
-                    image, Position - Camera.Position, null,
+                    image, Position, null,
                     Color.White, rotation, Origin.ToVector2(),
                     scale, SpriteEffects.None, Layer);
             }

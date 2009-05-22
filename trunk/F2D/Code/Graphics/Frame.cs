@@ -18,7 +18,7 @@ namespace F2D.Graphics
     public class Frame
     {
         public Rectangle Image;
-        public Rectangle Collision;
         public Vector2Int Origin;
+        public Rectangle Collision;
     }
 }

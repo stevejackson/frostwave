@@ -35,13 +35,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="earthbound.png">
-      <Name>earthbound</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="knd1.png">
       <Name>knd1</Name>
       <Importer>TextureImporter</Importer>
