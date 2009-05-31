@@ -43,6 +43,11 @@ namespace F2D.Math
             return new Vector2Int(1, 1);
         }
 
+        public static Vector2Int operator /(Vector2Int a, float b)
+        {
+            return new Vector2Int((int)((float)a.X / b), (int)(((float)a.Y / b)));
+        }
+
         public static Vector2Int operator +(Vector2Int a, Vector2Int b)
         {
             return new Vector2Int(a.X + b.X, a.Y + b.Y);
