@@ -91,7 +91,41 @@ namespace F2D.Graphics
             }
         }
 
+        public Frame CurrentFrame
+        {
+            get { return Animations[currentAnimation].CurrentFrame; }
+        }
+
+        private float rotation;
+        public float Rotation
+        {
+            get { return rotation; }
+            set { rotation = value; }
+        }
+
+        public Vector2 TopLeft
+        {
+            get { return Position - (Animations[CurrentAnimation].CurrentFrame.Origin.ToVector2() * Scale); }
+        }
+
+        public Vector2 TopRight
+        {
+            get { return new Vector2(TopLeft.X + CurrentFrameSize.X, TopLeft.Y); }
+        }
+
+        public Vector2 BottomLeft
+        {
+            get { return new Vector2(TopLeft.X, TopLeft.Y + CurrentFrameSize.Y); }
+        }
+
+        public Vector2 BottomRight
+        {
+            get { return new Vector2(TopLeft.X + CurrentFrameSize.X, TopLeft.Y + CurrentFrameSize.Y); }
+        }
+
         #endregion
+
+        public string Filename;
 
         public Sprite(string filename)
         {
@@ -102,6 +136,7 @@ namespace F2D.Graphics
             currentAnimation = "";
             AnimationActive = false;
             Animations = new Dictionary<string, SpriteAnimation>();
+            rotation = 0f;
             LoadAnimations(filename);
         }
 
@@ -121,6 +156,8 @@ namespace F2D.Graphics
         /// <param name="filename"></param>
         public void LoadAnimations(string filename)
         {
+            Filename = filename;
+
             XmlDocument xmlDoc = new XmlDocument();
             xmlDoc.Load(filename);
             
@@ -162,31 +199,6 @@ namespace F2D.Graphics
                         Convert.ToInt32(hotspot[0]),
                         Convert.ToInt32(hotspot[1]));
 
-                    //foreach (XmlNode colNode in frameNode.ChildNodes)
-                    //{
-                    //    string type = frameNode.Attributes.GetNamedItem("type").Value.ToString();
-
-                    //    if (type.ToLower() == "rect")
-                    //        frame.ObjectType = CollisionObjectType.Rect;
-                    //    else
-                    //        frame.ObjectType = CollisionObjectType.Circle;
-
-                    //    string[] position = colNode.Attributes.GetNamedItem("position").Value.Split(new char[] { ',' });
-                        
-                    //    frame.Position = new Vector2((float)Convert.ToDouble(position[0]), (float)Convert.ToDouble(position[1]));
-
-                    //    if (frame.ObjectType == CollisionObjectType.Rect)
-                    //    {
-                    //        string[] size = colNode.Attributes.GetNamedItem("size").Value.Split(new char[] { ',' });
-                    //        frame.Size = new Vector2Int(Convert.ToInt32(size[0]), Convert.ToInt32(size[1]));
-                    //    }
-                    //    else // Circle
-                    //    {
-                    //        string radius = colNode.Attributes.GetNamedItem("size").Value.ToString();
-                    //        frame.Radius = Convert.ToInt32(radius);
-                    //    }
-                    //}
-
                     // Add the frame to this animation.
                     anim.Frames.Add(frame);
                 }
@@ -199,6 +211,13 @@ namespace F2D.Graphics
 
                 dicEnum.MoveNext();
                 CurrentAnimation = dicEnum.Current;
+            }
+
+            XmlNodeList circles = xmlDoc.GetElementsByTagName("circle");
+
+            foreach (XmlNode node in circles)
+            {
+
             }
         }
 
@@ -242,7 +261,7 @@ namespace F2D.Graphics
                 Position,
                 Animations[currentAnimation].CurrentFrame.Image,
                 Color.White,
-                0,
+                Rotation,
                 Animations[currentAnimation].CurrentFrame.Origin.ToVector2(),
                 Scale,
                 FlipHorizontal ? SpriteEffects.FlipHorizontally : (FlipVertical ? SpriteEffects.FlipVertically : SpriteEffects.None),
